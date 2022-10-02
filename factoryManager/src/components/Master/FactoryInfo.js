@@ -65,22 +65,22 @@ const FactoryInfo = () => {
     console.log(factory);
   };
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log(factory);
-        dispatch(addFactoryInfo(factory));
+      dispatch(addFactoryInfo(factory));
       setFactory({
         companyName: '',
-    companyAddress: '',
-    contactNumber: '',
-    website: '',
-    gstNumber: '',
-    manager: '',
-    managerNumber: '',
-    managerEmailId: '',
+        companyAddress: '',
+        contactNumber: '',
+        website: '',
+        gstNumber: '',
+        manager: '',
+        managerNumber: '',
+        managerEmailId: '',
       });
       alert('factory submitted successfully');
     } catch (error) {
@@ -91,7 +91,7 @@ const FactoryInfo = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' },mt:2, mb: 2 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
           <TextField
             label="Company Name"
             variant="outlined"
