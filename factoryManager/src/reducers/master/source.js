@@ -1,20 +1,20 @@
 import * as actionType from '../../constants/actionTypes';
 
-const productReducer = (state = { products: [] }, action) => {
+const sourceReducer = (state = { sources: [] }, action) => {
     switch (action.type) {
-        case actionType.ADD_NEW_PRODUCT:
+        case actionType.ADD_NEW_SOURCE:
             return {
                 ...state,
-                products: action.payload
+                sources: action.payload
             }
-        case actionType.GET_ALL_PRODUCTS:
+        case actionType.GET_ALL_SOURCES:
             return {
                 ...state,
-                products: action.payload
+                sources: action.payload
             }
         default:
             return state;
     }
 }
 
-export default productReducer;
+export default sourceReducer;

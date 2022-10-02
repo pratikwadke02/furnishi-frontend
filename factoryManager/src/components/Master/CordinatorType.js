@@ -24,11 +24,12 @@ import {
   FormControl,
 } from '@mui/material';
 
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { addCordinatorType } from '../../actions/master/cordinatorType';
 
 const CordinatorType = () => {
     // const user = JSON.parse(localStorage.getItem('profile')).data;
@@ -57,13 +58,13 @@ const CordinatorType = () => {
       console.log(cordinator);
     };
   
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
   
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
         console.log(cordinator);
-        // dispatch(addEnquiry(enquiry));
+        dispatch(addCordinatorType(cordinator));
         setCordinator({
           cordinatorType:''
         });
@@ -126,7 +127,7 @@ const CordinatorType = () => {
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="text"
-              name="cType"
+              name="cordinatorType"
               value={cordinator.cordinatorType}
               onChange={handleChange}
             />

@@ -23,11 +23,12 @@ import {
   FormControl,
 } from '@mui/material';
 
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { addSource } from '../../actions/master/source';
 
 const Source = () => {
   
@@ -60,13 +61,13 @@ const Source = () => {
       console.log(source);
     };
   
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
   
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
         console.log(source);
-        // dispatch(addEnquiry(enquiry));
+        dispatch(addSource(source));
         setSource({
           source:'',
       firmName:'',
@@ -77,7 +78,7 @@ const Source = () => {
       cordinatorName:'',
       cordinatorNumber:'',
         });
-        alert("Enquiry submitted successfully");
+        alert("Source submitted successfully");
       } catch (error) {
         console.log(error);
       }
@@ -162,7 +163,7 @@ const Source = () => {
               variant="outlined"
               fullWidth
               type="text"
-              name="fName"
+              name="firmName"
               value={source.firmName}
               onChange={handleChange}
               sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
@@ -175,7 +176,7 @@ const Source = () => {
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="text"
-              name="fAddress"
+              name="firmAddress"
               value={source.firmAddress}
               onChange={handleChange}
             />
@@ -197,7 +198,7 @@ const Source = () => {
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="number"
-              name="cNo1"
+              name="contactNumberOne"
               value={source.contactNumberOne}
               onChange={handleChange}
             />
@@ -206,7 +207,7 @@ const Source = () => {
               variant="outlined"
               fullWidth
               type="number"
-              name="cNo2"
+              name="contactNumberTwo"
               value={source.contactNumberTwo}
               onChange={handleChange}
               sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
@@ -219,7 +220,7 @@ const Source = () => {
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="text"
-              name="cName"
+              name="cordinatorName"
               value={source.cordinatorName}
               onChange={handleChange}
             />
@@ -228,7 +229,7 @@ const Source = () => {
               variant="outlined"
               fullWidth
               type="number"
-              name="cNo"
+              name="cordinatorNumber"
               value={source.cordinatorNumber}
               onChange={handleChange}
               sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}

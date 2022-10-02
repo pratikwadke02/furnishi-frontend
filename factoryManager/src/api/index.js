@@ -17,3 +17,8 @@ export const login = (authInfo) => API.post("/login", authInfo);
 export const register = (authInfo) => API.post("/register", authInfo);
 export const updatePassword = (authInfo) => API.post("/updatePassword", authInfo);
 
+export const addSource = (sourceInfo) => API.post("/addSource", sourceInfo);
+export const getSources = () => API.get("/getSources");
+
+export const addCordinatorType = (cordinatorTypeInfo) => API.post("/addCordinatorType", cordinatorTypeInfo);
+export const getCordinatorTypes = () => API.get("/getCordinatorTypes");
