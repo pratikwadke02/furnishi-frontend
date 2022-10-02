@@ -36,7 +36,15 @@ import ArchitectDesignerCordinator from '../components/Master/Architect.Designer
 import Product from '../components/Master/Product';
 import CordinatorType from '../components/Master/CordinatorType';
 import Cordinator from '../components/Master/Cordinator';
-
+import FactoryInfo from '../components/Master/FactoryInfo';
+import StatusAction from '../components/Master/StatusAction';
+import Status from '../components/Master/Status';
+import SnagIssue from '../components/Master/SnagIssue';
+import SnagSolution from '../components/Master/SnagSolution';
+import SnagAction from '../components/Master/SnagAction';
+import SnagCost from '../components/Master/SnagCost';
+import Location from '../components/Master/Location';
+import WorkType from '../components/Master/WorkType';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -114,7 +122,8 @@ const Master = () => {
           <Card sx={{ p: 2 }}>
             <Box>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={headTab} onChange={handleHeadTabChange} aria-label="basic tabs example">
+                <Tabs value={headTab} onChange={handleHeadTabChange}
+                variant="scrollable" aria-label="basic tabs example">
                   <Tab label="Source" {...a11yProps(0)} />
                   <Tab label="Cordinator Type" {...a11yProps(1)} />
                   <Tab label="Cordinator" {...a11yProps(2)} />
@@ -141,6 +150,33 @@ const Master = () => {
               </TabPanel>
               <TabPanel value={headTab} index={3}>
                 <Product products={products} />
+              </TabPanel>
+              <TabPanel value={headTab} index={4}>
+                <FactoryInfo />
+              </TabPanel>
+              <TabPanel value={headTab} index={5}>
+                <StatusAction />
+              </TabPanel>
+              <TabPanel value={headTab} index={6}>
+                <Status />
+              </TabPanel>
+              <TabPanel value={headTab} index={7}>
+                <SnagIssue />
+              </TabPanel>
+              <TabPanel value={headTab} index={8}>
+                <SnagSolution />
+              </TabPanel>
+              <TabPanel value={headTab} index={9}>
+                <SnagAction />
+              </TabPanel>
+              <TabPanel value={headTab} index={10}>
+                <SnagCost />
+              </TabPanel>
+              <TabPanel value={headTab} index={11}>
+                <Location />
+              </TabPanel>
+              <TabPanel value={headTab} index={12}>
+                <WorkType />
               </TabPanel>
             </Box>
           </Card>

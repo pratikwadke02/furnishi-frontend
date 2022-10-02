@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addNewProduct } from '../../actions/master/product';
+// import { addNewProduct } from '../../actions/master/product';
 import Label from '../Label';
 import Scrollbar from '../Scrollbar';
 import Iconify from '../Iconify';
@@ -149,7 +149,7 @@ const Product = (props) => {
     e.preventDefault();
     try {
       console.log(productInfo);
-      dispatch(addNewProduct(productInfo));
+      // dispatch(addNewProduct(productInfo));
       setProductsTable([...productsTable, productInfo]);
       setProductInfo({
         productCode: '',
@@ -170,7 +170,7 @@ const Product = (props) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mb: 2 }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' },mt:2, mb: 2 }}>
         <TextField
           required
           label="Product Code"

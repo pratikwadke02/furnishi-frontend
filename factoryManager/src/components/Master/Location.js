@@ -30,31 +30,32 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-const CordinatorType = () => {
+const Location = () => {
     // const user = JSON.parse(localStorage.getItem('profile')).data;
     // const products = useSelector((state) => state.product.products);
     // console.log('products', products);
   
-    const [cordinator, setCordinator] = useState({
-        cordinatorType:''
+    const [location, setLocation] = useState({
+      pincode:'',
+      name:'',
     });
   
     const handleChange = ({ currentTarget: input }) => {
-        setCordinator({
-        ...cordinator,
+        setLocation({
+        ...location,
         [input.name]: input.value,
       });
-      console.log(cordinator);
+      console.log(location);
     };
   
     const [age, setAge] = React.useState('');
   
     const handleServiceChange = (event) => {
-        setCordinator({
-        ...cordinator,
+        setLocation({
+        ...location,
         serviceType: event.target.value,
       });
-      console.log(cordinator);
+      console.log(location);
     };
   
     // const dispatch = useDispatch();
@@ -62,12 +63,14 @@ const CordinatorType = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        console.log(cordinator);
-        // dispatch(addEnquiry(enquiry));
-        setCordinator({
-          cordinatorType:''
+        console.log(location);
+        // dispatch(addlocation(location));
+        setLocation({
+          sno:'',
+          lPinCode:'',
+          lName:'',
         });
-        alert("cordinator type submitted successfully");
+        alert("location submitted successfully");
       } catch (error) {
         console.log(error);
       }
@@ -76,16 +79,13 @@ const CordinatorType = () => {
     return (
       <>
         <form onSubmit={handleSubmit}>
-            {/* <Box >
-            <Typography variant="h6">Cordinator Type Master</Typography>
-          </Box> */}
           {/* <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mb: 2 }}>
             <FormControl fullWidth sx={{ mr: { md: 1 } }}>
               <InputLabel id="demo-simple-select-label">Service Type</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.serviceType}
+                value={location.serviceType}
                 label="Service Type"
                 onChange={handleServiceChange}
               >
@@ -100,11 +100,11 @@ const CordinatorType = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.clientProductCode}
+                value={location.clientProductCode}
                 label="Product Code"
                 onChange={(e) => {
-                  setEnquiry({
-                    ...enquiry,
+                  setlocation({
+                    ...location,
                     clientProductCode: e.target.value,
                   });
                 }}
@@ -117,21 +117,27 @@ const CordinatorType = () => {
               </Select>
             </FormControl>
           </Box> */}
-          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-            <Grid container spacing={2}>
-                <Grid item md={6} xs={12}>
-                <TextField
-              label="Cordinator Type"
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' },mt:2,  mb: 2 }}>
+            <TextField
+              label="Location Name"
               variant="outlined"
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="text"
-              name="cType"
-              value={cordinator.cordinatorType}
+              name="name"
+              value={location.name}
               onChange={handleChange}
             />
-            </Grid>
-            </Grid>
+            <TextField
+              label="Location Pin Code"
+              variant="outlined"
+              fullWidth
+              type="number"
+              name="pincode"
+              value={location.pincode}
+              onChange={handleChange}
+              sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
+            />
           </Box>
           <Box>
             <Button variant="contained" color="primary" type="submit">
@@ -143,4 +149,4 @@ const CordinatorType = () => {
     );
   };
   
-  export default CordinatorType;
+  export default Location;

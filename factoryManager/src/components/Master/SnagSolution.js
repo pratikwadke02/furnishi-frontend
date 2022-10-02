@@ -30,31 +30,31 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-const CordinatorType = () => {
+const SnagSolution = () => {
     // const user = JSON.parse(localStorage.getItem('profile')).data;
     // const products = useSelector((state) => state.product.products);
     // console.log('products', products);
   
-    const [cordinator, setCordinator] = useState({
-        cordinatorType:''
+    const [snagSolution, setSnagSolution] = useState({
+      solution:'',
     });
   
     const handleChange = ({ currentTarget: input }) => {
-        setCordinator({
-        ...cordinator,
+        setSnagSolution({
+        ...snagSolution,
         [input.name]: input.value,
       });
-      console.log(cordinator);
+      console.log(snagSolution);
     };
   
     const [age, setAge] = React.useState('');
   
     const handleServiceChange = (event) => {
-        setCordinator({
-        ...cordinator,
+        setSnagSolution({
+        ...snagSolution,
         serviceType: event.target.value,
       });
-      console.log(cordinator);
+      console.log(snagSolution);
     };
   
     // const dispatch = useDispatch();
@@ -62,12 +62,12 @@ const CordinatorType = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        console.log(cordinator);
-        // dispatch(addEnquiry(enquiry));
-        setCordinator({
-          cordinatorType:''
+        console.log(snagSolution);
+        // dispatch(addsnagSolution(snagSolution));
+        setSnagSolution({
+          solution:'',
         });
-        alert("cordinator type submitted successfully");
+        alert("snagSolution submitted successfully");
       } catch (error) {
         console.log(error);
       }
@@ -76,8 +76,8 @@ const CordinatorType = () => {
     return (
       <>
         <form onSubmit={handleSubmit}>
-            {/* <Box >
-            <Typography variant="h6">Cordinator Type Master</Typography>
+            {/* <Box mt={2}>
+            <Typography variant="h6">Snag Solution</Typography>
           </Box> */}
           {/* <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mb: 2 }}>
             <FormControl fullWidth sx={{ mr: { md: 1 } }}>
@@ -85,7 +85,7 @@ const CordinatorType = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.serviceType}
+                value={snagSolution.serviceType}
                 label="Service Type"
                 onChange={handleServiceChange}
               >
@@ -100,11 +100,11 @@ const CordinatorType = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.clientProductCode}
+                value={snagSolution.clientProductCode}
                 label="Product Code"
                 onChange={(e) => {
-                  setEnquiry({
-                    ...enquiry,
+                  setsnagSolution({
+                    ...snagSolution,
                     clientProductCode: e.target.value,
                   });
                 }}
@@ -117,17 +117,39 @@ const CordinatorType = () => {
               </Select>
             </FormControl>
           </Box> */}
+          {/* <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
+            <TextField
+              label="SNo"
+              variant="outlined"
+              fullWidth
+              sx={{ mr: { md: 1 } }}
+              type="number"
+              name="sno"
+              value={snagSolution.faceArea}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Solution Code"
+              variant="outlined"
+              fullWidth
+              type="number"
+              name="sCode"
+              value={snagSolution.sCode}
+              onChange={handleChange}
+              sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
+            />
+          </Box> */}
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
             <Grid container spacing={2}>
                 <Grid item md={6} xs={12}>
                 <TextField
-              label="Cordinator Type"
+              label="Solution"
               variant="outlined"
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="text"
-              name="cType"
-              value={cordinator.cordinatorType}
+              name="solution"
+              value={snagSolution.solution}
               onChange={handleChange}
             />
             </Grid>
@@ -143,4 +165,4 @@ const CordinatorType = () => {
     );
   };
   
-  export default CordinatorType;
+  export default SnagSolution;

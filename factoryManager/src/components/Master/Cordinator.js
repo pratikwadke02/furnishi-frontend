@@ -35,62 +35,60 @@ const CordinatorMaster = () => {
     // const products = useSelector((state) => state.product.products);
     // console.log('products', products);
   
-    const [enquiry, setCordinator] = useState({
-      sno:'',
-    cCode:'',
-    sCode:'',
-    fName:'',
-    fAddress:'',
-    cType:'',
-    cName:'',
-    cNo:'',
+    const [cordinator, setCordinator] = useState({
+    sourceCode:'',
+    firmName:'',
+    firmAddress:'',
+    cordinatorType:'',
+    cordinatorName:'',
+    cordinatorNumber:'',
     emailId:'',
     });
   
     const handleChange = ({ currentTarget: input }) => {
         setCordinator({
-        ...enquiry,
+        ...cordinator,
         [input.name]: input.value,
       });
-      console.log(enquiry);
+      console.log(cordinator);
     };
   
     const [age, setAge] = React.useState('');
   
     const handleSourceCodeChange = (event) => {
         setCordinator({
-        ...enquiry,
+        ...cordinator,
         sCode: event.target.value,
       });
-      console.log(enquiry);
+      console.log(cordinator);
     };
     const handleSourceChange = (event) => {
         setCordinator({
-        ...enquiry,
+        ...cordinator,
         source: event.target.value,
       });
-      console.log(enquiry);
+      console.log(cordinator);
     };
     const handleFNameChange = (event) => {
       setCordinator({
-        ...enquiry,
+        ...cordinator,
         fName: event.target.value,
       });
-      console.log(enquiry);
+      console.log(cordinator);
     };
     const handleFAddressChange = (event) => {
       setCordinator({
-        ...enquiry,
+        ...cordinator,
         fAddress: event.target.value,
       });
-      console.log(enquiry);
+      console.log(cordinator);
     };
     const handleCTypeChange = (event) => {
       setCordinator({
-        ...enquiry,
+        ...cordinator,
         cType: event.target.value,
       });
-      console.log(enquiry);
+      console.log(cordinator);
     };
   
     // const dispatch = useDispatch();
@@ -98,20 +96,19 @@ const CordinatorMaster = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        console.log(enquiry);
-        // dispatch(addEnquiry(enquiry));
+        console.log(cordinator);
+        // dispatch(addcordinator(cordinator));
         setCordinator({
-          sno:'',
-          cCode:'',
-          sCode:'',
-          fName:'',
-          fAddress:'',
-          cType:'',
-          cName:'',
-          cNo:'',
+          sourceCode:'',
+          source:'',
+          firmName:'',
+          firmAddress:'',
+          cordinatorType:'',
+          cordinatorName:'',
+          cordinatorNumber:'',
           emailId:'',
         });
-        alert("Enquiry submitted successfully");
+        alert("cordinator submitted successfully");
       } catch (error) {
         console.log(error);
       }
@@ -120,46 +117,8 @@ const CordinatorMaster = () => {
     return (
       <>
         <form onSubmit={handleSubmit}>
-            <Box mt={2}>
+            {/* <Box mt={2}>
             <Typography variant="h6">Cordinator Master</Typography>
-          </Box>
-          {/* <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mb: 2 }}>
-            <FormControl fullWidth sx={{ mr: { md: 1 } }}>
-              <InputLabel id="demo-simple-select-label">Service Type</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={enquiry.serviceType}
-                label="Service Type"
-                onChange={handleServiceChange}
-              >
-                <MenuItem value={'Site Survey'}>Site Survey</MenuItem>
-                <MenuItem value={'Kitchen Installation'}>Kitchen Installation</MenuItem>
-                <MenuItem value={'Wardrobe Installation'}>Wardrobe Installation</MenuItem>
-                <MenuItem value={'Product Service'}>Product Service</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl fullWidth sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
-              <InputLabel id="demo-simple-select-label">Product Code</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={enquiry.clientProductCode}
-                label="Product Code"
-                onChange={(e) => {
-                  setEnquiry({
-                    ...enquiry,
-                    clientProductCode: e.target.value,
-                  });
-                }}
-              >
-                {products.map((product, index) => (
-                  <MenuItem key={index} value={product.productCode}>
-                    {product.productCode}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
           </Box> */}
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
           <FormControl fullWidth sx={{ mr: { md: 1 } }}>
@@ -167,7 +126,7 @@ const CordinatorMaster = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.sCode}
+                value={cordinator.sourceCode}
                 label="Source Code"
                 onChange={handleSourceCodeChange}
               >
@@ -182,7 +141,7 @@ const CordinatorMaster = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.source}
+                value={cordinator.source}
                 label="Source"
                 onChange={handleSourceChange}
               >
@@ -199,7 +158,7 @@ const CordinatorMaster = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.fName}
+                value={cordinator.firmName}
                 label="Firm Name"
                 onChange={handleFNameChange}
               >
@@ -214,7 +173,7 @@ const CordinatorMaster = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.fAddress}
+                value={cordinator.firmAddress}
                 label="Firm Address"
                 onChange={handleFAddressChange}
               >
@@ -231,7 +190,7 @@ const CordinatorMaster = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={enquiry.cType}
+                value={cordinator.cordinatorType}
                 label="Cordinator Type"
                 onChange={handleCTypeChange}
               >
@@ -247,7 +206,7 @@ const CordinatorMaster = () => {
               fullWidth
               type="text"
               name="cName"
-              value={enquiry.cName}
+              value={cordinator.cordinatoName}
               onChange={handleChange}
               sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
             />
@@ -260,7 +219,7 @@ const CordinatorMaster = () => {
               sx={{ mr: { md: 1 } }}
               type="number"
               name="cNo"
-              value={enquiry.cNo}
+              value={cordinator.cordinatorNumber}
               onChange={handleChange}
             />
             <TextField
@@ -269,7 +228,7 @@ const CordinatorMaster = () => {
               fullWidth
               type="email"
               name="emailId"
-              value={enquiry.emailId}
+              value={cordinator.emailId}
               onChange={handleChange}
               sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
             />
