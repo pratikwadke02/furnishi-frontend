@@ -22,12 +22,12 @@ import {
   InputLabel,
   FormControl,
 } from '@mui/material';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-// import { addfactory } from '../../actions/factory/factory';
+import { addFactoryInfo } from '../../actions/master/factoryInfo';
 // import Page from '../Page';
 // import Date from '../components/Date';
 
@@ -65,13 +65,13 @@ const FactoryInfo = () => {
     console.log(factory);
   };
 
-  //   const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       console.log(factory);
-      //   dispatch(addfactory(factory));
+        dispatch(addFactoryInfo(factory));
       setFactory({
         companyName: '',
     companyAddress: '',
@@ -98,7 +98,7 @@ const FactoryInfo = () => {
             fullWidth
             sx={{ mr: { md: 1 } }}
             type="text"
-            name="cName"
+            name="companyName"
             value={factory.companyName}
             onChange={handleChange}
           />
@@ -108,7 +108,7 @@ const FactoryInfo = () => {
             fullWidth
             sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
             type="text"
-            name="cAddress"
+            name="companyAddress"
             value={factory.companyAddress}
             onChange={handleChange}
           />
@@ -120,7 +120,7 @@ const FactoryInfo = () => {
             fullWidth
             sx={{ mr: { md: 1 } }}
             type="number"
-            name="cNo"
+            name="contactNumber"
             value={factory.contactNumber}
             onChange={handleChange}
           />
@@ -142,7 +142,7 @@ const FactoryInfo = () => {
             fullWidth
             sx={{ mr: { md: 1 } }}
             type="number"
-            name="gstNo"
+            name="gstNumber"
             value={factory.gstNumber}
             onChange={handleChange}
           />
@@ -164,7 +164,7 @@ const FactoryInfo = () => {
             fullWidth
             sx={{ mr: { md: 1 } }}
             type="number"
-            name="mNo"
+            name="managerNumber"
             value={factory.managerNumber}
             onChange={handleChange}
           />
@@ -173,7 +173,7 @@ const FactoryInfo = () => {
             variant="outlined"
             fullWidth
             type="email"
-            name="mEmailId"
+            name="managerEmailId"
             value={factory.managerEmailId}
             onChange={handleChange}
             sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
