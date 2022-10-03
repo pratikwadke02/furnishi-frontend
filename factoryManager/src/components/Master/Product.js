@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-// import { addNewProduct } from '../../actions/master/product';
+import { addProduct } from '../../actions/master/product';
 import Label from '../Label';
 import Scrollbar from '../Scrollbar';
 import Iconify from '../Iconify';
@@ -26,8 +26,8 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@das
 
 const TABLE_HEAD = [
   { id: 'productCode', label: 'Product Code', alignRight: true },
+  { id: 'factoryProductCode', label: 'Factory Product Code', alignRight: true },
   { id: 'name', label: 'Name', alignRight: true },
-  { id: 'details', label: 'Details', alignRight: true },
 ];
 
 // ----------------------------------------------------------------------
@@ -138,9 +138,8 @@ const Product = (props) => {
   const isUserNotFound = filteredUsers.length === 0;
 
   const [productInfo, setProductInfo] = useState({
-    productCode: '',
+    factoryProductCode: '',
     name: '',
-    details: '',
   });
 
   const dispatch = useDispatch();
@@ -149,7 +148,7 @@ const Product = (props) => {
     e.preventDefault();
     try {
       console.log(productInfo);
-      // dispatch(addNewProduct(productInfo));
+      dispatch(addProduct(productInfo));
       setProductsTable([...productsTable, productInfo]);
       setProductInfo({
         productCode: '',
@@ -173,13 +172,13 @@ const Product = (props) => {
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' },mt:2, mb: 2 }}>
         <TextField
           required
-          label="Product Code"
+          label="Factory Product Code"
           variant="outlined"
           fullWidth
           sx={{ mr: { md: 1 } }}
           type="text"
-          name="productCode"
-          value={productInfo.productCode}
+          name="factoryProductCode"
+          value={productInfo.factoryProductCode}
           onChange={handleChange}
         />
           <TextField
@@ -194,20 +193,6 @@ const Product = (props) => {
             onChange={handleChange}
           />
           
-        </Box>
-        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mb: 2  }}>
-        <TextField
-            label="Product Details"
-            required
-            variant="outlined"
-            fullWidth
-            sx={{ mr: { md: 1 } }}
-            type="text"
-            name="details"
-            value={productInfo.details}
-            onChange={handleChange}
-          />
-        <Box sx={{width:'100%', ml:{md:1}}}/>
         </Box>
         <Box>
           <Button variant="contained" color="primary" type="submit">
@@ -232,7 +217,7 @@ const Product = (props) => {
               />
               <TableBody>
                 {productsTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-                  const { id, name, details, productCode } =
+                  const { id, name, factoryProductCode, productCode } =
                     custInfo;
                   const isItemSelected = selected.indexOf(id) !== -1;
 
@@ -255,8 +240,8 @@ const Product = (props) => {
                           </Typography>
                         </Stack>
                       </TableCell>
+                      <TableCell align="left">{factoryProductCode}</TableCell>
                       <TableCell align="left">{name}</TableCell>
-                      <TableCell align="left">{details}</TableCell>
                      
                     </TableRow>
                   );

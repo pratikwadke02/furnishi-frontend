@@ -81,7 +81,7 @@ function a11yProps(index) {
 
 const Master = () => {
 
-  // const products = (useSelector(state => state.product.products));
+  const products = (useSelector(state => state.product.products));
   // const managers = (useSelector(state => state.manager.managers));
   // const cordinators = (useSelector(state => state.cordinator.cordinators));
   // const archDesigrs = (useSelector(state => state.archtDesigr.archDesigrs));
@@ -149,7 +149,7 @@ const Master = () => {
                 <Cordinator />
               </TabPanel>
               <TabPanel value={headTab} index={3}>
-                <Product />
+                <Product products={products} />
               </TabPanel>
               <TabPanel value={headTab} index={4}>
                 <FactoryInfo />

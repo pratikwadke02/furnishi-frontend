@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 
 //
-
+import { getProducts } from '../../actions/master/product';
 
 //
 import DashboardNavbar from './DashboardNavbar';
@@ -46,6 +46,7 @@ export default function DashboardLayout() {
 
   useEffect(() => {
     const getReduxData = async () => {
+      dispatch(getProducts());
     };
     getReduxData();
   }, [dispatch]);
