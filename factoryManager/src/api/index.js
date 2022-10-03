@@ -23,6 +23,9 @@ export const getSources = () => API.get("/getSources");
 export const addCordinatorType = (cordinatorTypeInfo) => API.post("/addCordinatorType", cordinatorTypeInfo);
 export const getCordinatorTypes = () => API.get("/getCordinatorTypes");
 
+export const addCordinator = (cordinatorInfo) => API.post("/addCordinator", cordinatorInfo);
+export const getCordinators = () => API.get("/getCordinators");
+
 export const addProduct = (productInfo) => API.post("/addProduct", productInfo);
 export const getProducts = () => API.get("/getProducts");
 
