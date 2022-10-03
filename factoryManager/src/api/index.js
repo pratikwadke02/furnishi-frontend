@@ -28,3 +28,27 @@ export const getProducts = () => API.get("/getProducts");
 
 export const addFactoryInfo = (factoryInfo) => API.post("/addFactoryInfo", factoryInfo);
 export const getFactoryInfos = () => API.get("/getFactoryInfos");
+
+export const addLocation = (locationInfo) => API.post("/addLocation", locationInfo);
+export const getLocations = () => API.get("/getLocations");
+
+export const addSnagAction = (snagActionInfo) => API.post("/addSnagAction", snagActionInfo);
+export const getSnagActions = () => API.get("/getSnagActions");
+
+export const addSnagCost = (snagCostInfo) => API.post("/addSnagCost", snagCostInfo);
+export const getSnagCosts = () => API.get("/getSnagCosts");
+
+export const addSnagIssue = (snagIssueInfo) => API.post("/addSnagIssue", snagIssueInfo);
+export const getSnagIssues = () => API.get("/getSnagIssues");
+
+export const addSnagSolution = (snagSolutionInfo) => API.post("/addSnagSolution", snagSolutionInfo);
+export const getSnagSolutions = () => API.get("/getSnagSolutions");
+
+export const addStatus = (statusInfo) => API.post("/addStatus", statusInfo);
+export const getStatuses = () => API.get("/getStatuses");
+
+export const addStatusAction = (statusActionInfo) => API.post("/addStatusActionInfo", statusActionInfo);
+export const getStatusActions = () => API.get("/getStatusActions");
+
+export const addWorkType = (workTypeInfo) => API.post("/addWorkTypeInfo", workTypeInfo);
+export const getWorkTypes = () => API.get("/getWorkTypes")
