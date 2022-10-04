@@ -1,4 +1,4 @@
-import { ADD_NEW_CORDINATOR, GET_ALL_CORDINATORS } from "src/constants/actionTypes";
+import { ADD_NEW_CORDINATOR, GET_ALL_CORDINATORS } from "../../constants/actionTypes";
 import * as api from '../../api/index'
 
 export const addCordinator = (cordinatorInfo) => async(dispatch) => {

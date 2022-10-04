@@ -82,9 +82,8 @@ function a11yProps(index) {
 const Master = () => {
 
   const products = (useSelector(state => state.product.products));
-  // const managers = (useSelector(state => state.manager.managers));
-  // const cordinators = (useSelector(state => state.cordinator.cordinators));
-  // const archDesigrs = (useSelector(state => state.archtDesigr.archDesigrs));
+  const sources = (useSelector(state => state.source.sources));
+  const cordinatorTypes = (useSelector(state => state.cordinatorType.cordinatorTypes));
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -146,7 +145,7 @@ const Master = () => {
                 <CordinatorType />
               </TabPanel>
               <TabPanel value={headTab} index={2}>
-                <Cordinator />
+                <Cordinator sources={sources} cordinatorTypes={cordinatorTypes} />
               </TabPanel>
               <TabPanel value={headTab} index={3}>
                 <Product products={products} />

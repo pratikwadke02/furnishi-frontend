@@ -24,13 +24,17 @@ import {
   FormControl,
 } from '@mui/material';
 
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { addCordinator } from '../../actions/master/cordinator';
 
-const CordinatorMaster = () => {
+const CordinatorMaster = (props) => {
+  const {sources, cordinatorTypes} = props;
+  console.log('sources', sources);
+  console.log('cordinatorTypes', cordinatorTypes);
     // const user = JSON.parse(localStorage.getItem('profile')).data;
     // const products = useSelector((state) => state.product.products);
     // console.log('products', products);
@@ -56,6 +60,7 @@ const CordinatorMaster = () => {
     const [age, setAge] = React.useState('');
   
     const handleSourceCodeChange = (event) => {
+
         setCordinator({
         ...cordinator,
         sCode: event.target.value,
@@ -63,9 +68,14 @@ const CordinatorMaster = () => {
       console.log(cordinator);
     };
     const handleSourceChange = (event) => {
-        setCordinator({
+      console.log(event.target);
+      const source = sources.find((source) => source.id === event.target.value);
+      setCordinator({
         ...cordinator,
-        source: event.target.value,
+        source: source.source,
+        sourceCode: source.sourceCode,
+        firmName: source.firmName,
+        firmAddress: source.firmAddress,
       });
       console.log(cordinator);
     };
@@ -86,18 +96,18 @@ const CordinatorMaster = () => {
     const handleCTypeChange = (event) => {
       setCordinator({
         ...cordinator,
-        cType: event.target.value,
+        cordinatorType: event.target.value,
       });
       console.log(cordinator);
     };
   
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
   
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
         console.log(cordinator);
-        // dispatch(addcordinator(cordinator));
+        dispatch(addCordinator(cordinator));
         setCordinator({
           sourceCode:'',
           source:'',
@@ -121,22 +131,7 @@ const CordinatorMaster = () => {
             <Typography variant="h6">Cordinator Master</Typography>
           </Box> */}
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-          <FormControl fullWidth sx={{ mr: { md: 1 } }}>
-              <InputLabel id="demo-simple-select-label">Source Code</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={cordinator.sourceCode}
-                label="Source Code"
-                onChange={handleSourceCodeChange}
-              >
-                <MenuItem value={'Site Survey'}>Site Survey</MenuItem>
-                <MenuItem value={'Kitchen Installation'}>Kitchen Installation</MenuItem>
-                <MenuItem value={'Wardrobe Installation'}>Wardrobe Installation</MenuItem>
-                <MenuItem value={'Product Service'}>Product Service</MenuItem>
-              </Select>
-            </FormControl> 
-            <FormControl fullWidth sx={{ ml: { md: 1 },  }}>
+            <FormControl fullWidth sx={{ mr: { md: 1 },  }}>
               <InputLabel id="demo-simple-select-label">Source</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -145,44 +140,39 @@ const CordinatorMaster = () => {
                 label="Source"
                 onChange={handleSourceChange}
               >
-                <MenuItem value={'Site Survey'}>Site Survey</MenuItem>
-                <MenuItem value={'Kitchen Installation'}>Kitchen Installation</MenuItem>
-                <MenuItem value={'Wardrobe Installation'}>Wardrobe Installation</MenuItem>
-                <MenuItem value={'Product Service'}>Product Service</MenuItem>
+                {
+                  sources.map((source) => (
+                    <MenuItem value={source.id}>{source.source}</MenuItem>
+                  ))
+                }
               </Select>
             </FormControl> 
+            <TextField
+              fullWidth
+              sx={{ ml: { md: 1 }, mt: { xs: 1, md: 0 } }}
+              label="Source Code"
+              name="sourceCode"
+              value={cordinator.sourceCode}
+              disabled
+            />
           </Box>
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-          <FormControl fullWidth sx={{ mr: { md: 1 } }}>
-              <InputLabel id="demo-simple-select-label">Firm Name</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={cordinator.firmName}
-                label="Firm Name"
-                onChange={handleFNameChange}
-              >
-                <MenuItem value={'Site Survey'}>Site Survey</MenuItem>
-                <MenuItem value={'Kitchen Installation'}>Kitchen Installation</MenuItem>
-                <MenuItem value={'Wardrobe Installation'}>Wardrobe Installation</MenuItem>
-                <MenuItem value={'Product Service'}>Product Service</MenuItem>
-              </Select>
-            </FormControl> 
-            <FormControl fullWidth sx={{ ml: { md: 1 }, }}>
-              <InputLabel id="demo-simple-select-label">Firm Address</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={cordinator.firmAddress}
-                label="Firm Address"
-                onChange={handleFAddressChange}
-              >
-                <MenuItem value={'Site Survey'}>Site Survey</MenuItem>
-                <MenuItem value={'Kitchen Installation'}>Kitchen Installation</MenuItem>
-                <MenuItem value={'Wardrobe Installation'}>Wardrobe Installation</MenuItem>
-                <MenuItem value={'Product Service'}>Product Service</MenuItem>
-              </Select>
-            </FormControl> 
+            <TextField
+              fullWidth
+              sx={{ mr: { md: 1 },  }}
+              label="Firm Name"
+              name="firmName"
+              value={cordinator.firmName}
+              disabled
+            />
+            <TextField
+              fullWidth
+              sx={{ ml: { md: 1 }, mt: { xs: 1, md: 0 } }}
+              label="Firm Address"
+              name="firmAddress"
+              value={cordinator.firmAddress}
+              disabled
+            />
           </Box>
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
           <FormControl fullWidth sx={{ mr: { md: 1 } }}>
@@ -194,10 +184,11 @@ const CordinatorMaster = () => {
                 label="Cordinator Type"
                 onChange={handleCTypeChange}
               >
-                <MenuItem value={'Site Survey'}>Site Survey</MenuItem>
-                <MenuItem value={'Kitchen Installation'}>Kitchen Installation</MenuItem>
-                <MenuItem value={'Wardrobe Installation'}>Wardrobe Installation</MenuItem>
-                <MenuItem value={'Product Service'}>Product Service</MenuItem>
+                {
+                  cordinatorTypes.map((cordinatorType) => (
+                    <MenuItem value={cordinatorType.cordinatorType}>{cordinatorType.cordinatorType}</MenuItem>
+                  ))
+                }
               </Select>
             </FormControl> 
             <TextField
@@ -205,8 +196,8 @@ const CordinatorMaster = () => {
               variant="outlined"
               fullWidth
               type="text"
-              name="cName"
-              value={cordinator.cordinatoName}
+              name="cordinatorName"
+              value={cordinator.cordinatorName}
               onChange={handleChange}
               sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
             />
@@ -218,7 +209,7 @@ const CordinatorMaster = () => {
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="number"
-              name="cNo"
+              name="cordinatorNumber"
               value={cordinator.cordinatorNumber}
               onChange={handleChange}
             />
