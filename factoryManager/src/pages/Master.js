@@ -150,7 +150,7 @@ const Master = () => {
                 </Tabs>
               </Box>
               <TabPanel value={headTab} index={0}>
-                <Source />
+                <Source sources={sources} />
               </TabPanel>
               <TabPanel value={headTab} index={1}>
                 <CordinatorType cordinatorTypes={cordinatorTypes} />
