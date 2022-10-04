@@ -38,13 +38,13 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@das
 
 
 const TABLE_HEAD = [
-  { id: 'companyName', label: 'Company Name', alignRight: false },
-  { id: 'companyAddress', label: 'Company Address', alignRight: false },
-  { id: 'contactNumber', label: 'Contact Number', alignRight: false },
-  { id: 'website', label: 'Website', alignRight: false },
-  { id: 'gstNumber', label: 'GST Number', alignRight: false },
-  { id: 'manager', label: 'Manager', alignRight: false },
-  { id: 'managerEmailId', label: 'Manager Email Id', alignRight: false },
+  { id: 'companyName', label: 'Company Name', alignRight: true },
+  { id: 'companyAddress', label: 'Company Address', alignRight: true },
+  { id: 'contactNumber', label: 'Contact Number', alignRight: true },
+  { id: 'website', label: 'Website', alignRight: true },
+  { id: 'gstNumber', label: 'GST Number', alignRight: true },
+  { id: 'manager', label: 'Manager', alignRight: true },
+  { id: 'managerEmailId', label: 'Manager Email Id', alignRight: true },
 ];
 
 // ----------------------------------------------------------------------
