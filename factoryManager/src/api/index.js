@@ -53,5 +53,5 @@ export const getStatuses = () => API.get("/getStatuses");
 export const addStatusAction = (statusActionInfo) => API.post("/addStatusAction", statusActionInfo);
 export const getStatusActions = () => API.get("/getStatusActions");
 
-export const addWorkType = (workTypeInfo) => API.post("/addWorkTypeInfo", workTypeInfo);
+export const addWorkType = (workTypeInfo) => API.post("/addWorkType", workTypeInfo);
 export const getWorkTypes = () => API.get("/getWorkTypes")

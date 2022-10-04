@@ -24,11 +24,12 @@ import {
   FormControl,
 } from '@mui/material';
 
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { addWorkType } from '../../actions/master/workType';
 
 const WorkType = () => {
     // const user = JSON.parse(localStorage.getItem('profile')).data;
@@ -57,13 +58,13 @@ const WorkType = () => {
       console.log(workType);
     };
   
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
   
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
         console.log(workType);
-        // dispatch(addworkType(workType));
+        dispatch(addWorkType(workType));
         setWorkType({
           workType:'',
         });
@@ -145,7 +146,7 @@ const WorkType = () => {
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="text"
-              name="wType"
+              name="workType"
               value={workType.workType}
               onChange={handleChange}
             />
