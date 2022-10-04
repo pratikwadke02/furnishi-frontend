@@ -84,6 +84,17 @@ const Master = () => {
   const products = (useSelector(state => state.product.products));
   const sources = (useSelector(state => state.source.sources));
   const cordinatorTypes = (useSelector(state => state.cordinatorType.cordinatorTypes));
+  const cordinators = (useSelector(state => state.cordinator.cordinators));
+  const factoryInfos = (useSelector(state => state.factoryInfo.factoryInfos));
+  const statusActions = (useSelector(state => state.statusAction.statusActions));
+  const statuses = (useSelector(state => state.status.statuses));
+  const snagIssues = (useSelector(state => state.snagIssue.snagIssues));
+  const snagSolutions = (useSelector(state => state.snagSolution.snagSolutions));
+  const snagActions = (useSelector(state => state.snagAction.snagActions));
+  const snagCosts = (useSelector(state => state.snagCost.snagCosts));
+  const locations = (useSelector(state => state.location.locations));
+  const workTypes = (useSelector(state => state.workType.workTypes));
+
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -142,40 +153,40 @@ const Master = () => {
                 <Source />
               </TabPanel>
               <TabPanel value={headTab} index={1}>
-                <CordinatorType />
+                <CordinatorType cordinatorTypes={cordinatorTypes} />
               </TabPanel>
               <TabPanel value={headTab} index={2}>
-                <Cordinator sources={sources} cordinatorTypes={cordinatorTypes} />
+                <Cordinator sources={sources} cordinatorTypes={cordinatorTypes} cordinators={cordinators} />
               </TabPanel>
               <TabPanel value={headTab} index={3}>
                 <Product products={products} />
               </TabPanel>
               <TabPanel value={headTab} index={4}>
-                <FactoryInfo />
+                <FactoryInfo factoryInfos={factoryInfos} />
               </TabPanel>
               <TabPanel value={headTab} index={5}>
-                <StatusAction />
+                <StatusAction statusActions={statusActions} />
               </TabPanel>
               <TabPanel value={headTab} index={6}>
-                <Status />
+                <Status statuses={statuses} />
               </TabPanel>
               <TabPanel value={headTab} index={7}>
-                <SnagIssue />
+                <SnagIssue snagIssues={snagIssues} />
               </TabPanel>
               <TabPanel value={headTab} index={8}>
-                <SnagSolution />
+                <SnagSolution snagSolutions={snagSolutions} />
               </TabPanel>
               <TabPanel value={headTab} index={9}>
-                <SnagAction />
+                <SnagAction snagActions={snagActions} />
               </TabPanel>
               <TabPanel value={headTab} index={10}>
-                <SnagCost />
+                <SnagCost snagCosts={snagCosts} />
               </TabPanel>
               <TabPanel value={headTab} index={11}>
-                <Location />
+                <Location locations={locations} />
               </TabPanel>
               <TabPanel value={headTab} index={12}>
-                <WorkType />
+                <WorkType workTypes={workTypes} />
               </TabPanel>
             </Box>
           </Card>

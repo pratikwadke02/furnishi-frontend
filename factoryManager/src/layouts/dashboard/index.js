@@ -8,8 +8,17 @@ import { styled } from '@mui/material/styles';
 //
 import { getProducts } from '../../actions/master/product';
 import { getCordinatorTypes } from '../../actions/master/cordinatorType';
+import { getCordinators } from '../../actions/master/cordinator';
 import { getSources } from '../../actions/master/source';
-
+import { getFactoryInfos } from '../../actions/master/factoryInfo';
+import { getSnagActions } from '../../actions/master/snagAction';
+import { getSnagCosts } from '../../actions/master/snagCost';
+import { getSnagIssues } from '../../actions/master/snagIssue';
+import { getSnagSolutions } from '../../actions/master/snagSolution';
+import { getStatuses } from '../../actions/master/status';
+import { getStatusActions } from '../../actions/master/statusAction';
+import { getLocations } from '../../actions/master/location';
+import { getWorkTypes } from '../../actions/master/workType';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
@@ -48,9 +57,19 @@ export default function DashboardLayout() {
 
   useEffect(() => {
     const getReduxData = async () => {
-      dispatch(getProducts());
-      dispatch(getCordinatorTypes());
-      dispatch(getSources());
+       dispatch(getProducts());
+       dispatch(getCordinatorTypes());
+       dispatch(getCordinators());
+       dispatch(getSources());
+       dispatch(getFactoryInfos());
+       dispatch(getSnagActions());
+       dispatch(getSnagCosts());
+       dispatch(getSnagIssues());
+       dispatch(getSnagSolutions());
+       dispatch(getStatuses());
+       dispatch(getStatusActions());
+       dispatch(getLocations());
+       dispatch(getWorkTypes());
     };
     getReduxData();
   }, [dispatch]);
