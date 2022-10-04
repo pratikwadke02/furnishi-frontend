@@ -1,4 +1,4 @@
-import { ADD_NEW_SNAG_COST, GET_ALL_SNAG_COSTS } from "src/constants/actionTypes";
+import { ADD_NEW_SNAG_COST, GET_ALL_SNAG_COSTS } from "../../constants/actionTypes";
 import * as api from '../../api/index'
 
 export const addSnagCost = (snagCostInfo) => async(dispatch) => {

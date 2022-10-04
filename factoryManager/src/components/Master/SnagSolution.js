@@ -24,11 +24,12 @@ import {
   FormControl,
 } from '@mui/material';
 
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { addSnagSolution } from '../../actions/master/snagSolution';
 
 const SnagSolution = () => {
     // const user = JSON.parse(localStorage.getItem('profile')).data;
@@ -57,13 +58,13 @@ const SnagSolution = () => {
       console.log(snagSolution);
     };
   
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
   
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
         console.log(snagSolution);
-        // dispatch(addsnagSolution(snagSolution));
+        dispatch(addSnagSolution(snagSolution));
         setSnagSolution({
           solution:'',
         });

@@ -1,4 +1,4 @@
-import { ADD_NEW_LOCATION, GET_ALL_LOCATIONS } from "src/constants/actionTypes";
+import { ADD_NEW_LOCATION, GET_ALL_LOCATIONS } from "../../constants/actionTypes";
 import * as api from '../../api/index'
 
 export const addLocation = (locationInfo) => async (dispatch) => {

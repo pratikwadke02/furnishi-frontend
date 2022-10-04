@@ -1,4 +1,4 @@
-import { ADD_NEW_SNAG_ACTION, GET_ALL_SNAG_ACTIONS } from "src/constants/actionTypes";
+import { ADD_NEW_SNAG_ACTION, GET_ALL_SNAG_ACTIONS } from "../../constants/actionTypes";
 import * as api from '../../api/index'
 
 export const addSnagAction = (snagActionInfo) => async(dispatch) => {
