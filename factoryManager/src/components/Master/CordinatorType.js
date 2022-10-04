@@ -167,6 +167,7 @@ const CordinatorType = (props) => {
       try {
         console.log(cordinator);
         dispatch(addCordinatorType(cordinator));
+        setCordinatorTypesTable([...cordinatorTypesTable, cordinator]);
         setCordinator({
           cordinatorType:''
         });

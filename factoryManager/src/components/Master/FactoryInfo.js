@@ -180,6 +180,7 @@ const FactoryInfo = (props) => {
     try {
       console.log(factory);
       dispatch(addFactoryInfo(factory));
+      setFactoryInfosTable([...factoryInfosTable, factory]);
       setFactory({
         companyName: '',
         companyAddress: '',

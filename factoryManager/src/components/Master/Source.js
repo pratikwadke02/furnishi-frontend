@@ -182,6 +182,7 @@ const Source = (props) => {
       try {
         console.log(source);
         dispatch(addSource(source));
+        setSourcesTable([...sourcesTable, source]);
         setSource({
           source:'',
       firmName:'',

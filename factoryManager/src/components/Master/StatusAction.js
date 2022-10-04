@@ -167,6 +167,7 @@ const StatusActionMaster = (props) => {
       try {
         console.log(statusAction);
         dispatch(addStatusAction(statusAction));
+        setStatusActionsTable([...statusActionsTable, statusAction]);
         setStatusAction({
 statusAction:'',
         });

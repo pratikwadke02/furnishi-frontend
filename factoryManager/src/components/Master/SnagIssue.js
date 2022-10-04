@@ -166,6 +166,7 @@ const SnagIssue = (props) => {
       try {
         console.log(snagIssue);
         dispatch(addSnagIssue(snagIssue));
+        setSnagIssuesTable([...snagIssuesTable,snagIssue]);
         setSnagIssue({
           issue:'',
         });

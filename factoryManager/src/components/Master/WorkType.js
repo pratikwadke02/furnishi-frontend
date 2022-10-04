@@ -167,6 +167,7 @@ const WorkType = (props) => {
       try {
         console.log(workType);
         dispatch(addWorkType(workType));
+        setWorkTypesTable([...workTypesTable, workType]);
         setWorkType({
           workType:'',
         });

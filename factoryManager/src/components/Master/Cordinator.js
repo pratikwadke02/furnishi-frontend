@@ -153,7 +153,7 @@ const CordinatorMaster = (props) => {
     cordinatorType:'',
     cordinatorName:'',
     cordinatorNumber:'',
-    emailId:'',
+    cordinatorEmailID:'',
     });
   
     const handleChange = ({ currentTarget: input }) => {
@@ -215,6 +215,7 @@ const CordinatorMaster = (props) => {
       try {
         console.log(cordinator);
         dispatch(addCordinator(cordinator));
+        setCordinatorsTable([...cordinatorsTable, cordinator]);
         setCordinator({
           sourceCode:'',
           source:'',
@@ -223,7 +224,7 @@ const CordinatorMaster = (props) => {
           cordinatorType:'',
           cordinatorName:'',
           cordinatorNumber:'',
-          emailId:'',
+          cordinatorEmailID:'',
         });
         alert("cordinator submitted successfully");
       } catch (error) {
@@ -325,8 +326,8 @@ const CordinatorMaster = (props) => {
               variant="outlined"
               fullWidth
               type="email"
-              name="emailId"
-              value={cordinator.emailId}
+              name="cordinatorEmailID"
+              value={cordinator.cordinatorEmailID}
               onChange={handleChange}
               sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
             />

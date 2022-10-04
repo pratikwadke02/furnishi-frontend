@@ -167,6 +167,7 @@ const Location = (props) => {
       try {
         console.log(location);
         dispatch(addLocation(location));
+        setLocationsTable([...locationsTable, location]);
         setLocation({
           name: '',
           pincode: '',

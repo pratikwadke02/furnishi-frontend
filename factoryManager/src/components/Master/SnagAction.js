@@ -167,6 +167,7 @@ const SnagAction = (props) => {
       try {
         console.log(snagAction);
         dispatch(addSnagAction(snagAction));
+        setSnagActionsTable([...snagActionsTable,snagAction]);
         setSnagAction({
           action:'',
         });

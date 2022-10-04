@@ -167,6 +167,7 @@ const StatusMaster = (props) => {
       try {
         console.log(status);
         dispatch(addStatus(status));
+        setStatusesTable([...statusesTable, status]);
         setStatus({
           status:'',
         });

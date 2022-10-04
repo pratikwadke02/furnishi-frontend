@@ -166,6 +166,7 @@ const SnagCost = (props) => {
       try {
         console.log(snagCost);
         dispatch(addSnagCost(snagCost));
+        setSnagCostsTable([...snagCostsTable,snagCost]);
         setSnagCost({
           cost:'',
         });
