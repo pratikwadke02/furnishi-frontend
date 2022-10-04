@@ -50,7 +50,7 @@ export const getSnagSolutions = () => API.get("/getSnagSolutions");
 export const addStatus = (statusInfo) => API.post("/addStatus", statusInfo);
 export const getStatuses = () => API.get("/getStatuses");
 
-export const addStatusAction = (statusActionInfo) => API.post("/addStatusActionInfo", statusActionInfo);
+export const addStatusAction = (statusActionInfo) => API.post("/addStatusAction", statusActionInfo);
 export const getStatusActions = () => API.get("/getStatusActions");
 
 export const addWorkType = (workTypeInfo) => API.post("/addWorkTypeInfo", workTypeInfo);

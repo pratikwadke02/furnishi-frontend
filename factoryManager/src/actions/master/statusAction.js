@@ -1,4 +1,4 @@
-import { ADD_NEW_STATUS_ACTION, GET_ALL_STATUS_ACTIONS } from "src/constants/actionTypes";
+import { ADD_NEW_STATUS_ACTION, GET_ALL_STATUS_ACTIONS } from "../../constants/actionTypes";
 import * as api from '../../api/index'
 
 export const addStatusAction = (statusActionInfo) => async(dispatch) => {
