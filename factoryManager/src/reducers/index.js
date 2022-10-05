@@ -16,8 +16,9 @@ import status from './master/status';
 import statusAction from './master/statusAction';
 import workType from './master/workType';
 
-// import enquiry from './enquiry/enquiry'
-// import order from './order/order'
+import enquiry from './enquiry/enquiry'
+import order from './order/order'
+import snaglist from './snaglist/snaglist'
 
 
 export const reducers = combineReducers({
@@ -35,6 +36,7 @@ export const reducers = combineReducers({
     status,
     statusAction,
     workType,
-    // enquiry,
-    // order
+    enquiry,
+    order,
+    snaglist
 });

@@ -54,4 +54,13 @@ export const addStatusAction = (statusActionInfo) => API.post("/addStatusAction"
 export const getStatusActions = () => API.get("/getStatusActions");
 
 export const addWorkType = (workTypeInfo) => API.post("/addWorkType", workTypeInfo);
-export const getWorkTypes = () => API.get("/getWorkTypes")
+export const getWorkTypes = () => API.get("/getWorkTypes");
+
+export const addEnquiry = (enquiryInfo) => API.post("/addEnquiry", enquiryInfo);
+export const getEnquiries = () => API.get("/getEnquiries");
+
+export const addOrder = (orderInfo) => API.post("/addOrder", orderInfo);
+export const getOrders = () => API.get("/getOrders");
+
+export const addSnaglist = (snaglistInfo) => API.post("/addSnaglist", snaglistInfo);
+export const getSnaglists = () => API.get("/getSnaglists")

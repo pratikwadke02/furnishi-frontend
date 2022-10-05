@@ -90,7 +90,9 @@ function a11yProps(index) {
 }
 
 const Enquiry = () => {
-
+  const products = (useSelector((state) => state.product.products));
+  const cordinators = (useSelector((state) => state.cordinator.cordinators));
+  const statusActions = (useSelector((state) => state.statusAction.statusActions));
   const enquiries = (useSelector((state) => state.enquiry.enquiries));
 
   const [headTab, setHeadTab] = useState(0);
@@ -157,7 +159,7 @@ const Enquiry = () => {
           enquiryData ? (
             <Card sx={style}>
           <Box sx={{ width: '100%', textAlign: 'center' }}>
-            <Typography variant="h4">Enquiry Code: {enquiryData.enquiryCode}</Typography>
+            <Typography variant="h4">Enquiry Code: {enquiryData.orderId}</Typography>
           </Box>
           <Box sx={{ mt: 2 }}>
             <Box>
@@ -165,15 +167,17 @@ const Enquiry = () => {
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Name: {enquiryData.clientName}</Typography>
+              <Typography variant="body1">Name: {enquiryData.name}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Code: {enquiryData.clientCode}</Typography>
+              <Typography variant="body1">Number: {enquiryData.number}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Product Code: {enquiryData.clientProductCode}</Typography>
+              <Typography variant="body1">Address: {enquiryData.address}</Typography>
               </Box>
-              <Box sx={{width:'100%'}}/>
+              <Box sx={{width:'100%'}}>
+              <Typography variant="body1">Pincode: {enquiryData.pincode}</Typography>
+              </Box>
             </Box>
             <Box sx={{mt:1}}>
               <Typography variant="h6">Service Details</Typography>
@@ -294,7 +298,7 @@ const Enquiry = () => {
                 </Tabs>
               </Box>
               <TabPanel value={headTab} index={0}>
-                <NewEnquiry />
+                <NewEnquiry cordinators={cordinators} products={products} statusActions={statusActions} />
               </TabPanel>
               <TabPanel value={headTab} index={1}>
                 <AllEnquiries enquiries={enquiries} openModal={handleOpenModal} />

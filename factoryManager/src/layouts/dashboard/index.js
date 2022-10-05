@@ -19,6 +19,10 @@ import { getStatuses } from '../../actions/master/status';
 import { getStatusActions } from '../../actions/master/statusAction';
 import { getLocations } from '../../actions/master/location';
 import { getWorkTypes } from '../../actions/master/workType';
+import { getEnquiries } from '../../actions/enquiry/enquiry';
+import { getOrders } from '../../actions/order/order';
+import { getSnaglists } from '../../actions/snaglist/snaglist';
+
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
@@ -70,6 +74,9 @@ export default function DashboardLayout() {
        dispatch(getStatusActions());
        dispatch(getLocations());
        dispatch(getWorkTypes());
+       dispatch(getEnquiries());
+        // dispatch(getOrders());
+        // dispatch(getSnaglists());
     };
     getReduxData();
   }, [dispatch]);
