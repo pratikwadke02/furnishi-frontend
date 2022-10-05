@@ -24,21 +24,27 @@ import {
   FormControl,
   Tab,
   Tabs,
-  Modal
+  Modal,
+  IconButton,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import KeyboardArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardArrowLeftOutlined';
+import KeyboardArrowRightOutlinedIcon from '@mui/icons-material/KeyboardArrowRightOutlined';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Iconify from '../components/Iconify';
 import Page from '../components/Page';
-
-import NewOrder from '../components/MyOrders/NewOrder';
-import AllOrders from '../components/MyOrders/AllOrders';
+import ArchitectDesigner from '../components/Master/Architect.Designer';
+import ArchitectDesignerCordinator from '../components/Master/Architect.Designer.Cordinator';
+import NewEnquiry from '../components/Enquiry/NewEnquiry';
+import AllEnquiries from '../components/Enquiry/AllEnquiries';
 import Manager from '../components/Master/Manager';
 import Product from '../components/Master/Product';
 import Customer from '../components/Master/Customer';
-
+import NewOrder from '../components/MyOrders/NewOrder';
+import OrderClosed from '../components/MyOrders/OrderClose';
+import OrderOpen from '../components/MyOrders/OrderOpen';
 
 const style = {
   position: 'absolute',
@@ -52,7 +58,6 @@ const style = {
   boxShadow: 1,
   p: 2,
 };
-
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -88,10 +93,10 @@ function a11yProps(index) {
 }
 
 const MyOrders = () => {
-
-  const orders = useSelector((state) => state.order.orders);
-  const cordinators = (useSelector(state => state.cordinator.cordinators));
-  
+  const products = (useSelector((state) => state.product.products));
+  const cordinators = (useSelector((state) => state.cordinator.cordinators));
+  const statuses = (useSelector((state) => state.status.statuses));
+  const orders = (useSelector((state) => state.order.orders));
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -102,13 +107,37 @@ const MyOrders = () => {
   };
 
   const [open, setOpen] = useState(false);
-  const [orderData, setOrderData] = useState([]);
+  const [enquiryData, setEnquiryData] = useState([]);
+
+  const nextEnquiry = async(id) => {
+    // id += 1;
+    // await enquiries.map((enquiry) => {
+    //   if (enquiry.id === id) {
+    //     setEnquiryData(enquiry);
+    //   }
+    //   return null;
+    // }
+    // );
+  };
+
+  const previousEnquiry = async(id) => {
+    // if(id > 1){
+    //   id -= 1;
+    //   await enquiries.map((enquiry) => {
+    //     if (enquiry.id === id) {
+    //       setEnquiryData(enquiry);
+    //     }
+    //     return null;
+    //   }
+    //   );
+    // }
+  };
 
   const handleOpenModal = async(id) => {
     console.log(id);
     orders.map((order) => {
       if (order.id === id) {
-        setOrderData(order);
+        setEnquiryData(order);
       }
       return null;
     });
@@ -119,7 +148,7 @@ const MyOrders = () => {
     setOpen(false);
   };
 
-  console.log(orderData);
+  console.log(enquiryData);
 
   return (
     <>
@@ -129,9 +158,11 @@ const MyOrders = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Card sx={style}>
+        {
+          enquiryData ? (
+            <Card sx={style}>
           <Box sx={{ width: '100%', textAlign: 'center' }}>
-            <Typography variant="h4">Order Code: {orderData.orderCode}</Typography>
+            <Typography variant="h4">Order ID: {enquiryData.orderId}</Typography>
           </Box>
           <Box sx={{ mt: 2 }}>
             <Box>
@@ -139,43 +170,45 @@ const MyOrders = () => {
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Name: {orderData.clientName}</Typography>
+              <Typography variant="body1">Name: {enquiryData.name}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Code: {orderData.clientCode}</Typography>
+              <Typography variant="body1">Number: {enquiryData.number}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Product Code: {orderData.clientProductCode}</Typography>
+              <Typography variant="body1">Address: {enquiryData.address}</Typography>
               </Box>
-              <Box sx={{width:'100%'}}/>
+              <Box sx={{width:'100%'}}>
+              <Typography variant="body1">Pincode: {enquiryData.pincode}</Typography>
+              </Box>
             </Box>
             <Box sx={{mt:1}}>
               <Typography variant="h6">Service Details</Typography>
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Type: {orderData.serviceType}</Typography>
+              <Typography variant="body1">Type: {enquiryData.serviceType}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Site Condition: {orderData.siteCondition}</Typography>
+              <Typography variant="body1">Site Condition: {enquiryData.siteCondition}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Product Type: {orderData.productType}</Typography>
+              <Typography variant="body1">Product Type: {enquiryData.productType}</Typography>
               </Box>
               <Box sx={{width:'100%'}}/>
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Face Area: {orderData.faceArea} SqFt</Typography>
+              <Typography variant="body1">Face Area: {enquiryData.faceArea} SqFt</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Floating Shelf: {orderData.floatingShelf}</Typography>
+              <Typography variant="body1">Floating Shelf: {enquiryData.floatingShelf}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Spot Light: {orderData.spotLight} Nos</Typography>
+              <Typography variant="body1">Spot Light: {enquiryData.spotLight} Nos</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Strip Light: {orderData.stripLight} Nos</Typography>
+              <Typography variant="body1">Strip Light: {enquiryData.stripLight} Nos</Typography>
               </Box>
             </Box>
             <Box sx={{mt:1}}>
@@ -183,10 +216,10 @@ const MyOrders = () => {
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Expected Start Date: {orderData.expectedStartDate ? orderData.expectedStartDate.substring(0,10 ) : null}</Typography>
+              <Typography variant="body1">Expected Start Date: {enquiryData.expectedStartDate ? enquiryData.expectedStartDate.substring(0,10 ) : null}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Expected End Date: {orderData.expectedEndDate ? orderData.expectedEndDate.substring(0,10 ) : null}</Typography>
+              <Typography variant="body1">Expected End Date: {enquiryData.expectedEndDate ? enquiryData.expectedEndDate.substring(0,10 ) : null}</Typography>
               </Box>
             </Box>
             <Box sx={{mt:1}}>
@@ -194,16 +227,16 @@ const MyOrders = () => {
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Start Time: {orderData.startTime ? orderData.startTime.substring(12,19) : null} </Typography>
+              <Typography variant="body1">Start Time: {enquiryData.startTime ? enquiryData.startTime.substring(12,19) : null} </Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">End Time: {orderData.endTime ? orderData.endTime.substring(12,19) : null}</Typography>
+              <Typography variant="body1">End Time: {enquiryData.endTime ? enquiryData.endTime.substring(12,19) : null}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Break Start Time: {orderData.breakStartTime ? orderData.breakStartTime.substring(12,19) : null}</Typography>
+              <Typography variant="body1">Break Start Time: {enquiryData.breakStartTime ? enquiryData.breakStartTime.substring(12,19) : null}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Break End Time: {orderData.breakEndTime ? orderData.breakEndTime.substring(12,19) : null}</Typography>
+              <Typography variant="body1">Break End Time: {enquiryData.breakEndTime ? enquiryData.breakEndTime.substring(12,19) : null}</Typography>
               </Box>
             </Box>
             <Box sx={{mt:1}}>
@@ -211,13 +244,13 @@ const MyOrders = () => {
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Work Phase: {orderData.workPhase}</Typography>
+              <Typography variant="body1">Work Phase: {enquiryData.workPhase}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Details: {orderData.workPhaseDetails}</Typography>
+              <Typography variant="body1">Details: {enquiryData.workPhaseDetails}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Status: {orderData.status}</Typography>
+              <Typography variant="body1">Status: {enquiryData.status}</Typography>
               </Box>
               <Box sx={{width:'100%'}}/>
             </Box>
@@ -226,24 +259,34 @@ const MyOrders = () => {
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Locality: {orderData.locality}</Typography>
+              <Typography variant="body1">Locality: {enquiryData.locality}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Pincode: {orderData.pincode}</Typography>
+              <Typography variant="body1">Pincode: {enquiryData.pincode}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Quote: {orderData.quote}</Typography>
+              <Typography variant="body1">Quote: {enquiryData.quote}</Typography>
               </Box>
               <Box sx={{width:'100%'}}/>
             </Box>
           </Box>
+          <Box sx={{mt:1,float:'right'}}>
+            <IconButton onClick={previousEnquiry(enquiryData.id)} sx={{border:'1px solid', borderColor:'primary.main', mr:1, p:0}}>
+              <KeyboardArrowLeftOutlinedIcon color='primary'  />
+            </IconButton>
+            <IconButton onClick={nextEnquiry(enquiryData.id)} sx={{border:'1px solid', borderColor:'primary.main', ml:1, p:0}}>
+              <KeyboardArrowRightOutlinedIcon color='primary'/>
+            </IconButton>
+          </Box>
         </Card>
+          ) : null
+          }        
       </Modal>
       <Page title="User">
         <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Orders
+            Order List
           </Typography>
           {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Setting
@@ -254,14 +297,18 @@ const MyOrders = () => {
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={headTab} onChange={handleHeadTabChange} aria-label="basic tabs example">
                   <Tab label="New Order" {...a11yProps(0)} />
-                  <Tab label="All Orders" {...a11yProps(1)} />
+                  <Tab label="Order Open" {...a11yProps(1)} />
+                  <Tab label="Order Closed" {...a11yProps(2)} />
                 </Tabs>
               </Box>
               <TabPanel value={headTab} index={0}>
-                <NewOrder />
+                <NewOrder cordinators={cordinators} products={products} statuses={statuses} />
               </TabPanel>
               <TabPanel value={headTab} index={1}>
-                <AllOrders orders={orders} openModal={handleOpenModal}/>
+                <OrderOpen orders={orders} openModal={handleOpenModal} />
+              </TabPanel>
+              <TabPanel value={headTab} index={2}>
+                <OrderClosed orders={orders} openModal={handleOpenModal} />
               </TabPanel>
             </Box>
           </Card>
