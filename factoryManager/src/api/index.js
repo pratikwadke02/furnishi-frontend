@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API = axios.create({
-    baseURL: 'http://localhost:8080/api/furnishi'
+    baseURL: 'https://furnishi.herokuapp.com/api/furnishi'
 });
 
 API.interceptors.request.use((req) => {

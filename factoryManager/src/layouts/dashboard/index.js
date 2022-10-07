@@ -76,7 +76,7 @@ export default function DashboardLayout() {
        dispatch(getWorkTypes());
        dispatch(getEnquiries());
         dispatch(getOrders());
-        // dispatch(getSnaglists());
+        dispatch(getSnaglists());
     };
     getReduxData();
   }, [dispatch]);
