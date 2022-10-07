@@ -168,7 +168,7 @@ const Snaglist = () => {
           enquiryData ? (
             <Card sx={style}>
           <Box sx={{ width: '100%', textAlign: 'center' }}>
-            <Typography variant="h4">Enquiry Code: {enquiryData.orderId}</Typography>
+            <Typography variant="h4">Order Code: {enquiryData.orderId}</Typography>
           </Box>
           <Box sx={{ mt: 2 }}>
             <Box>
