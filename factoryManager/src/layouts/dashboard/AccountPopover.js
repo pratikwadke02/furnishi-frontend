@@ -17,7 +17,7 @@ const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: 'eva:home-fill',
-    linkTo: '/',
+    linkTo: '/dashboard/app',
   },
   {
     label: 'Profile',
@@ -34,6 +34,9 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+  const user = JSON.parse(localStorage.getItem('profile')).data;
+  console.log(user);
+
   const anchorRef = useRef(null);
 
   const [open, setOpen] = useState(null);
@@ -97,10 +100,7 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {user.firstName} {user.lastName}
           </Typography>
         </Box>
 
