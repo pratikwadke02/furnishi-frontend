@@ -45,6 +45,12 @@ import SnagAction from '../components/Master/SnagAction';
 import SnagCost from '../components/Master/SnagCost';
 import Location from '../components/Master/Location';
 import WorkType from '../components/Master/WorkType';
+import Carcass from '../components/Master/Carcass';
+import Shutter from '../components/Master/Shutter';
+import SalesPerson from '../components/Master/SalesPerson';
+import Designer from '../components/Master/Designer';
+import SiteSurveyor from '../components/Master/SiteSurveyor';
+import Planner from '../components/Master/Planner';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -58,7 +64,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p:2 }}>
+        <Box sx={{ p: 2 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -80,25 +86,22 @@ function a11yProps(index) {
 }
 
 const Master = () => {
-
-  const products = (useSelector(state => state.product.products));
-  const sources = (useSelector(state => state.source.sources));
-  const cordinatorTypes = (useSelector(state => state.cordinatorType.cordinatorTypes));
-  const cordinators = (useSelector(state => state.cordinator.cordinators));
-  const factoryInfos = (useSelector(state => state.factoryInfo.factoryInfos));
-  const statusActions = (useSelector(state => state.statusAction.statusActions));
-  const statuses = (useSelector(state => state.status.statuses));
-  const snagIssues = (useSelector(state => state.snagIssue.snagIssues));
-  const snagSolutions = (useSelector(state => state.snagSolution.snagSolutions));
-  const snagActions = (useSelector(state => state.snagAction.snagActions));
-  const snagCosts = (useSelector(state => state.snagCost.snagCosts));
-  const locations = (useSelector(state => state.location.locations));
-  const workTypes = (useSelector(state => state.workType.workTypes));
-
+  const products = useSelector((state) => state.product.products);
+  const sources = useSelector((state) => state.source.sources);
+  const cordinatorTypes = useSelector((state) => state.cordinatorType.cordinatorTypes);
+  const cordinators = useSelector((state) => state.cordinator.cordinators);
+  const factoryInfos = useSelector((state) => state.factoryInfo.factoryInfos);
+  const statusActions = useSelector((state) => state.statusAction.statusActions);
+  const statuses = useSelector((state) => state.status.statuses);
+  const snagIssues = useSelector((state) => state.snagIssue.snagIssues);
+  const snagSolutions = useSelector((state) => state.snagSolution.snagSolutions);
+  const snagActions = useSelector((state) => state.snagAction.snagActions);
+  const snagCosts = useSelector((state) => state.snagCost.snagCosts);
+  const locations = useSelector((state) => state.location.locations);
+  const workTypes = useSelector((state) => state.workType.workTypes);
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
-
 
   const handleHeadTabChange = (event, newValue) => {
     setHeadTab(newValue);
@@ -121,19 +124,23 @@ const Master = () => {
     <>
       <Page title="User">
         <Container>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
-            Master
-          </Typography>
-          {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
+            <Typography variant="h4" gutterBottom>
+              Master
+            </Typography>
+            {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Setting
           </Button> */}
-        </Stack>
+          </Stack>
           <Card sx={{ p: 2 }}>
             <Box>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={headTab} onChange={handleHeadTabChange}
-                variant="scrollable" aria-label="basic tabs example">
+                <Tabs
+                  value={headTab}
+                  onChange={handleHeadTabChange}
+                  variant="scrollable"
+                  aria-label="basic tabs example"
+                >
                   <Tab label="Source" {...a11yProps(0)} />
                   <Tab label="Cordinator Type" {...a11yProps(1)} />
                   <Tab label="Cordinator" {...a11yProps(2)} />
@@ -146,7 +153,13 @@ const Master = () => {
                   <Tab label="Snag Action" {...a11yProps(9)} />
                   <Tab label="Snag Cost" {...a11yProps(10)} />
                   <Tab label="Location" {...a11yProps(11)} />
-                  <Tab label="Work Type" {...a11yProps(12)} />
+                  <Tab label="Carcass" {...a11yProps(12)} />
+                  <Tab label="Shutter" {...a11yProps(13)} />
+                  <Tab label="Sales Person" {...a11yProps(14)} />
+                  <Tab label="Designer" {...a11yProps(15)} />
+                  <Tab label="Planner" {...a11yProps(16)} />
+                  <Tab label="Site Surveyor" {...a11yProps(17)} />
+                  {/* <Tab label="Work Type" {...a11yProps(12)} /> */}
                 </Tabs>
               </Box>
               <TabPanel value={headTab} index={0}>
@@ -185,8 +198,26 @@ const Master = () => {
               <TabPanel value={headTab} index={11}>
                 <Location locations={locations} />
               </TabPanel>
-              <TabPanel value={headTab} index={12}>
+              {/* <TabPanel value={headTab} index={12}>
                 <WorkType workTypes={workTypes} />
+              </TabPanel> */}
+              <TabPanel value={headTab} index={12}>
+                <Carcass cordinatorTypes={cordinatorTypes} />
+              </TabPanel>
+              <TabPanel value={headTab} index={13}>
+                <Shutter cordinatorTypes={cordinatorTypes} />
+              </TabPanel>
+              <TabPanel value={headTab} index={14}>
+                <SalesPerson cordinatorTypes={cordinatorTypes} />
+              </TabPanel>
+              <TabPanel value={headTab} index={15}>
+                <Designer cordinatorTypes={cordinatorTypes} />
+              </TabPanel>
+              <TabPanel value={headTab} index={16}>
+                <Planner cordinatorTypes={cordinatorTypes} />
+              </TabPanel>
+              <TabPanel value={headTab} index={17}>
+                <SiteSurveyor cordinatorTypes={cordinatorTypes} />
               </TabPanel>
             </Box>
           </Card>
