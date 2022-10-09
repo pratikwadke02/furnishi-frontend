@@ -30,7 +30,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { addCordinatorType } from '../../actions/master/cordinatorType';
+import { addNewShutter } from '../../actions/master/shutter';
 import Scrollbar from '../Scrollbar';
 import Iconify from '../Iconify';
 import SearchNotFound from '../SearchNotFound';
@@ -74,8 +74,8 @@ function applySortFilter(array, comparator, query) {
 
 const Shutter = (props) => {
     
-  const { cordinatorTypes} = props;
-  const [ cordinatorTypesTable, setCordinatorTypesTable ] = useState(cordinatorTypes);
+  const { shutters} = props;
+  const [ shuttersTable, setShuttersTable ] = useState(shutters);
 
   const [page, setPage] = useState(0);
 
@@ -97,7 +97,7 @@ const Shutter = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = cordinatorTypesTable.map((n) => n.id);
+      const newSelecteds = shuttersTable.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -132,9 +132,9 @@ const Shutter = (props) => {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - cordinatorTypesTable.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - shuttersTable.length) : 0;
 
-  const filteredUsers = applySortFilter(cordinatorTypesTable, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(shuttersTable, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
   
@@ -166,8 +166,8 @@ const Shutter = (props) => {
       e.preventDefault();
       try {
         console.log(shutter);
-        dispatch(addCordinatorType(shutter));
-        setCordinatorTypesTable([...cordinatorTypesTable, cordinatorTypes]);
+        dispatch(addNewShutter(shutter));
+        setShuttersTable([...shuttersTable, shutter]);
         setShutter({
             shutter:''
         });
@@ -253,14 +253,14 @@ const Shutter = (props) => {
                 order={order}
                 orderBy={orderBy}
                 headLabel={TABLE_HEAD}
-                rowCount={cordinatorTypesTable.length}
+                rowCount={shuttersTable.length}
                 numSelected={selected.length}
                 onRequestSort={handleRequestSort}
                 onSelectAllClick={handleSelectAllClick}
               />
               <TableBody>
-                {cordinatorTypesTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-                  const { id, cordinatorType, cordinatorTypeCode } =
+                {shuttersTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
+                  const { id, shutterCode, shutter } =
                     custInfo;
                   const isItemSelected = selected.indexOf(id) !== -1;
 
@@ -279,11 +279,11 @@ const Shutter = (props) => {
                       <TableCell align="center">
                         <Stack direction="row" alignItems="center" spacing={2}>
                           <Typography variant="subtitle2" noWrap>
-                            {cordinatorTypeCode}
+                            {shutterCode}
                           </Typography>
                         </Stack>
                       </TableCell>
-                      <TableCell align="left">{cordinatorType}</TableCell>
+                      <TableCell align="left">{shutter}</TableCell>
                      
                     </TableRow>
                   );
@@ -311,7 +311,7 @@ const Shutter = (props) => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={cordinatorTypesTable.length}
+          count={shuttersTable.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

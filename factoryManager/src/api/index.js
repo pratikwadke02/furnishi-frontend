@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const API = axios.create({
-    baseURL: 'https://furnishi.herokuapp.com/api/furnishi'
+    // baseURL: 'https://furnishi.herokuapp.com/api/furnishi'
+    baseURL: 'http://localhost:8080/api/furnishi'
 });
 
 API.interceptors.request.use((req) => {
@@ -64,3 +65,13 @@ export const getOrders = () => API.get("/getOrders");
 
 export const addSnaglist = (snaglistInfo) => API.post("/addSnaglist", snaglistInfo);
 export const getSnaglists = () => API.get("/getSnaglists")
+
+export const addCarcass = (carcassInfo) => API.post("/addCarcass", carcassInfo);
+export const getCarcasses = () => API.get("/getCarcasses");
+
+
+export const addShutter = (shutterInfo) => API.post("/addShutter", shutterInfo);
+export const getShutters = () => API.get("/getShutters");
+
+export const addSalesPerson = (salesPersonInfo) => API.post("/addSalesPerson", salesPersonInfo);
+export const getSalesPersons = () => API.get("/getSalesPersons");

@@ -31,6 +31,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { addCordinatorType } from '../../actions/master/cordinatorType';
+import { addNewCarcass } from '../../actions/master/carcass';
 import Scrollbar from '../Scrollbar';
 import Iconify from '../Iconify';
 import SearchNotFound from '../SearchNotFound';
@@ -74,8 +75,8 @@ function applySortFilter(array, comparator, query) {
 
 const Carcass = (props) => {
     
-  const { cordinatorTypes} = props;
-  const [ cordinatorTypesTable, setCordinatorTypesTable ] = useState(cordinatorTypes);
+  const { carcasses} = props;
+  const [ carcassTable, setCarcassTable ] = useState(carcasses);
 
   const [page, setPage] = useState(0);
 
@@ -97,7 +98,7 @@ const Carcass = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = cordinatorTypesTable.map((n) => n.id);
+      const newSelecteds = carcassTable.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -132,9 +133,9 @@ const Carcass = (props) => {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - cordinatorTypesTable.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - carcassTable.length) : 0;
 
-  const filteredUsers = applySortFilter(cordinatorTypesTable, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(carcassTable, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
   
@@ -166,8 +167,8 @@ const Carcass = (props) => {
       e.preventDefault();
       try {
         console.log(carcass);
-        dispatch(addCordinatorType(carcass));
-        setCordinatorTypesTable([...cordinatorTypesTable, carcass]);
+        dispatch(addNewCarcass(carcass));
+        setCarcassTable([...carcassTable, carcass]);
         setCarcass({
             carcass:''
         });
@@ -253,14 +254,14 @@ const Carcass = (props) => {
                 order={order}
                 orderBy={orderBy}
                 headLabel={TABLE_HEAD}
-                rowCount={cordinatorTypesTable.length}
+                rowCount={carcassTable.length}
                 numSelected={selected.length}
                 onRequestSort={handleRequestSort}
                 onSelectAllClick={handleSelectAllClick}
               />
               <TableBody>
-                {cordinatorTypesTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-                  const { id, cordinatorType, cordinatorTypeCode } =
+                {carcassTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
+                  const { id, carcass, carcassCode } =
                     custInfo;
                   const isItemSelected = selected.indexOf(id) !== -1;
 
@@ -279,11 +280,11 @@ const Carcass = (props) => {
                       <TableCell align="center">
                         <Stack direction="row" alignItems="center" spacing={2}>
                           <Typography variant="subtitle2" noWrap>
-                            {cordinatorTypeCode}
+                            {carcassCode}
                           </Typography>
                         </Stack>
                       </TableCell>
-                      <TableCell align="left">{cordinatorType}</TableCell>
+                      <TableCell align="left">{carcass}</TableCell>
                      
                     </TableRow>
                   );
@@ -311,7 +312,7 @@ const Carcass = (props) => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={cordinatorTypesTable.length}
+          count={carcassTable.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

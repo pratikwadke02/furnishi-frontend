@@ -15,6 +15,9 @@ import snagSolution from './master/snagSolution';
 import status from './master/status';
 import statusAction from './master/statusAction';
 import workType from './master/workType';
+import carcass from './master/carcass';
+import shutter  from './master/shutter';
+import salesPerson from './master/salesPerson';
 
 import enquiry from './enquiry/enquiry'
 import order from './order/order'
@@ -38,5 +41,8 @@ export const reducers = combineReducers({
     workType,
     enquiry,
     order,
-    snaglist
+    snaglist,
+    carcass,
+    shutter,
+    salesPerson
 });

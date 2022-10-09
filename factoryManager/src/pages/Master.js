@@ -99,6 +99,9 @@ const Master = () => {
   const snagCosts = useSelector((state) => state.snagCost.snagCosts);
   const locations = useSelector((state) => state.location.locations);
   const workTypes = useSelector((state) => state.workType.workTypes);
+  const carcasses = useSelector((state) => state.carcass.carcasses);
+  const shutters = useSelector((state) => state.shutter.shutters);
+  const salesPersons = useSelector((state) => state.salesPerson.salesPersons);
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -202,13 +205,13 @@ const Master = () => {
                 <WorkType workTypes={workTypes} />
               </TabPanel> */}
               <TabPanel value={headTab} index={12}>
-                <Carcass cordinatorTypes={cordinatorTypes} />
+                <Carcass carcasses={carcasses} />
               </TabPanel>
               <TabPanel value={headTab} index={13}>
-                <Shutter cordinatorTypes={cordinatorTypes} />
+                <Shutter shutters={shutters} />
               </TabPanel>
               <TabPanel value={headTab} index={14}>
-                <SalesPerson cordinatorTypes={cordinatorTypes} />
+                <SalesPerson salesPersons={salesPersons} />
               </TabPanel>
               <TabPanel value={headTab} index={15}>
                 <Designer cordinatorTypes={cordinatorTypes} />

@@ -31,6 +31,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { addCordinatorType } from '../../actions/master/cordinatorType';
+import { addNewSalesPerson } from '../../actions/master/salesPerson';
 import Scrollbar from '../Scrollbar';
 import Iconify from '../Iconify';
 import SearchNotFound from '../SearchNotFound';
@@ -74,8 +75,8 @@ function applySortFilter(array, comparator, query) {
 
 const SalesPerson = (props) => {
     
-  const { cordinatorTypes} = props;
-  const [ cordinatorTypesTable, setCordinatorTypesTable ] = useState(cordinatorTypes);
+  const { salesPersons} = props;
+  const [ salesPersonsTable, setSalesPersonsTable ] = useState(salesPersons);
 
   const [page, setPage] = useState(0);
 
@@ -97,7 +98,7 @@ const SalesPerson = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = cordinatorTypesTable.map((n) => n.id);
+      const newSelecteds = salesPersonsTable.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -132,9 +133,9 @@ const SalesPerson = (props) => {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - cordinatorTypesTable.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - salesPersonsTable.length) : 0;
 
-  const filteredUsers = applySortFilter(cordinatorTypesTable, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(salesPersonsTable, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
   
@@ -166,8 +167,8 @@ const SalesPerson = (props) => {
       e.preventDefault();
       try {
         console.log(salesPerson);
-        dispatch(addCordinatorType(salesPerson));
-        setCordinatorTypesTable([...cordinatorTypesTable, salesPerson]);
+        dispatch(addNewSalesPerson(salesPerson));
+        setSalesPersonsTable([...salesPersonsTable, salesPerson]);
         setSalesPerson({
             salesPerson:''
         });
@@ -253,14 +254,14 @@ const SalesPerson = (props) => {
                 order={order}
                 orderBy={orderBy}
                 headLabel={TABLE_HEAD}
-                rowCount={cordinatorTypesTable.length}
+                rowCount={salesPersonsTable.length}
                 numSelected={selected.length}
                 onRequestSort={handleRequestSort}
                 onSelectAllClick={handleSelectAllClick}
               />
               <TableBody>
-                {cordinatorTypesTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-                  const { id, cordinatorType, cordinatorTypeCode } =
+                {salesPersonsTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
+                  const { id, salesPersonCode, salesPerson } =
                     custInfo;
                   const isItemSelected = selected.indexOf(id) !== -1;
 
@@ -279,11 +280,11 @@ const SalesPerson = (props) => {
                       <TableCell align="center">
                         <Stack direction="row" alignItems="center" spacing={2}>
                           <Typography variant="subtitle2" noWrap>
-                            {cordinatorTypeCode}
+                            {salesPersonCode}
                           </Typography>
                         </Stack>
                       </TableCell>
-                      <TableCell align="left">{cordinatorType}</TableCell>
+                      <TableCell align="left">{salesPerson}</TableCell>
                      
                     </TableRow>
                   );
@@ -311,7 +312,7 @@ const SalesPerson = (props) => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={cordinatorTypesTable.length}
+          count={salesPersonsTable.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

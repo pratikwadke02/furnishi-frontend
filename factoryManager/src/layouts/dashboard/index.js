@@ -22,6 +22,9 @@ import { getWorkTypes } from '../../actions/master/workType';
 import { getEnquiries } from '../../actions/enquiry/enquiry';
 import { getOrders } from '../../actions/order/order';
 import { getSnaglists } from '../../actions/snaglist/snaglist';
+import { getCarcasses } from '../../actions/master/carcass';
+import { getShutters } from '../../actions/master/shutter';
+import { getSalesPersons } from '../../actions/master/salesPerson';
 
 //
 import DashboardNavbar from './DashboardNavbar';
@@ -77,6 +80,9 @@ export default function DashboardLayout() {
        dispatch(getEnquiries());
         dispatch(getOrders());
         dispatch(getSnaglists());
+        dispatch(getCarcasses());
+        dispatch(getShutters());
+        dispatch(getSalesPersons());
     };
     getReduxData();
   }, [dispatch]);
