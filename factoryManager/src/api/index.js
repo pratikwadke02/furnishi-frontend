@@ -84,3 +84,6 @@ export const getPlanners = () => API.get("/getPlanners");
 
 export const addSiteSurveyor = (siteSurveyorInfo) => API.post("/addFinalSiteSurveyor", siteSurveyorInfo);
 export const getSiteSurveyors = () => API.get("/getFinalSiteSurveyors");
+
+export const addOrderList = (orderlistInfo) => API.post("/addOrderList", orderlistInfo);
+export const getOrderLists = () => API.get("/getOrderLists");

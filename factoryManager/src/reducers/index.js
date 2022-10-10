@@ -25,6 +25,7 @@ import planner from './master/planner';
 import enquiry from './enquiry/enquiry'
 import order from './order/order'
 import snaglist from './snaglist/snaglist'
+import orderlist from './orderlist/orderlist'
 
 
 export const reducers = combineReducers({
@@ -50,5 +51,6 @@ export const reducers = combineReducers({
     salesPerson,
     designer,
     siteSurveyor,
-    planner
+    planner,
+    orderlist
 });
