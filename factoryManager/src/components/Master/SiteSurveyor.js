@@ -31,14 +31,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { addCordinatorType } from '../../actions/master/cordinatorType';
+import { addSiteSurveyor } from '../../actions/master/siteSurveyor';
 import Scrollbar from '../Scrollbar';
 import Iconify from '../Iconify';
 import SearchNotFound from '../SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@dashboard/user';
 
 const TABLE_HEAD = [
-  { id: 'cordinatorTypeCode', label: 'Cordinator Type Code', alignRight: true },
-  { id: 'CordinatorType', label: 'Cordinator Type', alignRight: true },
+  { id: 'siteSurveyorCode', label: 'Site Surveyor Code', alignRight: true },
+  { id: 'siteSurveyor', label: 'Site Surveyor', alignRight: true },
 ];
 
 // ----------------------------------------------------------------------
@@ -74,8 +75,8 @@ function applySortFilter(array, comparator, query) {
 
 const SiteSurveyor = (props) => {
     
-  const { cordinatorTypes} = props;
-  const [ cordinatorTypesTable, setCordinatorTypesTable ] = useState(cordinatorTypes);
+  const { siteSurveyors} = props;
+  const [ siteSurveyorsTable, setSiteSurveyorsTable ] = useState(siteSurveyors);
 
   const [page, setPage] = useState(0);
 
@@ -97,7 +98,7 @@ const SiteSurveyor = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = cordinatorTypesTable.map((n) => n.id);
+      const newSelecteds = siteSurveyorsTable.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -132,32 +133,32 @@ const SiteSurveyor = (props) => {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - cordinatorTypesTable.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - siteSurveyorsTable.length) : 0;
 
-  const filteredUsers = applySortFilter(cordinatorTypesTable, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(siteSurveyorsTable, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
   
-    const [cordinator, setCordinator] = useState({
-        cordinatorType:''
+    const [siteSurveyor, setSiteSurveyor] = useState({
+        finalSiteSurveyor:''
     });
   
     const handleChange = ({ currentTarget: input }) => {
-        setCordinator({
-        ...cordinator,
+        setSiteSurveyor({
+        ...siteSurveyor,
         [input.name]: input.value,
       });
-      console.log(cordinator);
+      console.log(siteSurveyor);
     };
   
     const [age, setAge] = React.useState('');
   
     const handleServiceChange = (event) => {
-        setCordinator({
-        ...cordinator,
+        setSiteSurveyor({
+        ...siteSurveyor,
         serviceType: event.target.value,
       });
-      console.log(cordinator);
+      console.log(siteSurveyor);
     };
   
     const dispatch = useDispatch();
@@ -165,13 +166,13 @@ const SiteSurveyor = (props) => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        console.log(cordinator);
-        dispatch(addCordinatorType(cordinator));
-        setCordinatorTypesTable([...cordinatorTypesTable, cordinator]);
-        setCordinator({
-          cordinatorType:''
+        console.log(siteSurveyor);
+        dispatch(addSiteSurveyor(siteSurveyor));
+        setSiteSurveyorsTable([...siteSurveyorsTable, siteSurveyor]);
+        setSiteSurveyor({
+            finalSiteSurveyor:''
         });
-        alert("cordinator type submitted successfully");
+        alert("siteSurveyor submitted successfully");
       } catch (error) {
         console.log(error);
       }
@@ -225,13 +226,13 @@ const SiteSurveyor = (props) => {
             <Grid container spacing={2}>
                 <Grid item md={6} xs={12}>
                 <TextField
-              label="Cordinator Type"
+              label="Site Surveyor"
               variant="outlined"
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="text"
-              name="cordinatorType"
-              value={cordinator.cordinatorType}
+              name="finalSiteSurveyor"
+              value={siteSurveyor.finalSiteSurveyor}
               onChange={handleChange}
             />
             </Grid>
@@ -253,14 +254,14 @@ const SiteSurveyor = (props) => {
                 order={order}
                 orderBy={orderBy}
                 headLabel={TABLE_HEAD}
-                rowCount={cordinatorTypesTable.length}
+                rowCount={siteSurveyorsTable.length}
                 numSelected={selected.length}
                 onRequestSort={handleRequestSort}
                 onSelectAllClick={handleSelectAllClick}
               />
               <TableBody>
-                {cordinatorTypesTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-                  const { id, cordinatorType, cordinatorTypeCode } =
+                {siteSurveyorsTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
+                  const { id, finalSiteSurveyorCode, finalSiteSurveyor } =
                     custInfo;
                   const isItemSelected = selected.indexOf(id) !== -1;
 
@@ -279,11 +280,11 @@ const SiteSurveyor = (props) => {
                       <TableCell align="center">
                         <Stack direction="row" alignItems="center" spacing={2}>
                           <Typography variant="subtitle2" noWrap>
-                            {cordinatorTypeCode}
+                            {finalSiteSurveyorCode}
                           </Typography>
                         </Stack>
                       </TableCell>
-                      <TableCell align="left">{cordinatorType}</TableCell>
+                      <TableCell align="left">{finalSiteSurveyor}</TableCell>
                      
                     </TableRow>
                   );
@@ -311,7 +312,7 @@ const SiteSurveyor = (props) => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={cordinatorTypesTable.length}
+          count={siteSurveyorsTable.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

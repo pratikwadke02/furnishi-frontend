@@ -18,6 +18,9 @@ import workType from './master/workType';
 import carcass from './master/carcass';
 import shutter  from './master/shutter';
 import salesPerson from './master/salesPerson';
+import designer from './master/designer';
+import siteSurveyor from './master/siteSurveyor';
+import planner from './master/planner';
 
 import enquiry from './enquiry/enquiry'
 import order from './order/order'
@@ -44,5 +47,8 @@ export const reducers = combineReducers({
     snaglist,
     carcass,
     shutter,
-    salesPerson
+    salesPerson,
+    designer,
+    siteSurveyor,
+    planner
 });

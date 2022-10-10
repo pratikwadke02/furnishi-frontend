@@ -75,3 +75,12 @@ export const getShutters = () => API.get("/getShutters");
 
 export const addSalesPerson = (salesPersonInfo) => API.post("/addSalesPerson", salesPersonInfo);
 export const getSalesPersons = () => API.get("/getSalesPersons");
+
+export const addDesigner = (designerInfo) => API.post("/addDesigner", designerInfo);
+export const getDesigners = () => API.get("/getDesigners");
+
+export const addPlanner = (plannerInfo) => API.post("/addPlanner", plannerInfo);
+export const getPlanners = () => API.get("/getPlanners");
+
+export const addSiteSurveyor = (siteSurveyorInfo) => API.post("/addFinalSiteSurveyor", siteSurveyorInfo);
+export const getSiteSurveyors = () => API.get("/getFinalSiteSurveyors");

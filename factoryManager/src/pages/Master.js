@@ -102,6 +102,9 @@ const Master = () => {
   const carcasses = useSelector((state) => state.carcass.carcasses);
   const shutters = useSelector((state) => state.shutter.shutters);
   const salesPersons = useSelector((state) => state.salesPerson.salesPersons);
+  const designers = useSelector((state) => state.designer.designers);
+  const siteSurveyors = useSelector((state) => state.siteSurveyor.siteSurveyors);
+  const planners = useSelector((state) => state.planner.planners);
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -214,13 +217,13 @@ const Master = () => {
                 <SalesPerson salesPersons={salesPersons} />
               </TabPanel>
               <TabPanel value={headTab} index={15}>
-                <Designer cordinatorTypes={cordinatorTypes} />
+                <Designer designers={designers} />
               </TabPanel>
               <TabPanel value={headTab} index={16}>
-                <Planner cordinatorTypes={cordinatorTypes} />
+                <Planner planners={planners} />
               </TabPanel>
               <TabPanel value={headTab} index={17}>
-                <SiteSurveyor cordinatorTypes={cordinatorTypes} />
+                <SiteSurveyor siteSurveyors={siteSurveyors} />
               </TabPanel>
             </Box>
           </Card>

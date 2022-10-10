@@ -25,6 +25,9 @@ import { getSnaglists } from '../../actions/snaglist/snaglist';
 import { getCarcasses } from '../../actions/master/carcass';
 import { getShutters } from '../../actions/master/shutter';
 import { getSalesPersons } from '../../actions/master/salesPerson';
+import { getDesigners } from '../../actions/master/designer';
+import { getPlanners } from '../../actions/master/planner';
+import { getSiteSurveyors } from '../../actions/master/siteSurveyor';
 
 //
 import DashboardNavbar from './DashboardNavbar';
@@ -83,6 +86,9 @@ export default function DashboardLayout() {
         dispatch(getCarcasses());
         dispatch(getShutters());
         dispatch(getSalesPersons());
+      dispatch(getDesigners());
+      dispatch(getPlanners());
+      dispatch(getSiteSurveyors());
     };
     getReduxData();
   }, [dispatch]);

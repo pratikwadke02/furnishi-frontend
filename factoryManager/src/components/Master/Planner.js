@@ -31,14 +31,15 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { addCordinatorType } from '../../actions/master/cordinatorType';
+import { addPlanner } from '../../actions/master/planner';
 import Scrollbar from '../Scrollbar';
 import Iconify from '../Iconify';
 import SearchNotFound from '../SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@dashboard/user';
 
 const TABLE_HEAD = [
-  { id: 'cordinatorTypeCode', label: 'Cordinator Type Code', alignRight: true },
-  { id: 'CordinatorType', label: 'Cordinator Type', alignRight: true },
+  { id: 'plannerCode', label: 'Planner Code', alignRight: true },
+  { id: 'planner', label: 'Planner', alignRight: true },
 ];
 
 // ----------------------------------------------------------------------
@@ -74,8 +75,8 @@ function applySortFilter(array, comparator, query) {
 
 const Planner = (props) => {
     
-  const { cordinatorTypes} = props;
-  const [ cordinatorTypesTable, setCordinatorTypesTable ] = useState(cordinatorTypes);
+  const { planners} = props;
+  const [ plannersTable, setPlannersTable ] = useState(planners);
 
   const [page, setPage] = useState(0);
 
@@ -97,7 +98,7 @@ const Planner = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = cordinatorTypesTable.map((n) => n.id);
+      const newSelecteds = plannersTable.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -132,32 +133,32 @@ const Planner = (props) => {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - cordinatorTypesTable.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - plannersTable.length) : 0;
 
-  const filteredUsers = applySortFilter(cordinatorTypesTable, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(plannersTable, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
   
-    const [cordinator, setCordinator] = useState({
-        cordinatorType:''
+    const [planner, setPlanner] = useState({
+        planner:''
     });
   
     const handleChange = ({ currentTarget: input }) => {
-        setCordinator({
-        ...cordinator,
+        setPlanner({
+        ...planner,
         [input.name]: input.value,
       });
-      console.log(cordinator);
+      console.log(planner);
     };
   
     const [age, setAge] = React.useState('');
   
     const handleServiceChange = (event) => {
-        setCordinator({
-        ...cordinator,
+        setPlanner({
+        ...planner,
         serviceType: event.target.value,
       });
-      console.log(cordinator);
+      console.log(planner);
     };
   
     const dispatch = useDispatch();
@@ -165,13 +166,13 @@ const Planner = (props) => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        console.log(cordinator);
-        dispatch(addCordinatorType(cordinator));
-        setCordinatorTypesTable([...cordinatorTypesTable, cordinator]);
-        setCordinator({
-          cordinatorType:''
+        console.log(planner);
+        dispatch(addPlanner(planner));
+        setPlannersTable([...plannersTable, planner]);
+        setPlanner({
+            planner:''
         });
-        alert("cordinator type submitted successfully");
+        alert("Planner submitted successfully");
       } catch (error) {
         console.log(error);
       }
@@ -225,13 +226,13 @@ const Planner = (props) => {
             <Grid container spacing={2}>
                 <Grid item md={6} xs={12}>
                 <TextField
-              label="Cordinator Type"
+              label="Planner"
               variant="outlined"
               fullWidth
               sx={{ mr: { md: 1 } }}
               type="text"
-              name="cordinatorType"
-              value={cordinator.cordinatorType}
+              name="planner"
+              value={planner.planner}
               onChange={handleChange}
             />
             </Grid>
@@ -253,14 +254,14 @@ const Planner = (props) => {
                 order={order}
                 orderBy={orderBy}
                 headLabel={TABLE_HEAD}
-                rowCount={cordinatorTypesTable.length}
+                rowCount={plannersTable.length}
                 numSelected={selected.length}
                 onRequestSort={handleRequestSort}
                 onSelectAllClick={handleSelectAllClick}
               />
               <TableBody>
-                {cordinatorTypesTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-                  const { id, cordinatorType, cordinatorTypeCode } =
+                {plannersTable.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
+                  const { id, plannerCode, planner } =
                     custInfo;
                   const isItemSelected = selected.indexOf(id) !== -1;
 
@@ -279,11 +280,11 @@ const Planner = (props) => {
                       <TableCell align="center">
                         <Stack direction="row" alignItems="center" spacing={2}>
                           <Typography variant="subtitle2" noWrap>
-                            {cordinatorTypeCode}
+                            {plannerCode}
                           </Typography>
                         </Stack>
                       </TableCell>
-                      <TableCell align="left">{cordinatorType}</TableCell>
+                      <TableCell align="left">{planner}</TableCell>
                      
                     </TableRow>
                   );
@@ -311,7 +312,7 @@ const Planner = (props) => {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={cordinatorTypesTable.length}
+          count={plannersTable.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
