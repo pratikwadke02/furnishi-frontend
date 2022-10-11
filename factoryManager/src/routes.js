@@ -26,6 +26,7 @@ import SurveyTicket from './pages/SurveyTicket';
 import Snaglist from './pages/Snaglist';
 import Payment from './pages/Payment';
 import Customer from './pages/Customer';
+import OrderList from './pages/OrderList';
 
 // ----------------------------------------------------------------------
 
@@ -45,6 +46,7 @@ export default function Router() {
         { path: 'customerInformation', element: <CustomerInformation />},
         { path: 'customerRegistration', element: <CustomerRegistration />},
         { path: 'enquiry', element: <Enquiry />},
+        { path: 'orderlist', element: <OrderList />},
         { path: 'workPartner', element: <WorkPartner />},
         { path: 'survey', element: <Survey />},
         { path: 'rateMaster', element: <RateMaster />},

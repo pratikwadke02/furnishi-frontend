@@ -28,7 +28,7 @@ import { getSalesPersons } from '../../actions/master/salesPerson';
 import { getDesigners } from '../../actions/master/designer';
 import { getPlanners } from '../../actions/master/planner';
 import { getSiteSurveyors } from '../../actions/master/siteSurveyor';
-
+import { getOrderLists } from '../../actions/orderlist/orderlist';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
@@ -89,6 +89,7 @@ export default function DashboardLayout() {
       dispatch(getDesigners());
       dispatch(getPlanners());
       dispatch(getSiteSurveyors());
+      dispatch(getOrderLists());
     };
     getReduxData();
   }, [dispatch]);

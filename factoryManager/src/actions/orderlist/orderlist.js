@@ -1,4 +1,4 @@
-import { ADD_NEW_ORDER_LIST, GET_ALL_ORDER_LISTS } from "src/constants/actionTypes";
+import { ADD_NEW_ORDER_LIST, GET_ALL_ORDER_LISTS } from "../../constants/actionTypes";
 import * as api from '../../api/index'
 
 export const addOrderList = (orderListInfo) => async(dispatch) => {
