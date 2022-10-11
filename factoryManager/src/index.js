@@ -17,7 +17,7 @@ import reportWebVitals from './reportWebVitals';
 
 // ----------------------------------------------------------------------
 
-const store = createStore(reducers, compose(applyMiddleware(thunk), composeWithDevTools()));
+const store = createStore(reducers, compose(applyMiddleware(thunk)));
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
