@@ -288,7 +288,7 @@ const OrderList = () => {
           ) : null
           }        
       </Modal>
-      <Page title="User">
+      <Page title="Orderlist">
         <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>

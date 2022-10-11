@@ -128,7 +128,7 @@ const Master = () => {
 
   return (
     <>
-      <Page title="User">
+      <Page title="Master">
         <Container>
           <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
             <Typography variant="h4" gutterBottom>
