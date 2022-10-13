@@ -35,48 +35,59 @@ import { addOrder } from '../../actions/order/order';
 
 const NewOrderList = (props) => {
 
-  const {cordinators, products, statuses, carcasses, shutters, planners, designers, salesPersons, siteSurveyors} = props;
+  const {cordinators, products, statuses, carcasses, shutters, planners, designers, salesPersons, siteSurveyors, sources, factoryEngineers} = props;
   console.log(siteSurveyors);
 
   const [orderList, setOrderList] = useState({
     receivedDate: null,
     targetDate: null,
+    customerName: '',
+    customerNumber: '',
+    siteAddress: '',
+    sitePincode: '',
+    siteGoogleLocation: '',
     source: '',
-    client: '',
-    address: '',
+    sourceCordinator: '',
+    sourceCordinatorNumber: '',
+    customerCordinator: '',
+    customerCordinatorNumber: '',
+    factoryCordinator: '',
+    factoryCordinatorNumber: '',
     product: '',
+    designDocument: '',
     location: '',
-    value: '',
-    received: '',
-    status: '',
+    noOfServices: '',
+    area: '',
+    orderValue: '',
+    paymentReceived: '',
+    currentStatus: '',
     carcass: '',
     shutter: '',
     salesPerson: '',
     designer: '',
-    planner: '',
     finalSiteSurveyor: '',
     indentNumber: '',
-    workingTime: '',
+    workStartTime: null,
+    workEndTime: null,
+    factoryEngineer: '',
     accountClearance: null,
     designClearance: null,
-    mrpRelease: null,
+    indentRelease: null,
     shopDocuments: null,
     stockCheck: null,
+    poPrepare: null,
     poApproval: null,
     poRelease: null,
-    rawMaterialPurchase: null,
-    accHardwareGlassPurchase: null,
-    jobWork: null,
-    finalSiteSurvey: null,
+    rawMaterialAvailable: null,
+    otherMaterialAvailable: null,
+    jobWorkDone: null,
     panelProduction: null,
-    jobWorkMaterial: null,
-    metalWork: null,
-    paintWork: null,
+    paintMaterialProduction: null,
+    otherMaterialProduction: null,
     assembly: null,
+    cleaning: null,
     packing: null,
     dispatch: null,
-    installation: null,
-    handover: null,
   });
 
   const handleChange = ({ currentTarget: input }) => {
@@ -92,31 +103,44 @@ const NewOrderList = (props) => {
   const handleStatusChange = (event) => {
     setOrderList({
       ...orderList,
-      status: event.target.value,
+      currentStatus: event.target.value,
     });
     console.log(orderList);
   };
-  const handleCustomerCordinatorChange = (event) => {
-    const cordinator = cordinators.find((cordinator) => cordinator.id === event.target.value);
+
+  const handleSourceChange = (event) => {
     setOrderList({
       ...orderList,
-      customerCordinator: cordinator.cordinatorName,
+      source: event.target.value,
+    });
+    console.log(orderList);
+  };
+
+  const handleCustomerCordinatorChange = (event) => {
+    const cordinator = cordinators.find((cordinator) => cordinator.cordinatorName === event.target.value);
+    setOrderList({
+      ...orderList,
+      customerCordinator: event.target.value,
       customerCordinatorNumber: cordinator.cordinatorNumber,
     })
     console.log(orderList);
   };
 
   const handleSourceCordinatorChange = (event) => {
+    const cordinator = cordinators.find((cordinator) => cordinator.cordinatorName === event.target.value);
     setOrderList({
       ...orderList,
-      source: event.target.value,
-    });
+      sourceCordinator: cordinator.event.target.value,
+      sourceCordinatorNumber: cordinator.cordinatorNumber,
+    })
+    console.log(orderList);
   };
-  const handleFCordinatorChange = (event) => {
-    const cordinator = cordinators.find((cordinator) => cordinator.id === event.target.value);
+
+  const handleFactoryCordinatorChange = (event) => {
+    const cordinator = cordinators.find((cordinator) => cordinator.cordinatorName === event.target.value);
     setOrderList({
       ...orderList,
-      factoryCordinator: cordinator.cordinatorName,
+      factoryCordinator: event.target.value,
       factoryCordinatorNumber: cordinator.cordinatorNumber,
     })
     console.log(orderList);
@@ -166,6 +190,13 @@ const NewOrderList = (props) => {
       finalSiteSurveyor: event.target.value,
     });
   };
+  const handleFactoryEngineerChange = (event) => {
+
+    setOrderList({
+      ...orderList,
+      factoryEngineer: event.target.value,
+    });
+  };
 
   const dispatch = useDispatch();
 
@@ -177,42 +208,53 @@ const NewOrderList = (props) => {
       setOrderList({
         receivedDate: null,
     targetDate: null,
+    customerName: '',
+    customerNumber: '',
+    siteAddress: '',
+    sitePincode: '',
+    siteGoogleLocation: '',
     source: '',
-    client: '',
-    address: '',
+    sourceCordinator: '',
+    sourceCordinatorNumber: '',
+    customerCordinator: '',
+    customerCordinatorNumber: '',
+    factoryCordinator: '',
+    factoryCordinatorNumber: '',
     product: '',
+    designDocument: '',
     location: '',
-    value: '',
-    received: '',
-    status: '',
+    noOfServices: '',
+    area: '',
+    orderValue: '',
+    paymentReceived: '',
+    currentStatus: '',
     carcass: '',
     shutter: '',
     salesPerson: '',
     designer: '',
-    planner: '',
     finalSiteSurveyor: '',
     indentNumber: '',
-    workingTime: '',
+    workStartTime: null,
+    workEndTime: null,
+    factoryEngineer: '',
     accountClearance: null,
     designClearance: null,
-    mrpRelease: null,
+    indentRelease: null,
     shopDocuments: null,
     stockCheck: null,
+    poPrepare: null,
     poApproval: null,
     poRelease: null,
-    rawMaterialPurchase: null,
-    accHardwareGlassPurchase: null,
-    jobWork: null,
-    finalSiteSurvey: null,
+    rawMaterialAvailable: null,
+    otherMaterialAvailable: null,
+    jobWorkDone: null,
     panelProduction: null,
-    jobWorkMaterial: null,
-    metalWork: null,
-    paintWork: null,
+    paintMaterialProduction: null,
+    otherMaterialProduction: null,
     assembly: null,
+    cleaning: null,
     packing: null,
     dispatch: null,
-    installation: null,
-    handover: null,
       });
       alert('Order List submitted successfully');
     } catch (error) {
@@ -228,7 +270,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    disableFuture
+                    
                     label="Received Date"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -247,7 +289,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    disableFuture
+                    
                     label="Target Date"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -263,19 +305,91 @@ const NewOrderList = (props) => {
                 </LocalizationProvider>
               </Box>
             </Box>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
+              <TextField
+                fullWidth
+                sx={{ width: '100%', mr: { md: 1 } }}
+                label="Customer Name"
+                name="customerName"
+                onChange={handleChange}
+                required
+                value={orderList.customerName}
+                variant="outlined"
+              />
+              <TextField
+                fullWidth
+                sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
+                label="Customer Number"
+                name="customerNumber"
+                onChange={handleChange}
+                required
+                value={orderList.customerNumber}
+                variant="outlined"
+              />
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
+              <TextField
+                fullWidth
+                sx={{ width: '100%', mr: { md: 1 } }}
+                label="Site Address"
+                name="siteAddress"
+                onChange={handleChange}
+                required
+                value={orderList.siteAddress}
+                variant="outlined"
+              />
+              <TextField
+                fullWidth
+                sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
+                label="Site Pincode"
+                name="sitePincode"
+                onChange={handleChange}
+                required
+                value={orderList.sitePincode}
+                variant="outlined"
+              />
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
+              <TextField
+                fullWidth
+                sx={{ width: '100%', mr: { md: 1 } }}
+                label="Site Google Location"
+                name="siteGoogleLocation"
+                onChange={handleChange}
+                required
+                value={orderList.siteGoogleLocation}
+                variant="outlined"
+              />
+              <FormControl sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
+                <InputLabel id="source">Source</InputLabel>
+                <Select
+                  labelId="source"
+                  id="source"
+                  value={orderList.source}
+                  label="Source"
+                  onChange={handleSourceChange}
+                >
+                  {
+                    sources.map((source) => (
+                      <MenuItem value={source.source}>{source.source}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
+            </Box>
             <Box sx={{ display: 'flex',flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
             <FormControl fullWidth sx={{ mr: { md: 1 } }}>
-                <InputLabel id="demo-simple-select-label">Source</InputLabel>
+                <InputLabel id="demo-simple-select-label">Source Cordinator</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={orderList.source}
-                  label="Source"
+                  value={orderList.sourceCordinator}
+                  label="Source Cordinator"
                   onChange={handleSourceCordinatorChange}
                 >
                   {
                     cordinators.filter(cordinator => cordinator.cordinatorType === 'Source').map(cordinator => (
-                      <MenuItem value={cordinator.id}>{cordinator.cordinatorName}</MenuItem>
+                      <MenuItem value={cordinator.cordinatorName}>{cordinator.cordinatorName}</MenuItem>
                     ))
                   }
                 </Select>
@@ -283,24 +397,63 @@ const NewOrderList = (props) => {
               <TextField 
                 fullWidth
                 sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
-                label="Client Name"
-                name="client"
-                value={orderList.client}
+                label="Source Cordinator Number"
+                name="sourceCordinatorNumber"
+                value={orderList.sourceCordinatorNumber}
                 onChange={handleChange}
+                disabled
+              />
+            </Box>
+            <Box sx={{ display: 'flex',flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
+              <TextField
+                fullWidth
+                sx={{ width: '100%', mr: { md: 1 } }}
+                label="Customer Cordinator"
+                name="customerCordinator"
+                onChange={handleChange}
+                required
+                value={orderList.customerCordinator}
+                variant="outlined"
+              />
+              <TextField
+                fullWidth
+                sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
+                label="Customer Cordinator Number"
+                name="customerCordinatorNumber"
+                value={orderList.customerCordinatorNumber}
+                onChange={handleChange}
+                required
+              />
+            </Box>
+            <Box sx={{ display: 'flex',flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
+            <FormControl fullWidth sx={{ mr: { md: 1 } }}>
+                <InputLabel id="demo-simple-select-label">Factory Cordinator</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={orderList.factoryCordinator}
+                  label="Factory Cordinator"
+                  onChange={handleFactoryCordinatorChange}
+                >
+                  {
+                    cordinators.filter(cordinator => cordinator.cordinatorType === 'Factory').map(cordinator => (
+                      <MenuItem value={cordinator.cordinatorName}>{cordinator.cordinatorName}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
+              <TextField
+                fullWidth
+                sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
+                label="Factory Cordinator Number"
+                name="factoryCordinatorNumber"
+                value={orderList.factoryCordinatorNumber}
+                onChange={handleChange}
+                disabled
               />
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-              <TextField
-                label="Address"
-                variant="outlined"
-                fullWidth
-                sx={{ mr: { md: 1 } }}
-                type="text"
-                name="address"
-                value={orderList.address}
-                onChange={handleChange}
-              />
-              <FormControl fullWidth sx={{ ml: {md: 1}, mt: {xs:2, md: 0}  }}>
+              <FormControl fullWidth sx={{ mr: {md: 1} }}>
                 <InputLabel id="demo-simple-select-label">Product</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -316,6 +469,7 @@ const NewOrderList = (props) => {
                   }
                 </Select>
               </FormControl>
+              <Box sx={{width:'100%', ml:{md:1}}}/>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
               <TextField
@@ -329,25 +483,47 @@ const NewOrderList = (props) => {
                 onChange={handleChange}
               />
               <TextField
-                label="Value"
+                label="No of Services"
                 variant="outlined"
                 fullWidth
                 sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 type="number"
-                name="value"
-                value={orderList.value}
+                name="noOfServices"
+                value={orderList.noOfServices}
                 onChange={handleChange}
               />
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
               <TextField
-                label="Received"
+                label="Area (Sqft)"
                 variant="outlined"
                 fullWidth
                 sx={{ mr: { md: 1 } }}
                 type="number"
-                name="received"
-                value={orderList.received}
+                name="area"
+                value={orderList.area}
+                onChange={handleChange}
+              />
+              <TextField
+                label="Order Value"
+                variant="outlined"
+                fullWidth
+                sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
+                type="number"
+                name="orderValue"
+                value={orderList.orderValue}
+                onChange={handleChange}
+              />
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
+              <TextField
+                label="Payment Received"
+                variant="outlined"
+                fullWidth
+                sx={{ mr: { md: 1 } }}
+                type="number"
+                name="paymentReceived"
+                value={orderList.paymentReceived}
                 onChange={handleChange}
               />
               <FormControl fullWidth sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
@@ -355,7 +531,7 @@ const NewOrderList = (props) => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={orderList.status}
+                  value={orderList.currentStatus}
                   label="Status"
                   onChange={handleStatusChange}
                 >
@@ -404,25 +580,7 @@ const NewOrderList = (props) => {
               </FormControl>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-            <FormControl fullWidth sx={{ mr: { md: 1 } }}>
-                <InputLabel id="demo-simple-select-label">Planner</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={orderList.planner}
-                  label="Planner"
-                  onChange={
-                    handlePlannerChange
-                  }
-                >
-                  {
-                    planners.map((planner) => (
-                      <MenuItem value={planner.planner}>{planner.planner}</MenuItem>
-                    ))
-                  }
-                </Select>
-              </FormControl>
-              <FormControl fullWidth sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
+              <FormControl fullWidth sx={{ mr: { md: 1 } }}>
                 <InputLabel id="demo-simple-select-label">Designer</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -434,6 +592,24 @@ const NewOrderList = (props) => {
                   {
                     designers.map((designer) => (
                       <MenuItem value={designer.designer}>{designer.designer}</MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
+              <FormControl fullWidth sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
+                <InputLabel id="demo-simple-select-label">Final Site Surveyor</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={orderList.finalSiteSurveyor}
+                  label="Final Site Surveyor"
+                  onChange={
+                    handleSiteSurveyorChange
+                  }
+                >
+                  {
+                    siteSurveyors.map((siteSurveyor) => (
+                      <MenuItem value={siteSurveyor.finalSiteSurveyor}>{siteSurveyor.finalSiteSurveyor}</MenuItem>
                     ))
                   }
                 </Select>
@@ -459,61 +635,114 @@ const NewOrderList = (props) => {
                 </Select>
               </FormControl>
               <FormControl fullWidth sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
-                <InputLabel id="demo-simple-select-label">Final Site Surveyor</InputLabel>
+                <InputLabel id="demo-simple-select-label">Factory Engineer</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={orderList.finalSiteSurveyor}
-                  label="Final Site Surveyor"
+                  value={orderList.factoryEngineer}
+                  label="Factory Engineer"
                   onChange={
-                    handleSiteSurveyorChange
+                    handleFactoryEngineerChange
                   }
                 >
                   {
-                    siteSurveyors.map((siteSurveyor) => (
-                      <MenuItem value={siteSurveyor.finalSiteSurveyor}>{siteSurveyor.finalSiteSurveyor}</MenuItem>
+                    factoryEngineers.map((factoryEngineer) => (
+                      <MenuItem value={factoryEngineer.factoryEngineer}>{factoryEngineer.factoryEngineer}</MenuItem>
                     ))
                   }
                 </Select>
               </FormControl>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-              <TextField
-              sx={{ width: '100%', mr: { md: 1 } }}
-                fullWidth
-                label="Working Hours"
-                name="workingTime"
-                onChange={handleChange}
-                value={orderList.workingTime}
-                variant="outlined"
-              />
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"en"}>
+              <Box sx={{width:'100%', mr: { md: 1 } }}>
+                <TimePicker
+                  label="Work Start Time"
+                  value={orderList.workStartTime}
+                  onChange={
+                    (newValue) => {
+                      setOrderList({
+                        ...orderList,
+                        workStartTime: newValue
+                      })
+                    }
+                  }
+                  renderInput={(params) => <TextField {...params} fullWidth />}
+                />
+              </Box>
+              <Box sx={{width:'100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
+                <TimePicker
+                  label="Work End Time"
+                  value={orderList.workEndTime}
+                  onChange={
+                    (newValue) => {
+                      setOrderList({
+                        ...orderList,
+                        workEndTime: newValue
+                      })
+                    }
+                  }
+                  renderInput={(params) => <TextField {...params} fullWidth/>}
+                />
+              </Box>
+              </LocalizationProvider>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
               <TextField
                 label="Indent Number"
                 variant="outlined"
                 fullWidth
-                sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
+                sx={{ mr: { md: 1 } }}
                 name="indentNumber"
                 onChange={handleChange}
                 value={orderList.indentNumber}
               />
+                <Box sx={{width:'100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
+                  <DatePicker
+                    fullWidth
+                    
+                    label="Indent Release"
+                    openTo="year"
+                    views={['year', 'month', 'day']}
+                    value={orderList.indentRelease}
+                    onChange={(newValue) => {
+                      setOrderList({
+                        ...orderList,
+                        indentRelease: newValue,
+                      });
+                    }}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+                </Box>
             </Box>
 
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-            <TextField
-                label="MRP Number"
-                variant="outlined"
-                fullWidth
-                sx={{ mr: { md: 1 } }}
-                type="text"
-                name="mrpNumber"
-                value={orderList.mrpNumber}
-                onChange={handleChange}
-              />
+              <Box sx={{ width: '100%', mr: { md: 1 } }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    fullWidth
+                    
+                    label="Design Clearance Date"
+                    openTo="year"
+                    views={['year', 'month', 'day']}
+                    value={orderList.designClearance}
+                    onChange={(newValue) => {
+                      setOrderList({
+                        ...orderList,
+                        designClearance: newValue,
+                      });
+                    }}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Box>
               <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    disableFuture
+                    
                     label="Account Clearance"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -534,47 +763,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    disableFuture
-                    label="Design Clearance Date"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.designClearance}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        designClearance: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
-              <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
-                    label="MRP Release Date"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.mrpRelease}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        mrpRelease: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-            <Box sx={{ width: '100%', mr: { md: 1 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
+                    
                     label="Shop Documents"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -593,7 +782,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    disableFuture
+                    
                     label="Stock Check"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -614,7 +803,25 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    disableFuture
+                    label="PO Prepare"
+                    openTo="year"
+                    views={['year', 'month', 'day']}
+                    value={orderList.poPrepare}
+                    onChange={(newValue) => {
+                      setOrderList({
+                        ...orderList,
+                        poPrepare: newValue,
+                      });
+                    }}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Box>
+              <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    fullWidth
+                    
                     label="PO Approval"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -629,11 +836,13 @@ const NewOrderList = (props) => {
                   />
                 </LocalizationProvider>
               </Box>
-              <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
-                  <DatePicker
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
+            <Box sx={{ width: '100%', mr: { md: 1 } }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
                     fullWidth
-                    disableFuture
+                    
                     label="PO Release"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -648,40 +857,18 @@ const NewOrderList = (props) => {
                   />
                 </LocalizationProvider>
               </Box>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-            <Box sx={{ width: '100%', mr: { md: 1 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
-                    label="Acc/ Hardware/ Glass Purchase"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.accHardwareGlassPurchase}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        accHardwareGlassPurchase: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
               <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    disableFuture
-                    label="Raw Material Purchase"
+                    label="Job Work Done"
                     openTo="year"
                     views={['year', 'month', 'day']}
-                    value={orderList.rawMaterialPurchase}
+                    value={orderList.jobWorkDone}
                     onChange={(newValue) => {
                       setOrderList({
                         ...orderList,
-                        rawMaterialPurchase: newValue,
+                        jobWorkDone: newValue,
                       });
                     }}
                     renderInput={(params) => <TextField {...params} fullWidth />}
@@ -694,15 +881,15 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    disableFuture
-                    label="Final Site Survey"
+                    
+                    label="Raw Material Available"
                     openTo="year"
                     views={['year', 'month', 'day']}
-                    value={orderList.finalSiteSurvey}
+                    value={orderList.rawMaterialAvailable}
                     onChange={(newValue) => {
                       setOrderList({
                         ...orderList,
-                        finalSiteSurvey: newValue,
+                        rawMaterialAvailable: newValue,
                       });
                     }}
                     renderInput={(params) => <TextField {...params} fullWidth />}
@@ -713,7 +900,67 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    disableFuture
+                    
+                    label="Other Material Available"
+                    openTo="year"
+                    views={['year', 'month', 'day']}
+                    value={orderList.otherMaterialAvailable}
+                    onChange={(newValue) => {
+                      setOrderList({
+                        ...orderList,
+                        otherMaterialAvailable: newValue,
+                      });
+                    }}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Box>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
+            <Box sx={{ width: '100%', mr: { md: 1 } }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    fullWidth
+                    
+                    label="Paint Material Production"
+                    openTo="year"
+                    views={['year', 'month', 'day']}
+                    value={orderList.paintMaterialProduction}
+                    onChange={(newValue) => {
+                      setOrderList({
+                        ...orderList,
+                        paintMaterialProduction: newValue,
+                      });
+                    }}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Box>
+              <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
+                  <DatePicker
+                    fullWidth
+                    
+                    label="Other Material Production"
+                    openTo="year"
+                    views={['year', 'month', 'day']}
+                    value={orderList.otherMaterialProduction}
+                    onChange={(newValue) => {
+                      setOrderList({
+                        ...orderList,
+                         otherMaterialProduction: newValue,
+                      });
+                    }}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Box>
+            </Box>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
+            <Box sx={{ width: '100%', mr: { md: 1 } }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker
+                    fullWidth
                     label="Panel Production"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -728,72 +975,14 @@ const NewOrderList = (props) => {
                   />
                 </LocalizationProvider>
               </Box>
+              <Box sx={{ width: '100%', ml: { md: 1 } }}/>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
             <Box sx={{ width: '100%', mr: { md: 1 } }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    disableFuture
-                    label="Job Work Material"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.jobWorkMaterial}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        jobWorkMaterial: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
-              <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
-                    label="Metal Work"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.metalWork}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        metalWork: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-            <Box sx={{ width: '100%', mr: { md: 1 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
-                    label="Paint Work"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.paintWork}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        paintWork: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
-              <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
+                    
                     label="Assembly"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -808,13 +997,32 @@ const NewOrderList = (props) => {
                   />
                 </LocalizationProvider>
               </Box>
+              <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
+                  <DatePicker
+                    fullWidth
+                    
+                    label="Cleaning"
+                    openTo="year"
+                    views={['year', 'month', 'day']}
+                    value={orderList.cleaning}
+                    onChange={(newValue) => {
+                      setOrderList({
+                        ...orderList,
+                        cleaning: newValue,
+                      });
+                    }}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                  />
+                </LocalizationProvider>
+              </Box>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
             <Box sx={{ width: '100%', mr: { md: 1 } }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    disableFuture
+                    
                     label="Packing"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -833,7 +1041,6 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    disableFuture
                     label="Dispatch"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -848,68 +1055,6 @@ const NewOrderList = (props) => {
                   />
                 </LocalizationProvider>
               </Box>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-            <Box sx={{ width: '100%', mr: { md: 1 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
-                    label="Installation"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.installation}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        installation: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
-              <Box sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
-                    label="Handover"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.handover}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        handover: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
-            </Box>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
-            <Box sx={{ width: '100%', mr: { md: 1 }}}>
-                <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
-                  <DatePicker
-                    fullWidth
-                    disableFuture
-                    label="Job Work"
-                    openTo="year"
-                    views={['year', 'month', 'day']}
-                    value={orderList.jobWork}
-                    onChange={(newValue) => {
-                      setOrderList({
-                        ...orderList,
-                        jobWork: newValue,
-                      });
-                    }}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
-                  />
-                </LocalizationProvider>
-              </Box>
-              <Box sx={{ml:{md:1}, width:'100%'}}/>
             </Box>
             <Box>
               <Button variant="contained" color="primary" type="submit">

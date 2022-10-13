@@ -26,8 +26,8 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@das
 const TABLE_HEAD = [
   { id: 'orderNumber', label: 'Order Number', alignRight: true },
   { id: 'source', label: 'Source', alignRight: true },
-  { id: 'client', label: 'Client', alignRight: true },
-  { id: 'address', label: 'Address', alignRight: true },
+  { id: 'customerName', label: 'Customer Name', alignRight: true },
+  { id: 'customerNumber', label: 'Customer Number', alignRight: true },
   { id: 'location', label: 'Location', alignRight: true },
   { id: 'product', label: 'Product', alignRight: true },
   { id: '' },
@@ -152,7 +152,7 @@ const AllOrderList = (props) => {
       />
       <TableBody>
         {orderlists.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-          const { id, orderNumber, source, client, address, location, product   } = custInfo;
+          const { id, orderNumber, source, customerName, customerNumber, location, product   } = custInfo;
           const isItemSelected = selected.indexOf(id) !== -1;
 
           return (
@@ -175,8 +175,8 @@ const AllOrderList = (props) => {
                 </Stack>
               </TableCell>
               <TableCell align="left">{source}</TableCell>
-              <TableCell align="left">{client}</TableCell>
-              <TableCell align="left">{address}</TableCell>
+              <TableCell align="left">{customerName}</TableCell>
+              <TableCell align="left">{customerNumber}</TableCell>
 
             <TableCell align="left">{location}</TableCell>
             <TableCell align="left">{product}</TableCell>
