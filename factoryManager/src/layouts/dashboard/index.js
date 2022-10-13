@@ -29,6 +29,7 @@ import { getDesigners } from '../../actions/master/designer';
 import { getPlanners } from '../../actions/master/planner';
 import { getSiteSurveyors } from '../../actions/master/siteSurveyor';
 import { getOrderLists } from '../../actions/orderlist/orderlist';
+import { getFactoryEngineers } from '../../actions/master/factoryEngineer';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
@@ -90,6 +91,7 @@ export default function DashboardLayout() {
       dispatch(getPlanners());
       dispatch(getSiteSurveyors());
       dispatch(getOrderLists());
+      dispatch(getFactoryEngineers());
     };
     getReduxData();
   }, [dispatch]);

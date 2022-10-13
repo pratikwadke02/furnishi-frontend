@@ -21,6 +21,7 @@ import salesPerson from './master/salesPerson';
 import designer from './master/designer';
 import siteSurveyor from './master/siteSurveyor';
 import planner from './master/planner';
+import factoryEngineer from './master/factoryEngineer';
 
 import enquiry from './enquiry/enquiry'
 import order from './order/order'
@@ -52,5 +53,6 @@ export const reducers = combineReducers({
     designer,
     siteSurveyor,
     planner,
-    orderlist
+    orderlist,
+    factoryEngineer
 });

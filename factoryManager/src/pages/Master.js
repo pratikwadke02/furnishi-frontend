@@ -51,6 +51,7 @@ import SalesPerson from '../components/Master/SalesPerson';
 import Designer from '../components/Master/Designer';
 import SiteSurveyor from '../components/Master/SiteSurveyor';
 import Planner from '../components/Master/Planner';
+import FactoryEngineer from '../components/Master/FactoryEngineer';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -105,6 +106,7 @@ const Master = () => {
   const designers = useSelector((state) => state.designer.designers);
   const siteSurveyors = useSelector((state) => state.siteSurveyor.siteSurveyors);
   const planners = useSelector((state) => state.planner.planners);
+  const factoryEngineers = useSelector((state) => state.factoryEngineer.factoryEngineers);
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -165,6 +167,7 @@ const Master = () => {
                   <Tab label="Designer" {...a11yProps(15)} />
                   <Tab label="Planner" {...a11yProps(16)} />
                   <Tab label="Site Surveyor" {...a11yProps(17)} />
+                  <Tab label="Factory Engineer" {...a11yProps(18)} />
                   {/* <Tab label="Work Type" {...a11yProps(12)} /> */}
                 </Tabs>
               </Box>
@@ -224,6 +227,9 @@ const Master = () => {
               </TabPanel>
               <TabPanel value={headTab} index={17}>
                 <SiteSurveyor siteSurveyors={siteSurveyors} />
+              </TabPanel>
+              <TabPanel value={headTab} index={18}>
+                <FactoryEngineer factoryEngineers={factoryEngineers} />
               </TabPanel>
             </Box>
           </Card>
