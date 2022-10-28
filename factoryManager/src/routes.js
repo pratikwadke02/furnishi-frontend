@@ -27,6 +27,7 @@ import Snaglist from './pages/Snaglist';
 import Payment from './pages/Payment';
 import Customer from './pages/Customer';
 import OrderList from './pages/OrderList';
+import FurnishiOrder from './pages/FurnishiOrder'
 
 // ----------------------------------------------------------------------
 
@@ -60,6 +61,7 @@ export default function Router() {
         { path: 'snaglist', element: <Snaglist />},
         { path: 'payment', element: <Payment />},
         { path: 'customer', element: <Customer />},
+        { path: 'furnishiOrder', element: <FurnishiOrder />},
       ],
     },
     {

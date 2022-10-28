@@ -42,6 +42,10 @@ import AllEnquiries from '../components/Enquiry/AllEnquiries';
 import Manager from '../components/Master/Manager';
 import Product from '../components/Master/Product';
 import Customer from '../components/Master/Customer';
+import NewOrderList from '../components/orderlist/NewOrderList';
+import AllOrderList from '../components/orderlist/AllOrderList';
+import NewFurnishiOrder from '../components/FurnishiOrder/NewFurnishiOrder';
+import AllFurnishiOrders from '../components/FurnishiOrder/AllFurnishiOrders'
 
 const style = {
   position: 'absolute',
@@ -89,14 +93,20 @@ function a11yProps(index) {
   };
 }
 
-const Enquiry = () => {
+const FurnishiOrder = () => {
   const products = (useSelector((state) => state.product.products));
   const cordinators = (useSelector((state) => state.cordinator.cordinators));
-  const statusActions = (useSelector((state) => state.statusAction.statusActions));
-  const enquiries = (useSelector((state) => state.enquiry.enquiries));
-  const statuses = (useSelector((state)=> state.status.statuses));
+  const statuses = (useSelector((state) => state.status.statuses));
+  const orders = (useSelector((state) => state.order.orders));
   const carcasses = (useSelector((state) => state.carcass.carcasses));
   const shutters = (useSelector((state) => state.shutter.shutters));
+  const planners = (useSelector((state) => state.planner.planners));
+  const designers = (useSelector((state) => state.designer.designers));
+  const siteSurveyors = (useSelector((state) => state.siteSurveyor.siteSurveyors));
+  const salesPersons = (useSelector((state) => state.salesPerson.salesPersons));
+  const orderLists = (useSelector((state) => state.orderlist.orderlists));
+  const sources = (useSelector((state) => state.source.sources));
+  const factoryEngineers = (useSelector((state) => state.factoryEngineer.factoryEngineers));
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -135,9 +145,9 @@ const Enquiry = () => {
 
   const handleOpenModal = async(id) => {
     console.log(id);
-    enquiries.map((enquiry) => {
-      if (enquiry.id === id) {
-        setEnquiryData(enquiry);
+    orderLists.map((order) => {
+      if (order.id === id) {
+        setEnquiryData(order);
       }
       return null;
     });
@@ -162,7 +172,7 @@ const Enquiry = () => {
           enquiryData ? (
             <Card sx={style}>
           <Box sx={{ width: '100%', textAlign: 'center' }}>
-            <Typography variant="h4">Enquiry Code: {enquiryData.orderId}</Typography>
+            <Typography variant="h4">Order Number: {enquiryData.orderNumber}</Typography>
           </Box>
           <Box sx={{ mt: 2 }}>
             <Box>
@@ -170,7 +180,7 @@ const Enquiry = () => {
             </Box>
             <Box sx={{display:'flex'}}>
               <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Name: {enquiryData.name}</Typography>
+              <Typography variant="body1">Name: {enquiryData.source}</Typography>
               </Box>
               <Box sx={{width:'100%'}}>
               <Typography variant="body1">Number: {enquiryData.number}</Typography>
@@ -282,11 +292,11 @@ const Enquiry = () => {
           ) : null
           }        
       </Modal>
-      <Page title="Enquiry">
+      <Page title="Orderlist">
         <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Enquiry
+            Order List
           </Typography>
           {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Setting
@@ -296,15 +306,15 @@ const Enquiry = () => {
             <Box>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={headTab} onChange={handleHeadTabChange} aria-label="basic tabs example">
-                  <Tab label="New Enquiry" {...a11yProps(0)} />
-                  <Tab label="All Enquiries" {...a11yProps(1)} />
+                  <Tab label="New Order List" {...a11yProps(0)} />
+                  <Tab label="Order Lists" {...a11yProps(1)} />
                 </Tabs>
               </Box>
               <TabPanel value={headTab} index={0}>
-                <NewEnquiry cordinators={cordinators} products={products} statusActions={statusActions} statuses={statuses} carcasses={carcasses} shutters={shutters} />
+                <NewFurnishiOrder cordinators={cordinators} products={products} statuses={statuses} carcasses={carcasses} shutters={shutters} planners={planners} salesPersons={salesPersons} designers={designers} siteSurveyors={siteSurveyors} sources={sources} factoryEngineers={factoryEngineers}/>
               </TabPanel>
               <TabPanel value={headTab} index={1}>
-                <AllEnquiries enquiries={enquiries} openModal={handleOpenModal} />
+                <AllFurnishiOrders orderlists={orderLists} openModal={handleOpenModal} />
               </TabPanel>
             </Box>
           </Card>
@@ -314,4 +324,4 @@ const Enquiry = () => {
   );
 };
 
-export default Enquiry;
+export default FurnishiOrder;
