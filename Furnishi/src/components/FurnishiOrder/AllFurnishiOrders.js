@@ -66,8 +66,8 @@ function applySortFilter(array, comparator, query) {
 
 const AllOrderList = (props) => {
     
-  const {orderlists, openModal} = props;
-  // const orderlists = useSelector((state) => state.enquiry.orderlists);
+  const {furnishiOrders, openModal} = props;
+  // const furnishiOrders = useSelector((state) => state.enquiry.furnishiOrders);
 
   const [modal, setModal] = useState(false);
 
@@ -91,7 +91,7 @@ const AllOrderList = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = orderlists.map((n) => n.id);
+      const newSelecteds = furnishiOrders.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -126,9 +126,9 @@ const AllOrderList = (props) => {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - orderlists.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - furnishiOrders.length) : 0;
 
-  const filteredUsers = applySortFilter(orderlists, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(furnishiOrders, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
 
@@ -145,13 +145,13 @@ const AllOrderList = (props) => {
         order={order}
         orderBy={orderBy}
         headLabel={TABLE_HEAD}
-        rowCount={orderlists.length}
+        rowCount={furnishiOrders.length}
         numSelected={selected.length}
         onRequestSort={handleRequestSort}
         onSelectAllClick={handleSelectAllClick}
       />
       <TableBody>
-        {orderlists.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
+        {furnishiOrders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
           const { id, orderNumber, source, customerName, customerNumber, location, product   } = custInfo;
           const isItemSelected = selected.indexOf(id) !== -1;
 
@@ -214,7 +214,7 @@ const AllOrderList = (props) => {
 <TablePagination
   rowsPerPageOptions={[5, 10, 25]}
   component="div"
-  count={orderlists.length}
+  count={furnishiOrders.length}
   rowsPerPage={rowsPerPage}
   page={page}
   onPageChange={handleChangePage}

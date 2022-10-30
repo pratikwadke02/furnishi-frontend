@@ -107,6 +107,7 @@ const FurnishiOrder = () => {
   const orderLists = (useSelector((state) => state.orderlist.orderlists));
   const sources = (useSelector((state) => state.source.sources));
   const factoryEngineers = (useSelector((state) => state.factoryEngineer.factoryEngineers));
+  const furnishiOrders = (useSelector((state) => state.furnishiOrder.furnishiOrders));
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -296,7 +297,7 @@ const FurnishiOrder = () => {
         <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Order List
+            Furnishi Order
           </Typography>
           {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
             New Setting
@@ -306,15 +307,15 @@ const FurnishiOrder = () => {
             <Box>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={headTab} onChange={handleHeadTabChange} aria-label="basic tabs example">
-                  <Tab label="New Order List" {...a11yProps(0)} />
-                  <Tab label="Order Lists" {...a11yProps(1)} />
+                  <Tab label="New Furnishi Order" {...a11yProps(0)} />
+                  <Tab label="All Furnishi Orders" {...a11yProps(1)} />
                 </Tabs>
               </Box>
               <TabPanel value={headTab} index={0}>
                 <NewFurnishiOrder cordinators={cordinators} products={products} statuses={statuses} carcasses={carcasses} shutters={shutters} planners={planners} salesPersons={salesPersons} designers={designers} siteSurveyors={siteSurveyors} sources={sources} factoryEngineers={factoryEngineers}/>
               </TabPanel>
               <TabPanel value={headTab} index={1}>
-                <AllFurnishiOrders orderlists={orderLists} openModal={handleOpenModal} />
+                <AllFurnishiOrders furnishiOrders={furnishiOrders} openModal={handleOpenModal} />
               </TabPanel>
             </Box>
           </Card>

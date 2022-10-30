@@ -14,8 +14,8 @@ API.interceptors.request.use((req) => {
     return Promise.reject(error);
 } );
 
-export const login = (authInfo) => API.post("/login", authInfo);
-export const register = (authInfo) => API.post("/register", authInfo);
+export const login = (authInfo) => API.post("/loginFurnishi", authInfo);
+export const register = (authInfo) => API.post("/registerFurnishi", authInfo);
 export const updatePassword = (authInfo) => API.post("/updatePassword", authInfo);
 
 export const addSource = (sourceInfo) => API.post("/addSource", sourceInfo);
