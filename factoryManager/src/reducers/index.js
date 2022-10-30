@@ -22,12 +22,13 @@ import designer from './master/designer';
 import siteSurveyor from './master/siteSurveyor';
 import planner from './master/planner';
 import factoryEngineer from './master/factoryEngineer';
+import panel from './master/panel';
 
 import enquiry from './enquiry/enquiry'
 import order from './order/order'
 import snaglist from './snaglist/snaglist'
 import orderlist from './orderlist/orderlist'
-import FurnishiOrder from './furnishiorder/furnishiorder';
+import furnishiOrder from './furnishiorder/furnishiorder';
 
 
 export const reducers = combineReducers({
@@ -56,5 +57,6 @@ export const reducers = combineReducers({
     planner,
     orderlist,
     factoryEngineer,
-    FurnishiOrder
+    furnishiOrder,
+    panel
 });

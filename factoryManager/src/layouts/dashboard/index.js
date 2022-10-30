@@ -30,6 +30,8 @@ import { getPlanners } from '../../actions/master/planner';
 import { getSiteSurveyors } from '../../actions/master/siteSurveyor';
 import { getOrderLists } from '../../actions/orderlist/orderlist';
 import { getFactoryEngineers } from '../../actions/master/factoryEngineer';
+import { getPanels } from '../../actions/master/panel';
+import { getFurnishiOrders } from '../../actions/furnishiorder/furnishiorder';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
@@ -92,6 +94,8 @@ export default function DashboardLayout() {
       dispatch(getSiteSurveyors());
       dispatch(getOrderLists());
       dispatch(getFactoryEngineers());
+      dispatch(getFurnishiOrders());
+      dispatch(getPanels());
     };
     getReduxData();
   }, [dispatch]);

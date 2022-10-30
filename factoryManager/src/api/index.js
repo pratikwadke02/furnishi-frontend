@@ -93,3 +93,6 @@ export const getFactoryEngineers = () => API.get("/getFactoryEngineers");
 
 export const addFurnishiOrder = (furnishiOrderInfo) => API.post("/addFurnishiOrder", furnishiOrderInfo);
 export const getFurnishiOrders = () => API.get("/getFurnishiOrders");
+
+export const addPanel = (panelInfo) => API.post("/addPanel", panelInfo);
+export const getPanels = () => API.get("/getPanels");
