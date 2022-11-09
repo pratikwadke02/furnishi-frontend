@@ -32,6 +32,7 @@ import { getOrderLists } from '../../actions/orderlist/orderlist';
 import { getFactoryEngineers } from '../../actions/master/factoryEngineer';
 import { getPanels } from '../../actions/master/panel';
 import { getFurnishiOrders } from '../../actions/furnishiorder/furnishiorder';
+import { getAllAssistantUsers } from '../../actions/assistantUser/assistantUser';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
@@ -96,6 +97,7 @@ export default function DashboardLayout() {
       dispatch(getFactoryEngineers());
       dispatch(getFurnishiOrders());
       dispatch(getPanels());
+      dispatch(getAllAssistantUsers());
     };
     getReduxData();
   }, [dispatch]);
