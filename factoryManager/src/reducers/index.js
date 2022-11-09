@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 
 import auth from './auth/auth'
+import assistantUser from './assistantUser/assistantUser';
 
 import source from './master/source';
 import cordinatorType from './master/cordinatorType';
@@ -58,5 +59,6 @@ export const reducers = combineReducers({
     orderlist,
     factoryEngineer,
     furnishiOrder,
-    panel
+    panel,
+    assistantUser,
 });

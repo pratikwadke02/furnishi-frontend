@@ -37,6 +37,11 @@ const navConfig = [
     icon: getIcon('eva:file-text-fill'),
   },
   {
+    title: 'panel manager',
+    path: '/dashboard/panelManager',
+    icon: getIcon('eva:settings-2-fill'),
+  },
+  {
     title: 'snaglist',
     path: '/dashboard/snaglist',
     icon: getIcon('eva:file-text-fill'),
@@ -65,7 +70,7 @@ const navConfig = [
     title: 'settings',
     path: '/dashboard/settings',
     icon: getIcon('eva:settings-2-fill'),
-  }
+  },
 ];
 
 export default navConfig;

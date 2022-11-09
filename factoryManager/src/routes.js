@@ -28,6 +28,7 @@ import Payment from './pages/Payment';
 import Customer from './pages/Customer';
 import OrderList from './pages/OrderList';
 import FurnishiOrder from './pages/FurnishiOrder'
+import PanelManager from './pages/PanelManager';
 
 // ----------------------------------------------------------------------
 
@@ -62,6 +63,7 @@ export default function Router() {
         { path: 'payment', element: <Payment />},
         { path: 'customer', element: <Customer />},
         { path: 'furnishiOrder', element: <FurnishiOrder />},
+        { path: 'panelManager', element: <PanelManager />},
       ],
     },
     {

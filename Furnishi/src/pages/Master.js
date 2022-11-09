@@ -52,7 +52,6 @@ import Designer from '../components/Master/Designer';
 import SiteSurveyor from '../components/Master/SiteSurveyor';
 import Planner from '../components/Master/Planner';
 import FactoryEngineer from '../components/Master/FactoryEngineer';
-import Panel from '../components/Master/Panel';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -170,7 +169,6 @@ const Master = () => {
                   <Tab label="Planner" {...a11yProps(16)} />
                   <Tab label="Site Surveyor" {...a11yProps(17)} />
                   <Tab label="Factory Engineer" {...a11yProps(18)} />
-                  <Tab label="Panel" {...a11yProps(19)} />
                   {/* <Tab label="Work Type" {...a11yProps(12)} /> */}
                 </Tabs>
               </Box>
@@ -233,9 +231,6 @@ const Master = () => {
               </TabPanel>
               <TabPanel value={headTab} index={18}>
                 <FactoryEngineer factoryEngineers={factoryEngineers} />
-              </TabPanel>
-              <TabPanel value={headTab} index={19}>
-                <Panel panels={panels} />
               </TabPanel>
             </Box>
           </Card>

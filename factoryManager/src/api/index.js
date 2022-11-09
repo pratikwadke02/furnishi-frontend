@@ -96,3 +96,6 @@ export const getFurnishiOrders = () => API.get("/getFurnishiOrders");
 
 export const addPanel = (panelInfo) => API.post("/addPanel", panelInfo);
 export const getPanels = () => API.get("/getPanels");
+
+export const addAssistantUser = (assistantUserInfo) => API.post("/registerAssistant", assistantUserInfo);
+export const getAssistantUsers = () => API.get("/getAllAssistantUsers");
