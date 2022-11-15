@@ -28,7 +28,7 @@ import { getSalesPersons } from '../../actions/master/salesPerson';
 import { getDesigners } from '../../actions/master/designer';
 import { getPlanners } from '../../actions/master/planner';
 import { getSiteSurveyors } from '../../actions/master/siteSurveyor';
-import { getOrderLists } from '../../actions/orderlist/orderlist';
+import { getOrderLists, getOrderListByAssistantUser } from '../../actions/orderlist/orderlist';
 import { getFactoryEngineers } from '../../actions/master/factoryEngineer';
 import { getPanels } from '../../actions/master/panel';
 import { getFurnishiOrders } from '../../actions/furnishiorder/furnishiorder';
@@ -65,6 +65,9 @@ const MainStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function DashboardLayout() {
+
+  const assistantUserId = JSON.parse(localStorage.getItem('profile')).data.id;
+  // console.log("DashboardLayout: assistantUser: ", assistantUser);
   const [open, setOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -98,9 +101,10 @@ export default function DashboardLayout() {
       dispatch(getFurnishiOrders());
       dispatch(getPanels());
       dispatch(getAllAssistantUsers());
+      dispatch(getOrderListByAssistantUser(assistantUserId));
     };
     getReduxData();
-  }, [dispatch]);
+  }, [dispatch, assistantUserId]);
 
   return (
     <RootStyle>

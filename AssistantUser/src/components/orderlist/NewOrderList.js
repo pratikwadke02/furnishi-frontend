@@ -35,60 +35,67 @@ import { addOrder } from '../../actions/order/order';
 
 const NewOrderList = (props) => {
 
-  const {cordinators, products, statuses, carcasses, shutters, planners, designers, salesPersons, siteSurveyors, sources, factoryEngineers} = props;
+  const {cordinators, products, statuses, carcasses, shutters, planners, designers, salesPersons, siteSurveyors, sources, factoryEngineers, orderList} = props;
   console.log(siteSurveyors);
+  // const orderList = (useSelector((state) => state.orderlist.orderlist));
+  // const loadingState = (useSelector((state) => state.orderlist.loading));
+  // console.log(orderList);
 
-  const [orderList, setOrderList] = useState({
-    receivedDate: null,
-    targetDate: null,
-    customerName: '',
-    customerNumber: '',
-    siteAddress: '',
-    sitePincode: '',
-    siteGoogleLocation: '',
-    source: '',
-    sourceCordinator: '',
-    sourceCordinatorNumber: '',
-    customerCordinator: '',
-    customerCordinatorNumber: '',
-    factoryCordinator: '',
-    factoryCordinatorNumber: '',
-    product: '',
-    designDocument: '',
-    location: '',
-    noOfServices: '',
-    area: '',
-    orderValue: '',
-    paymentReceived: '',
-    currentStatus: '',
-    carcass: '',
-    shutter: '',
-    salesPerson: '',
-    designer: '',
-    finalSiteSurveyor: '',
-    indentNumber: '',
-    workStartTime: null,
-    workEndTime: null,
-    factoryEngineer: '',
-    accountClearance: null,
-    designClearance: null,
-    indentRelease: null,
-    shopDocuments: null,
-    stockCheck: null,
-    poPrepare: null,
-    poApproval: null,
-    poRelease: null,
-    rawMaterialAvailable: null,
-    otherMaterialAvailable: null,
-    jobWorkDone: null,
-    panelProduction: null,
-    paintMaterialProduction: null,
-    otherMaterialProduction: null,
-    assembly: null,
-    cleaning: null,
-    packing: null,
-    dispatch: null,
-  });
+  const [orderListData, setOrderList] = useState();
+
+  // const [orderList, setOrderList] = useState(orderList);
+
+  // const [orderList, setOrderList] = useState({
+  //   receivedDate: null,
+  //   targetDate: null,
+  //   customerName: '',
+  //   customerNumber: '',
+  //   siteAddress: '',
+  //   sitePincode: '',
+  //   siteGoogleLocation: '',
+  //   source: '',
+  //   sourceCordinator: '',
+  //   sourceCordinatorNumber: '',
+  //   customerCordinator: '',
+  //   customerCordinatorNumber: '',
+  //   factoryCordinator: '',
+  //   factoryCordinatorNumber: '',
+  //   product: '',
+  //   designDocument: '',
+  //   location: '',
+  //   noOfServices: '',
+  //   area: '',
+  //   orderValue: '',
+  //   paymentReceived: '',
+  //   currentStatus: '',
+  //   carcass: '',
+  //   shutter: '',
+  //   salesPerson: '',
+  //   designer: '',
+  //   finalSiteSurveyor: '',
+  //   indentNumber: '',
+  //   workStartTime: null,
+  //   workEndTime: null,
+  //   factoryEngineer: '',
+  //   accountClearance: null,
+  //   designClearance: null,
+  //   indentRelease: null,
+  //   shopDocuments: null,
+  //   stockCheck: null,
+  //   poPrepare: null,
+  //   poApproval: null,
+  //   poRelease: null,
+  //   rawMaterialAvailable: null,
+  //   otherMaterialAvailable: null,
+  //   jobWorkDone: null,
+  //   panelProduction: null,
+  //   paintMaterialProduction: null,
+  //   otherMaterialProduction: null,
+  //   assembly: null,
+  //   cleaning: null,
+  //   packing: null,
+  //   dispatch: null,
+  // });
 
   const handleChange = ({ currentTarget: input }) => {
     setOrderList({
@@ -262,6 +269,10 @@ const NewOrderList = (props) => {
     }
   };
 
+  // if(loadingState){
+  //   return <div>Loading...</div>
+  // }
+
   return (
     <>
         <form onSubmit={handleSubmit}>
@@ -270,7 +281,6 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    
                     label="Received Date"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -313,7 +323,7 @@ const NewOrderList = (props) => {
                 name="customerName"
                 onChange={handleChange}
                 required
-                value={orderList.customerName}
+                value={"Hello"}
                 variant="outlined"
               />
               <TextField
@@ -321,6 +331,7 @@ const NewOrderList = (props) => {
                 sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 label="Customer Number"
                 name="customerNumber"
+                
                 onChange={handleChange}
                 required
                 value={orderList.customerNumber}

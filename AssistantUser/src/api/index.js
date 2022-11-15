@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const API = axios.create({
-    baseURL: 'https://furnishi.herokuapp.com/api/furnishi'
-    // baseURL: 'http://localhost:8080/api/furnishi'
+    // baseURL: 'https://furnishi.herokuapp.com/api/furnishi'
+    baseURL: 'http://localhost:8080/api/furnishi'
 });
 
 API.interceptors.request.use((req) => {
@@ -14,7 +14,7 @@ API.interceptors.request.use((req) => {
     return Promise.reject(error);
 } );
 
-export const login = (authInfo) => API.post("/login", authInfo);
+export const login = (authInfo) => API.post("/loginAssistant", authInfo);
 export const register = (authInfo) => API.post("/register", authInfo);
 export const updatePassword = (authInfo) => API.post("/updatePassword", authInfo);
 
@@ -99,3 +99,5 @@ export const getPanels = () => API.get("/getPanels");
 
 export const addAssistantUser = (assistantUserInfo) => API.post("/registerAssistant", assistantUserInfo);
 export const getAssistantUsers = () => API.get("/getAllAssistantUsers");
+
+export const getOrderListByAssistantUser = (id) => API.get(`/getOrderListByAssistantUser/${id}`);

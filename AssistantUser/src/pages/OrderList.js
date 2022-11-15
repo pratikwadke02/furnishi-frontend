@@ -103,8 +103,12 @@ const OrderList = () => {
   const siteSurveyors = (useSelector((state) => state.siteSurveyor.siteSurveyors));
   const salesPersons = (useSelector((state) => state.salesPerson.salesPersons));
   const orderLists = (useSelector((state) => state.orderlist.orderlists));
+  
   const sources = (useSelector((state) => state.source.sources));
   const factoryEngineers = (useSelector((state) => state.factoryEngineer.factoryEngineers));
+
+  const orderList = (useSelector((state) => state.orderlist.orderlist));
+  console.log(orderList);
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -309,7 +313,7 @@ const OrderList = () => {
                 </Tabs>
               </Box>
               <TabPanel value={headTab} index={0}>
-                <NewOrderList cordinators={cordinators} products={products} statuses={statuses} carcasses={carcasses} shutters={shutters} planners={planners} salesPersons={salesPersons} designers={designers} siteSurveyors={siteSurveyors} sources={sources} factoryEngineers={factoryEngineers}/>
+                <NewOrderList cordinators={cordinators} products={products} statuses={statuses} carcasses={carcasses} shutters={shutters} planners={planners} salesPersons={salesPersons} designers={designers} siteSurveyors={siteSurveyors} sources={sources} factoryEngineers={factoryEngineers} orderList={orderList} />
               </TabPanel>
               <TabPanel value={headTab} index={1}>
                 <AllOrderList orderlists={orderLists} openModal={handleOpenModal} />
