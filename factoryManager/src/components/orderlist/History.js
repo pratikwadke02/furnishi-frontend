@@ -25,13 +25,9 @@ import SearchNotFound from '../SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../../sections/@dashboard/user';
 
 const TABLE_HEAD = [
-  { id: 'orderNumber', label: 'Order Number', alignRight: true },
-  { id: 'source', label: 'Source', alignRight: true },
-  { id: 'customerName', label: 'Customer Name', alignRight: true },
-  { id: 'customerNumber', label: 'Customer Number', alignRight: true },
-  { id: 'location', label: 'Location', alignRight: true },
-  { id: 'product', label: 'Product', alignRight: true },
-  { id: '' },
+  { id: 'updatedBy', label: 'Updated By', alignRight: true },
+  { id: 'date', label: 'Updated Date', alignRight: true },
+  { id: 'time', label: 'Updated Time', alignRight: true },
 ];
 
 // ----------------------------------------------------------------------
@@ -65,10 +61,10 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const AllOrderList = (props) => {
+const History = (props) => {
     
-  const {orderlists, openModal} = props;
-  // const orderlists = useSelector((state) => state.enquiry.orderlists);
+  const {historyList, openModal} = props;
+  // const historyList = useSelector((state) => state.enquiry.historyList);
 
   const [modal, setModal] = useState(false);
 
@@ -92,7 +88,7 @@ const AllOrderList = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = orderlists.map((n) => n.id);
+      const newSelecteds = historyList.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -127,9 +123,9 @@ const AllOrderList = (props) => {
     setFilterName(event.target.value);
   };
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - orderlists.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - historyList.length) : 0;
 
-  const filteredUsers = applySortFilter(orderlists, getComparator(order, orderBy), filterName);
+  const filteredUsers = applySortFilter(historyList, getComparator(order, orderBy), filterName);
 
   const isUserNotFound = filteredUsers.length === 0;
 
@@ -146,14 +142,14 @@ const AllOrderList = (props) => {
         order={order}
         orderBy={orderBy}
         headLabel={TABLE_HEAD}
-        rowCount={orderlists.length}
+        rowCount={historyList.length}
         numSelected={selected.length}
         onRequestSort={handleRequestSort}
         onSelectAllClick={handleSelectAllClick}
       />
       <TableBody>
-        {orderlists.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-          const { id, orderNumber, source, customerName, customerNumber, location, product,   } = custInfo;
+        {historyList.reverse().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
+          const { id, orderNumber, updatedBy, updatedOn   } = custInfo;
           const isItemSelected = selected.indexOf(id) !== -1;
 
           return (
@@ -171,18 +167,14 @@ const AllOrderList = (props) => {
               <TableCell align="center">
                 <Stack direction="row" alignItems="center" spacing={2}>
                   <Typography variant="subtitle2" noWrap>
-                    {orderNumber}
+                    {updatedBy}
                   </Typography>
                 </Stack>
               </TableCell>
-              <TableCell align="left">{source}</TableCell>
-              <TableCell align="left">{customerName}</TableCell>
-              <TableCell align="left">{customerNumber}</TableCell>
-
-            <TableCell align="left">{location}</TableCell>
-            <TableCell align="left">{product}</TableCell>
-
-               <TableCell align="right">
+              {/* <TableCell align="left">{updatedBy}</TableCell> */}
+              <TableCell align="left">{updatedOn.slice(0, 15)}</TableCell>
+              <TableCell align="left">{updatedOn.slice(15)}</TableCell>
+               {/* <TableCell align="right">
                 <Link to ={`/dashboard/viewOrderlist/${orderNumber}`} style={{textDecoration:'none'}}>
                 <Button variant="contained" 
                 // onClick={()=>openModal(id)}
@@ -190,7 +182,7 @@ const AllOrderList = (props) => {
                   View
                 </Button>
                 </Link>
-              </TableCell> 
+              </TableCell>  */}
             </TableRow>
           );
         })}
@@ -217,7 +209,7 @@ const AllOrderList = (props) => {
 <TablePagination
   rowsPerPageOptions={[5, 10, 25]}
   component="div"
-  count={orderlists.length}
+  count={historyList.length}
   rowsPerPage={rowsPerPage}
   page={page}
   onPageChange={handleChangePage}
@@ -228,4 +220,4 @@ const AllOrderList = (props) => {
   );
 };
 
-export default AllOrderList;
+export default History;

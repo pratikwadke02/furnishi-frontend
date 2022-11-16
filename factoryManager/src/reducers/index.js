@@ -31,6 +31,7 @@ import snaglist from './snaglist/snaglist'
 import orderlist from './orderlist/orderlist'
 import furnishiOrder from './furnishiorder/furnishiorder';
 
+import history from './history/history';
 
 export const reducers = combineReducers({
     auth,
@@ -61,4 +62,5 @@ export const reducers = combineReducers({
     furnishiOrder,
     panel,
     assistantUser,
+    history
 });

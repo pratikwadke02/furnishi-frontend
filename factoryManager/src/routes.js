@@ -29,6 +29,7 @@ import Customer from './pages/Customer';
 import OrderList from './pages/OrderList';
 import FurnishiOrder from './pages/FurnishiOrder'
 import PanelManager from './pages/PanelManager';
+import ViewOrderList from './pages/ViewOrderList';
 
 // ----------------------------------------------------------------------
 
@@ -64,6 +65,7 @@ export default function Router() {
         { path: 'customer', element: <Customer />},
         { path: 'furnishiOrder', element: <FurnishiOrder />},
         { path: 'panelManager', element: <PanelManager />},
+        { path: 'viewOrderlist/:id', element: <ViewOrderList />},
       ],
     },
     {

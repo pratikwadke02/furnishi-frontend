@@ -33,65 +33,62 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { addOrderList } from '../../actions/orderlist/orderlist';
 import { addOrder } from '../../actions/order/order';
 
-const NewOrderList = (props) => {
+const ViewOrderList = (props) => {
 
-  const user = (JSON.parse(localStorage.getItem('profile'))).data;
-  console.log('user', user);
-
-  const {cordinators, products, statuses, carcasses, shutters, planners, designers, salesPersons, siteSurveyors, sources, factoryEngineers} = props;
+  const {cordinators, products, statuses, carcasses, shutters, planners, designers, salesPersons, siteSurveyors, sources, factoryEngineers, orderlistData} = props;
   console.log(siteSurveyors);
 
-  const [orderList, setOrderList] = useState({
-    receivedDate: null,
-    targetDate: null,
-    customerName: '',
-    customerNumber: '',
-    siteAddress: '',
-    sitePincode: '',
-    siteGoogleLocation: '',
-    source: '',
-    sourceCordinator: '',
-    sourceCordinatorNumber: '',
-    customerCordinator: '',
-    customerCordinatorNumber: '',
-    factoryCordinator: '',
-    factoryCordinatorNumber: '',
-    product: '',
-    designDocument: '',
-    location: '',
-    noOfServices: '',
-    area: '',
-    orderValue: '',
-    paymentReceived: '',
-    currentStatus: '',
-    carcass: '',
-    shutter: '',
-    salesPerson: '',
-    designer: '',
-    finalSiteSurveyor: '',
-    indentNumber: '',
-    workStartTime: null,
-    workEndTime: null,
-    factoryEngineer: '',
-    accountClearance: null,
-    designClearance: null,
-    indentRelease: null,
-    shopDocuments: null,
-    stockCheck: null,
-    poPrepare: null,
-    poApproval: null,
-    poRelease: null,
-    rawMaterialAvailable: null,
-    otherMaterialAvailable: null,
-    jobWorkDone: null,
-    panelProduction: null,
-    paintMaterialProduction: null,
-    otherMaterialProduction: null,
-    assembly: null,
-    cleaning: null,
-    packing: null,
-    dispatch: null,
-  });
+  const [orderList, setOrderList] = useState(orderlistData);
+    // receivedDate: null,
+    // targetDate: null,
+    // customerName: '',
+    // customerNumber: '',
+    // siteAddress: '',
+    // sitePincode: '',
+    // siteGoogleLocation: '',
+    // source: '',
+    // sourceCordinator: '',
+    // sourceCordinatorNumber: '',
+    // customerCordinator: '',
+    // customerCordinatorNumber: '',
+    // factoryCordinator: '',
+    // factoryCordinatorNumber: '',
+    // product: '',
+    // designDocument: '',
+    // location: '',
+    // noOfServices: '',
+    // area: '',
+    // orderValue: '',
+    // paymentReceived: '',
+    // currentStatus: '',
+    // carcass: '',
+    // shutter: '',
+    // salesPerson: '',
+    // designer: '',
+    // finalSiteSurveyor: '',
+    // indentNumber: '',
+    // workStartTime: null,
+    // workEndTime: null,
+    // factoryEngineer: '',
+    // accountClearance: null,
+    // designClearance: null,
+    // indentRelease: null,
+    // shopDocuments: null,
+    // stockCheck: null,
+    // poPrepare: null,
+    // poApproval: null,
+    // poRelease: null,
+    // rawMaterialAvailable: null,
+    // otherMaterialAvailable: null,
+    // jobWorkDone: null,
+    // panelProduction: null,
+    // paintMaterialProduction: null,
+    // otherMaterialProduction: null,
+    // assembly: null,
+    // cleaning: null,
+    // packing: null,
+    // dispatch: null,
+//   });
 
   const handleChange = ({ currentTarget: input }) => {
     setOrderList({
@@ -206,7 +203,6 @@ const NewOrderList = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault(); 
     try {
-      orderList.updatedBy = user.email;
       console.log(orderList);
       dispatch(addOrderList(orderList));
       setOrderList({
@@ -1070,4 +1066,4 @@ const NewOrderList = (props) => {
   );
 };
 
-export default NewOrderList;
+export default ViewOrderList;

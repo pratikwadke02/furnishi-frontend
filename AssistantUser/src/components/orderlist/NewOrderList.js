@@ -272,7 +272,8 @@ const NewOrderList = (props) => {
   // if(loadingState){
   //   return <div>Loading...</div>
   // }
-
+  if (!orderList) return 'Loading...';
+  
   return (
     <>
         <form onSubmit={handleSubmit}>
