@@ -11,6 +11,7 @@ import Logo from '../components/Logo';
 import { RegisterForm } from '../sections/auth/register';
 import AuthSocial from '../sections/auth/AuthSocial';
 
+import {images} from '../constants';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled('div')(({ theme }) => ({
@@ -66,14 +67,14 @@ export default function Register() {
       <RootStyle>
         <HeaderStyle>
           <Logo />
-          {smUp && (
+          {/* {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
               Already have an account? {''}
               <Link variant="subtitle2" component={RouterLink} to="/login">
                 Login
               </Link>
             </Typography>
-          )}
+          )} */}
         </HeaderStyle>
 
         {mdUp && (
@@ -87,7 +88,8 @@ export default function Register() {
 
         <Container>
           <ContentStyle>
-            <Typography variant="h4" gutterBottom>
+          <img src={images.furnishiLogo} alt="" height={200} width={300} style={{margin:'auto'}} />
+            <Typography variant="h4" gutterBottom sx={{textAlign:'center'}}>
               Get started.
             </Typography>
 
@@ -107,14 +109,14 @@ export default function Register() {
               .
             </Typography>
 
-            {!smUp && (
+            {/* {!smUp && ( */}
               <Typography variant="body2" sx={{ mt: 3, textAlign: 'center' }}>
                 Already have an account?{' '}
                 <Link variant="subtitle2" to="/login" component={RouterLink}>
                   Login
                 </Link>
               </Typography>
-            )}
+            {/* )} */}
           </ContentStyle>
         </Container>
       </RootStyle>

@@ -19,6 +19,7 @@ function responsiveFontSizes({ sm, md, lg }) {
 }
 
 const FONT_PRIMARY = 'Public Sans, sans-serif';
+const FONT_POPPINS = "Poppins";
 
 const typography = {
   fontFamily: FONT_PRIMARY,

@@ -15,6 +15,8 @@ import NavSection from '../../components/NavSection';
 //
 import navConfig from './NavConfig';
 
+import {images} from '../../constants';
+
 // ----------------------------------------------------------------------
 
 const DRAWER_WIDTH = 280;
@@ -60,8 +62,24 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
       }}
     >
-      <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
+      {/* <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>
         <Logo />
+      </Box> */}
+
+      <Box sx={{ mt:2, mb: 5, mx: 2.5 }}>
+        <Link underline="none" component={RouterLink} to="#">
+          <AccountStyle>
+            <img src={images.furnishiLogo} alt="" height={50} />
+            <Box sx={{ ml: 1 }}>
+              <Typography variant="h4" sx={{ color: `text.primary`}}>
+                FURNISHI SERVICES
+              </Typography>
+              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                {account.role}
+              </Typography>
+            </Box>
+          </AccountStyle>
+        </Link>
       </Box>
 
       <Box sx={{ mb: 5, mx: 2.5 }}>

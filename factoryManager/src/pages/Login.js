@@ -10,6 +10,7 @@ import Logo from '../components/Logo';
 // sections
 import { LoginForm } from '../sections/auth/login';
 import AuthSocial from '../sections/auth/AuthSocial';
+import { images } from '../constants';
 
 // ----------------------------------------------------------------------
 
@@ -67,14 +68,14 @@ export default function Login() {
         <HeaderStyle>
           <Logo />
 
-          {smUp && (
+          {/* {smUp && (
             <Typography variant="body2" sx={{ mt: { md: -2 } }}>
               Don’t have an account? {''}
               <Link variant="subtitle2" component={RouterLink} to="/register">
                 Get started
               </Link>
             </Typography>
-          )}
+          )} */}
         </HeaderStyle>
 
         {mdUp && (
@@ -88,24 +89,25 @@ export default function Login() {
 
         <Container maxWidth="sm">
           <ContentStyle>
-            <Typography variant="h4" gutterBottom>
+            <img src={images.furnishiLogo} alt="" height={200} width={300} style={{margin:'auto'}} />
+            <Typography variant="h4" gutterBottom sx={{textAlign:'center'}}>
               Sign in to Furnishi
             </Typography>
 
-            <Typography sx={{ color: 'text.secondary', mb: 5 }}>Enter your details below.</Typography>
+            <Typography sx={{ color: 'text.secondary', mb: 5, textAlign:'center' }}>Enter your details below.</Typography>
 
             <AuthSocial />
 
             <LoginForm />
 
-            {!smUp && (
+            {/* {!smUp && ( */}
               <Typography variant="body2" align="center" sx={{ mt: 3 }}>
                 Don’t have an account?{' '}
                 <Link variant="subtitle2" component={RouterLink} to="/register">
                   Get started
                 </Link>
               </Typography>
-            )}
+            {/* )} */}
           </ContentStyle>
         </Container>
       </RootStyle>

@@ -61,6 +61,7 @@ const AccessManager = (props) => {
     factoryCordinator: false,
     factoryCordinatorNumber: false,
     product: false,
+    videosAndImages: false,
     location: false,
     noOfServices: false,
     area: false,
@@ -213,6 +214,7 @@ const AccessManager = (props) => {
     factoryCordinator: false,
     factoryCordinatorNumber: false,
     product: false,
+    videosAndImages: false,
     location: false,
     noOfServices: false,
     area: false,
@@ -545,6 +547,18 @@ const AccessManager = (props) => {
                     />
                     }
                     label="Product"
+                />
+                </Box>
+                <Box sx={{ width: '100%',ml: { md: 2 }, mt: {xs: 2, md:0 } }}>
+                <FormControlLabel
+                    control={
+                    <Checkbox
+                        checked={assistantUser.videosAndImages}
+                        onChange={() => setAssistantUser({ ...assistantUser, videosAndImages: !assistantUser.videosAndImages })}
+                        name="videosAndImages"
+                    />
+                    }
+                    label="Videos and Images"
                 />
                 </Box>
             </Box>
