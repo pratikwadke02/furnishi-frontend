@@ -3,6 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
+import {images} from '../constants'
 
 // ----------------------------------------------------------------------
 
@@ -56,6 +57,7 @@ export default function Logo({ disabledLink = false, sx }) {
           />
         </g>
       </svg> */}
+      <img src={images.furnishiLogo} alt="" />
       <Typography variant="h4" sx={{ color: 'primary.main' }}>
       Furnishi
     </Typography>

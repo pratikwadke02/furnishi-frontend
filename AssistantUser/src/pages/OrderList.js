@@ -308,18 +308,18 @@ const OrderList = () => {
         </Stack>
           <Card sx={{ p: 2 }}>
             <Box>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={headTab} onChange={handleHeadTabChange} aria-label="basic tabs example">
                   <Tab label="New Order List" {...a11yProps(0)} />
                   <Tab label="Order Lists" {...a11yProps(1)} />
                 </Tabs>
               </Box>
-              <TabPanel value={headTab} index={0}>
+              <TabPanel value={headTab} index={0}> */}
                 <NewOrderList cordinators={cordinators} products={products} statuses={statuses} carcasses={carcasses} shutters={shutters} planners={planners} salesPersons={salesPersons} designers={designers} siteSurveyors={siteSurveyors} sources={sources} factoryEngineers={factoryEngineers} orderList={orderList} />
-              </TabPanel>
+              {/* </TabPanel>
               <TabPanel value={headTab} index={1}>
                 <AllOrderList orderlists={orderLists} openModal={handleOpenModal} />
-              </TabPanel>
+              </TabPanel> */}
             </Box>
           </Card>
         </Container>

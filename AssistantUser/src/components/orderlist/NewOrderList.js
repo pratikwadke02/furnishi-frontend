@@ -273,6 +273,8 @@ const NewOrderList = (props) => {
   //   return <div>Loading...</div>
   // }
   if (!orderList) return 'Loading...';
+  const abled = false;
+  const disable = true;
   
   return (
     <>
@@ -281,6 +283,7 @@ const NewOrderList = (props) => {
             <Box sx={{ width: '100%', mr: { md: 1 } }}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
+                    disabled= {!orderList.receivedDate ? disable : abled}
                     fullWidth
                     label="Received Date"
                     openTo="year"
@@ -300,7 +303,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled= {!orderList.targetDate ? disable : abled}
                     label="Target Date"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -318,13 +321,14 @@ const NewOrderList = (props) => {
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
               <TextField
+                disabled= {!orderList.customerName ? disable : abled}
                 fullWidth
                 sx={{ width: '100%', mr: { md: 1 } }}
                 label="Customer Name"
                 name="customerName"
                 onChange={handleChange}
                 required
-                value={"Hello"}
+                value={orderList.customerName}
                 variant="outlined"
               />
               <TextField
@@ -332,7 +336,7 @@ const NewOrderList = (props) => {
                 sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 label="Customer Number"
                 name="customerNumber"
-                
+                disabled= {!orderList.customerNumber ? disable : abled}
                 onChange={handleChange}
                 required
                 value={orderList.customerNumber}
@@ -342,6 +346,7 @@ const NewOrderList = (props) => {
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
               <TextField
                 fullWidth
+                disabled= {!orderList.siteAddress ? disable : abled}
                 sx={{ width: '100%', mr: { md: 1 } }}
                 label="Site Address"
                 name="siteAddress"
@@ -352,6 +357,7 @@ const NewOrderList = (props) => {
               />
               <TextField
                 fullWidth
+                disabled= {!orderList.sitePincode ? disable : abled}
                 sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 label="Site Pincode"
                 name="sitePincode"
@@ -364,6 +370,7 @@ const NewOrderList = (props) => {
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
               <TextField
                 fullWidth
+                disabled= {!orderList.siteGoogleLocation ? disable : abled}
                 sx={{ width: '100%', mr: { md: 1 } }}
                 label="Site Google Location"
                 name="siteGoogleLocation"
@@ -375,6 +382,7 @@ const NewOrderList = (props) => {
               <FormControl sx={{ width: '100%', ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
                 <InputLabel id="source">Source</InputLabel>
                 <Select
+                  disabled= {!orderList.source ? disable : abled}
                   labelId="source"
                   id="source"
                   value={orderList.source}
@@ -393,6 +401,7 @@ const NewOrderList = (props) => {
             <FormControl fullWidth sx={{ mr: { md: 1 } }}>
                 <InputLabel id="demo-simple-select-label">Source Cordinator</InputLabel>
                 <Select
+                  disabled= {!orderList.sourceCordinator ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.sourceCordinator}
@@ -408,17 +417,18 @@ const NewOrderList = (props) => {
               </FormControl>
               <TextField 
                 fullWidth
+                disabled= {!orderList.sourceCordinatorNumber ? disable : abled}
                 sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 label="Source Cordinator Number"
                 name="sourceCordinatorNumber"
                 value={orderList.sourceCordinatorNumber}
                 onChange={handleChange}
-                disabled
               />
             </Box>
             <Box sx={{ display: 'flex',flexDirection: { xs: 'column', md: 'row' }, mt:2, mb: 2 }}>
               <TextField
                 fullWidth
+                disabled= {!orderList.customerCordinator ? disable : abled}
                 sx={{ width: '100%', mr: { md: 1 } }}
                 label="Customer Cordinator"
                 name="customerCordinator"
@@ -429,6 +439,7 @@ const NewOrderList = (props) => {
               />
               <TextField
                 fullWidth
+                disabled= {!orderList.customerCordinatorNumber ? disable : abled}
                 sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 label="Customer Cordinator Number"
                 name="customerCordinatorNumber"
@@ -441,6 +452,7 @@ const NewOrderList = (props) => {
             <FormControl fullWidth sx={{ mr: { md: 1 } }}>
                 <InputLabel id="demo-simple-select-label">Factory Cordinator</InputLabel>
                 <Select
+                  disabled= {!orderList.factoryCordinator ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.factoryCordinator}
@@ -456,18 +468,19 @@ const NewOrderList = (props) => {
               </FormControl>
               <TextField
                 fullWidth
+                disabled= {!orderList.factoryCordinatorNumber ? disable : abled}
                 sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 label="Factory Cordinator Number"
                 name="factoryCordinatorNumber"
                 value={orderList.factoryCordinatorNumber}
                 onChange={handleChange}
-                disabled
               />
             </Box>
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, mt: 2, mb: 2 }}>
               <FormControl fullWidth sx={{ mr: {md: 1} }}>
                 <InputLabel id="demo-simple-select-label">Product</InputLabel>
                 <Select
+                  disabled= {!orderList.product ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.product}
@@ -488,6 +501,7 @@ const NewOrderList = (props) => {
                 label="Location"
                 variant="outlined"
                 fullWidth
+                disabled= {!orderList.location ? disable : abled}
                 sx={{ mr: { md: 1 } }}
                 type="text"
                 name="location"
@@ -498,6 +512,7 @@ const NewOrderList = (props) => {
                 label="No of Services"
                 variant="outlined"
                 fullWidth
+                disabled= {!orderList.noOfServices ? disable : abled}
                 sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 type="number"
                 name="noOfServices"
@@ -510,6 +525,7 @@ const NewOrderList = (props) => {
                 label="Area (Sqft)"
                 variant="outlined"
                 fullWidth
+                disabled= {!orderList.area ? disable : abled}
                 sx={{ mr: { md: 1 } }}
                 type="number"
                 name="area"
@@ -520,6 +536,7 @@ const NewOrderList = (props) => {
                 label="Order Value"
                 variant="outlined"
                 fullWidth
+                disabled= {!orderList.orderValue ? disable : abled}
                 sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}
                 type="number"
                 name="orderValue"
@@ -532,6 +549,7 @@ const NewOrderList = (props) => {
                 label="Payment Received"
                 variant="outlined"
                 fullWidth
+                disabled= {!orderList.paymentReceived ? disable : abled}
                 sx={{ mr: { md: 1 } }}
                 type="number"
                 name="paymentReceived"
@@ -541,11 +559,13 @@ const NewOrderList = (props) => {
               <FormControl fullWidth sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
                 <InputLabel id="demo-simple-select-label">Status</InputLabel>
                 <Select
+                  disabled= {!orderList.status ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.currentStatus}
                   label="Status"
                   onChange={handleStatusChange}
+
                 >
                   {
                     statuses.map((status) => (
@@ -559,6 +579,7 @@ const NewOrderList = (props) => {
             <FormControl fullWidth sx={{ mr: { md: 1 } }}>
                 <InputLabel id="demo-simple-select-label">Carcass</InputLabel>
                 <Select
+                  disabled= {!orderList.carcass ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.carcass}
@@ -577,6 +598,7 @@ const NewOrderList = (props) => {
               <FormControl fullWidth sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
                 <InputLabel id="demo-simple-select-label">Shutter</InputLabel>
                 <Select
+                  disabled= {!orderList.shutter ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.shutter}
@@ -595,6 +617,7 @@ const NewOrderList = (props) => {
               <FormControl fullWidth sx={{ mr: { md: 1 } }}>
                 <InputLabel id="demo-simple-select-label">Designer</InputLabel>
                 <Select
+                  disabled= {!orderList.designer ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.designer}
@@ -611,6 +634,7 @@ const NewOrderList = (props) => {
               <FormControl fullWidth sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
                 <InputLabel id="demo-simple-select-label">Final Site Surveyor</InputLabel>
                 <Select
+                  disabled= {!orderList.finalSiteSurveyor ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.finalSiteSurveyor}
@@ -631,6 +655,7 @@ const NewOrderList = (props) => {
             <FormControl fullWidth sx={{ mr: { md: 1 } }}>
                 <InputLabel id="demo-simple-select-label">Sales Person</InputLabel>
                 <Select
+                  disabled= {!orderList.salesPerson ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.salesPerson}
@@ -649,6 +674,7 @@ const NewOrderList = (props) => {
               <FormControl fullWidth sx={{ ml: { md: 1 }, mt: { xs: 2, md: 0 } }}>
                 <InputLabel id="demo-simple-select-label">Factory Engineer</InputLabel>
                 <Select
+                  disabled= {!orderList.factoryEngineer ? disable : abled}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={orderList.factoryEngineer}
@@ -669,6 +695,7 @@ const NewOrderList = (props) => {
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={"en"}>
               <Box sx={{width:'100%', mr: { md: 1 } }}>
                 <TimePicker
+                  disabled= {!orderList.workStartTime ? disable : abled}
                   label="Work Start Time"
                   value={orderList.workStartTime}
                   onChange={
@@ -686,6 +713,7 @@ const NewOrderList = (props) => {
                 <TimePicker
                   label="Work End Time"
                   value={orderList.workEndTime}
+                  disabled= {!orderList.workEndTime ? disable : abled}
                   onChange={
                     (newValue) => {
                       setOrderList({
@@ -704,6 +732,7 @@ const NewOrderList = (props) => {
                 label="Indent Number"
                 variant="outlined"
                 fullWidth
+                disabled= {!orderList.indentNumber ? disable : abled}
                 sx={{ mr: { md: 1 } }}
                 name="indentNumber"
                 onChange={handleChange}
@@ -713,7 +742,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled= {!orderList.indentRelease ? disable : abled}
                     label="Indent Release"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -735,7 +764,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.designClearance ? disable : abled}
                     label="Design Clearance Date"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -754,7 +783,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.accountClearance ? disable : abled}
                     label="Account Clearance"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -775,7 +804,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.shopDocuments ? disable : abled}
                     label="Shop Documents"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -794,7 +823,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.stockCheck ? disable : abled}
                     label="Stock Check"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -815,6 +844,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
+                    disabled = {!orderList.poPrepare ? disable : abled}
                     label="PO Prepare"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -833,7 +863,7 @@ const NewOrderList = (props) => {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.poApproval ? disable : abled}
                     label="PO Approval"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -854,7 +884,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.poRelease ? disable : abled}
                     label="PO Release"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -873,6 +903,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
+                    disabled = {!orderList.jobWorkDone ? disable : abled}
                     label="Job Work Done"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -893,7 +924,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.rawMaterialAvailable ? disable : abled}
                     label="Raw Material Available"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -912,7 +943,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.otherMaterialAvailable ? disable : abled}
                     label="Other Material Available"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -933,7 +964,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.paintMaterialProduction ? disable : abled}
                     label="Paint Material Production"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -952,7 +983,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.otherMaterialProduction ? disable : abled}
                     label="Other Material Production"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -973,6 +1004,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
+                    disabled = {!orderList.panelProduction ? disable : abled}
                     label="Panel Production"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -994,7 +1026,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.assembly ? disable : abled}
                     label="Assembly"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -1013,7 +1045,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.cleaning ? disable : abled}
                     label="Cleaning"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -1034,7 +1066,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DatePicker
                     fullWidth
-                    
+                    disabled = {!orderList.packing ? disable : abled}
                     label="Packing"
                     openTo="year"
                     views={['year', 'month', 'day']}
@@ -1053,6 +1085,7 @@ const NewOrderList = (props) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs} sx={{ maxWidth: '100%', width: '100%' }}>
                   <DatePicker
                     fullWidth
+                    disabled = {!orderList.dispatch ? disable : abled}
                     label="Dispatch"
                     openTo="year"
                     views={['year', 'month', 'day']}
