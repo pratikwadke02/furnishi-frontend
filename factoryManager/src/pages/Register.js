@@ -88,7 +88,7 @@ export default function Register() {
 
         <Container>
           <ContentStyle>
-          <img src={images.furnishiLogo} alt="" height={200} width={300} style={{margin:'auto'}} />
+          <img src={images.furnishiLogo} alt="" height={150} width={225} style={{margin:'auto'}} />
             <Typography variant="h4" gutterBottom sx={{textAlign:'center'}}>
               Get started.
             </Typography>
