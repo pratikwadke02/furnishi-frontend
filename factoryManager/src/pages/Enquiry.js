@@ -98,6 +98,8 @@ const Enquiry = () => {
   const carcasses = (useSelector((state) => state.carcass.carcasses));
   const shutters = (useSelector((state) => state.shutter.shutters));
 
+  // console.log(enquiries);
+
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
 

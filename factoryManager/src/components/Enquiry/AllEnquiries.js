@@ -67,6 +67,7 @@ const AllEnquiries = (props) => {
     
   const {enquiries, openModal} = props;
   // const enquiries = useSelector((state) => state.enquiry.enquiries);
+  console.log(enquiries);
 
   const [modal, setModal] = useState(false);
 
@@ -151,9 +152,8 @@ const AllEnquiries = (props) => {
       />
       <TableBody>
         {enquiries.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((custInfo) => {
-          const { id, orderId, name, number, address, pincode   } = custInfo;
+          const { id, orderNumber, sitePincode, product, currentStatus, action   } = custInfo;
           const isItemSelected = selected.indexOf(id) !== -1;
-
           return (
             <TableRow
               hover
@@ -169,15 +169,15 @@ const AllEnquiries = (props) => {
               <TableCell align="center">
                 <Stack direction="row" alignItems="center" spacing={2}>
                   <Typography variant="subtitle2" noWrap>
-                    {orderId}
+                    {orderNumber}
                   </Typography>
                 </Stack>
               </TableCell>
-              <TableCell align="left">{name}</TableCell>
-              <TableCell align="left">{number}</TableCell>
-              <TableCell align="left">{address}</TableCell>
+              <TableCell align="left">{sitePincode}</TableCell>
+              <TableCell align="left">{product}</TableCell>
+              <TableCell align="left">{currentStatus}</TableCell>
 
-            <TableCell align="left">{pincode}</TableCell>
+            <TableCell align="left">{action}</TableCell>
 
                <TableCell align="right">
                 {/* <RouterLink to ={`/dashboard/student/${id}`} style={{textDecoration:'none'}}> */}
