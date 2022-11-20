@@ -14,6 +14,7 @@ import { Box,
   TableContainer,
   Modal,
   TablePagination } from '@mui/material';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCordinator } from '../../actions/master/cordinator';
@@ -180,11 +181,11 @@ const AllAssistantUsers = (props) => {
             <TableCell align="left">{panel}</TableCell>
 
                <TableCell align="right">
-                {/* <RouterLink to ={`/dashboard/student/${id}`} style={{textDecoration:'none'}}> */}
+                <Link to ={`/dashboard/viewAccess/${id}`} style={{textDecoration:'none'}}>
                 <Button variant="contained" onClick={()=>openModal(id)}>
                   View
                 </Button>
-                {/* </RouterLink> */}
+                </Link>
               </TableCell> 
             </TableRow>
           );

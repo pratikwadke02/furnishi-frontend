@@ -37,7 +37,7 @@ import Iconify from '../components/Iconify';
 import Page from '../components/Page';
 import ArchitectDesigner from '../components/Master/Architect.Designer';
 import ArchitectDesignerCordinator from '../components/Master/Architect.Designer.Cordinator';
-import AccessManager from '../components/AccessManager/AccessManager';
+import ViewAccess from '../components/AccessManager/ViewAccess';
 import AllAssistantUsers from '../components/AccessManager/AllAssistantUsers';
 import AllEnquiries from '../components/Enquiry/AllEnquiries';
 import Manager from '../components/Master/Manager';
@@ -90,7 +90,9 @@ function a11yProps(index) {
   };
 }
 
-const ViewAccess = () => {
+const PanelManager = () => {
+  const {id} = useParams();
+  console.log(id);
   const products = (useSelector((state) => state.product.products));
   const cordinators = (useSelector((state) => state.cordinator.cordinators));
   const statusActions = (useSelector((state) => state.statusAction.statusActions));
@@ -101,6 +103,26 @@ const ViewAccess = () => {
   const panels = (useSelector((state) => state.panel.panels));
   const orderlists = (useSelector((state) => state.orderlist.orderlists));
   const assistantUsers = (useSelector((state) => state.assistantUser.assistantUsers));
+
+  console.log(assistantUsers);
+  const assistantUser = assistantUsers.find((assistantUser) => assistantUser.id === parseInt(id, 10));
+  console.log(assistantUser);
+  
+  const handleBool = (value) => {
+    switch(parseInt(value, 10)) {
+        case 1:
+            return true;
+        case 0:
+            return false;
+        default:
+            return value;
+    }
+    } 
+
+    const cleanedAssistantUser = {};
+    
+    console.log(cleanedAssistantUser);
+
 
   const [headTab, setHeadTab] = useState(0);
   const [subTab, setSubTab] = useState(0);
@@ -152,140 +174,11 @@ const ViewAccess = () => {
     setOpen(false);
   };
 
-  console.log(enquiryData);
+
+  if(!assistantUser) return 'Loading...';
 
   return (
     <>
-    <Modal
-        open={open}
-        onClose={handleCloseModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        {
-          enquiryData ? (
-            <Card sx={style}>
-          <Box sx={{ width: '100%', textAlign: 'center' }}>
-            <Typography variant="h4">Order Number: {enquiryData.orderNumber}</Typography>
-          </Box>
-          <Box sx={{ mt: 2 }}>
-            <Box>
-              <Typography variant="h6">Personal Details</Typography>
-            </Box>
-            <Box sx={{display:'flex'}}>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Name: {enquiryData.source}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Number: {enquiryData.number}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Address: {enquiryData.address}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Pincode: {enquiryData.pincode}</Typography>
-              </Box>
-            </Box>
-            <Box sx={{mt:1}}>
-              <Typography variant="h6">Service Details</Typography>
-            </Box>
-            <Box sx={{display:'flex'}}>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Type: {enquiryData.serviceType}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Site Condition: {enquiryData.siteCondition}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Product Type: {enquiryData.productType}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}/>
-            </Box>
-            <Box sx={{display:'flex'}}>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Face Area: {enquiryData.faceArea} SqFt</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Floating Shelf: {enquiryData.floatingShelf}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Spot Light: {enquiryData.spotLight} Nos</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Strip Light: {enquiryData.stripLight} Nos</Typography>
-              </Box>
-            </Box>
-            <Box sx={{mt:1}}>
-              <Typography variant="h6">Completion Targets</Typography>
-            </Box>
-            <Box sx={{display:'flex'}}>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Expected Start Date: {enquiryData.expectedStartDate ? enquiryData.expectedStartDate.substring(0,10 ) : null}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Expected End Date: {enquiryData.expectedEndDate ? enquiryData.expectedEndDate.substring(0,10 ) : null}</Typography>
-              </Box>
-            </Box>
-            <Box sx={{mt:1}}>
-              <Typography variant="h6">Working Hours</Typography>
-            </Box>
-            <Box sx={{display:'flex'}}>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Start Time: {enquiryData.startTime ? enquiryData.startTime.substring(12,19) : null} </Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">End Time: {enquiryData.endTime ? enquiryData.endTime.substring(12,19) : null}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Break Start Time: {enquiryData.breakStartTime ? enquiryData.breakStartTime.substring(12,19) : null}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Break End Time: {enquiryData.breakEndTime ? enquiryData.breakEndTime.substring(12,19) : null}</Typography>
-              </Box>
-            </Box>
-            <Box sx={{mt:1}}>
-              <Typography variant="h6">Work Details</Typography>
-            </Box>
-            <Box sx={{display:'flex'}}>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Work Phase: {enquiryData.workPhase}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Details: {enquiryData.workPhaseDetails}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Status: {enquiryData.status}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}/>
-            </Box>
-            <Box sx={{mt:1}}>
-              <Typography variant="h6">Other Details</Typography>
-            </Box>
-            <Box sx={{display:'flex'}}>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Locality: {enquiryData.locality}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Pincode: {enquiryData.pincode}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}>
-              <Typography variant="body1">Quote: {enquiryData.quote}</Typography>
-              </Box>
-              <Box sx={{width:'100%'}}/>
-            </Box>
-          </Box>
-          <Box sx={{mt:1,float:'right'}}>
-            <IconButton onClick={previousEnquiry(enquiryData.id)} sx={{border:'1px solid', borderColor:'primary.main', mr:1, p:0}}>
-              <KeyboardArrowLeftOutlinedIcon color='primary'  />
-            </IconButton>
-            <IconButton onClick={nextEnquiry(enquiryData.id)} sx={{border:'1px solid', borderColor:'primary.main', ml:1, p:0}}>
-              <KeyboardArrowRightOutlinedIcon color='primary'/>
-            </IconButton>
-          </Box>
-        </Card>
-          ) : null
-          }        
-      </Modal>
       <Page title="Enquiry">
         <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -298,18 +191,18 @@ const ViewAccess = () => {
         </Stack>
         <Card sx={{ p: 2 }}>
             <Box>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              {/* <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={headTab} onChange={handleHeadTabChange} aria-label="basic tabs example">
                   <Tab label="New Assistant User" {...a11yProps(0)} />
                   <Tab label="All Assistant Users" {...a11yProps(1)} />
                 </Tabs>
               </Box>
-              <TabPanel value={headTab} index={0}>
-              <AccessManager cordinators={cordinators} products={products} statusActions={statusActions} statuses={statuses} carcasses={carcasses} shutters={shutters} panels={panels} orderlists={orderlists} />
-              </TabPanel>
+              <TabPanel value={headTab} index={0}> */}
+              <ViewAccess cordinators={cordinators} products={products} statusActions={statusActions} statuses={statuses} carcasses={carcasses} shutters={shutters} panels={panels} orderlists={orderlists} assistantUserData = {assistantUser} />
+              {/* </TabPanel>
               <TabPanel value={headTab} index={1}>
                 <AllAssistantUsers assistantUsers={assistantUsers} openModal={handleOpenModal} />
-              </TabPanel>
+              </TabPanel> */}
             </Box>
           </Card>
         </Container>
@@ -318,4 +211,4 @@ const ViewAccess = () => {
   );
 };
 
-export default ViewAccess;
+export default PanelManager;
