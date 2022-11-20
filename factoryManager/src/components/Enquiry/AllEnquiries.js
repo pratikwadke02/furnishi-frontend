@@ -1,5 +1,6 @@
 import {filter} from 'lodash';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Box,
   TextField,
   Button,
@@ -67,7 +68,7 @@ const AllEnquiries = (props) => {
     
   const {enquiries, openModal} = props;
   // const enquiries = useSelector((state) => state.enquiry.enquiries);
-  console.log(enquiries);
+  // console.log(enquiries);
 
   const [modal, setModal] = useState(false);
 
@@ -180,11 +181,11 @@ const AllEnquiries = (props) => {
             <TableCell align="left">{action}</TableCell>
 
                <TableCell align="right">
-                {/* <RouterLink to ={`/dashboard/student/${id}`} style={{textDecoration:'none'}}> */}
+                <Link to ={`/dashboard/viewEnquiry/${orderNumber}`} style={{textDecoration:'none'}}>
                 <Button variant="contained" onClick={()=>openModal(id)}>
                   View
                 </Button>
-                {/* </RouterLink> */}
+                </Link>
               </TableCell> 
             </TableRow>
           );

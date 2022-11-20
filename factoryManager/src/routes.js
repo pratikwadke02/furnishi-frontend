@@ -30,6 +30,8 @@ import OrderList from './pages/OrderList';
 import FurnishiOrder from './pages/FurnishiOrder'
 import PanelManager from './pages/PanelManager';
 import ViewOrderList from './pages/ViewOrderList';
+import ViewEnquiry from './pages/ViewEnquiry';
+import ViewAccess from './pages/ViewAccess';
 
 // ----------------------------------------------------------------------
 
@@ -63,9 +65,11 @@ export default function Router() {
         { path: 'snaglist', element: <Snaglist />},
         { path: 'payment', element: <Payment />},
         { path: 'customer', element: <Customer />},
-        { path: 'furnishiOrder', element: <FurnishiOrder />},
+        // { path: 'furnishiOrder', element: <FurnishiOrder />},
         { path: 'panelManager', element: <PanelManager />},
         { path: 'viewOrderlist/:id', element: <ViewOrderList />},
+        { path: 'viewEnquiry/:id', element: <ViewEnquiry />},
+        { path: 'viewAccess/:id', element: <ViewAccess />},
       ],
     },
     {
