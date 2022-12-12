@@ -139,6 +139,8 @@ const NewEnquiry = (props) => {
   };
 
 
+  console.log(enquiry.action);
+
   return (
     <>
         <form onSubmit={handleSubmit}>
@@ -318,8 +320,18 @@ const NewEnquiry = (props) => {
                 value={enquiry.estimate}
                 onChange={handleChange}
               />
+              <TextField
+                label="Action"
+                variant="outlined"
+                fullWidth
+                sx={{ ml: { md: 1 }, mt: {xs: 2, md:0} }}
+                type="text"
+                name="action"
+                value={enquiry.action}
+                onChange={handleChange}
+              />
               
-                          <FormControl fullWidth sx={{ ml: { md: 1 }, mt: {xs:2, md:0} }}>
+                          {/* <FormControl fullWidth sx={{ ml: { md: 1 }, mt: {xs:2, md:0} }}>
                 <InputLabel id="demo-simple-select-label">Action</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -334,7 +346,7 @@ const NewEnquiry = (props) => {
                     ))
                   }
                 </Select>
-              </FormControl>
+              </FormControl> */}
             </Box>
             <Box>
               <Button variant="contained" color="primary" type="submit">

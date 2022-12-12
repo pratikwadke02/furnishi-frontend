@@ -182,7 +182,7 @@ const AllEnquiries = (props) => {
 
                <TableCell align="right">
                 <Link to ={`/dashboard/viewEnquiry/${orderNumber}`} style={{textDecoration:'none'}}>
-                <Button variant="contained" onClick={()=>openModal(id)}>
+                <Button variant="contained">
                   View
                 </Button>
                 </Link>

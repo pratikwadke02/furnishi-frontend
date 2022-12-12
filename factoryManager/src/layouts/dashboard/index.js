@@ -34,6 +34,7 @@ import { getPanels } from '../../actions/master/panel';
 import { getFurnishiOrders } from '../../actions/furnishiorder/furnishiorder';
 import { getAllAssistantUsers } from '../../actions/assistantUser/assistantUser';
 import { getHistory } from '../../actions/history/history';
+import { getEnquiryCosting } from '../../actions/costing/costing';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
@@ -100,6 +101,7 @@ export default function DashboardLayout() {
       dispatch(getPanels());
       dispatch(getAllAssistantUsers());
       dispatch(getHistory());
+      dispatch(getEnquiryCosting());
     };
     getReduxData();
   }, [dispatch]);

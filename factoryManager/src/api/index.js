@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 const API = axios.create({
-    baseURL: 'https://furnishi.herokuapp.com/api/furnishi'
-    // baseURL: 'http://localhost:8080/api/furnishi'
+    // baseURL: 'https://furnishi.herokuapp.com/api/furnishi'
+    baseURL: 'http://localhost:5000/api/furnishi'
+    // baseURL: 'https://furnishi.onrender.com/api/furnishi'
 });
 
 API.interceptors.request.use((req) => {
@@ -101,3 +102,5 @@ export const addAssistantUser = (assistantUserInfo) => API.post("/registerAssist
 export const getAssistantUsers = () => API.get("/getAllAssistantUsers");
 
 export const getHistory = () => API.get("/getHistory");
+
+export const getEnquiryCosting = () => API.get(`/getEnquiryCosting`);

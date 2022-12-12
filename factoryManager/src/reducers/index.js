@@ -33,6 +33,8 @@ import furnishiOrder from './furnishiorder/furnishiorder';
 
 import history from './history/history';
 
+import costing from './costing/costing';
+
 export const reducers = combineReducers({
     auth,
     source,
@@ -62,5 +64,6 @@ export const reducers = combineReducers({
     furnishiOrder,
     panel,
     assistantUser,
-    history
+    history,
+    costing
 });
