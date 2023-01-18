@@ -32,6 +32,7 @@ import PanelManager from './pages/PanelManager';
 import ViewOrderList from './pages/ViewOrderList';
 import ViewEnquiry from './pages/ViewEnquiry';
 import ViewAccess from './pages/ViewAccess';
+import Invoice from './pages/Invoice';
 
 // ----------------------------------------------------------------------
 
@@ -70,6 +71,7 @@ export default function Router() {
         { path: 'viewOrderlist/:id', element: <ViewOrderList />},
         { path: 'viewEnquiry/:id', element: <ViewEnquiry />},
         { path: 'viewAccess/:id', element: <ViewAccess />},
+        { path: 'invoice/:id', element: <Invoice />},
       ],
     },
     {

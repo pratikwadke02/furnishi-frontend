@@ -545,14 +545,14 @@ const NewEnquiry = (props) => {
           </Button>
         </Box>
       </form>
-      <Box sx={{ mt: 5 }}>
+      {/* <Box sx={{ mt: 5 }}>
         <Typography variant="h4" gutterBottom component="div">
           Enquiries
         </Typography>
         {costingDataState.map((item) => {
           return <Box sx={{ mt: 2 }}>{item}</Box>;
         })}
-      </Box>
+      </Box> */}
     </>
   );
 };
