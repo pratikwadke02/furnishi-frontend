@@ -10,7 +10,9 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Button
 } from '@mui/material';
+import { useSelector } from 'react-redux';
 // import { makeStyles } from '@material-ui/core/styles';
 
 // const useStyles = makeStyles({
@@ -23,13 +25,22 @@ function createData(id, description, qty, unitprice) {
   return { id, description, qty, unitprice };
 }
 
-const rows = [
-  createData(1, 'Apply These 7 Secret Techniques To improve Event', 5, '$16.19'),
-  createData(2, 'Believing These 7 Myth About Event Keeps You From Growing', 5, '$35.71'),
-  createData(3, "Don't Waste Time! 7 Fact Until You Reach Your Event", 5, '$34.31'),
-];
 
 const Invoice = () => {
+  const invoiceData = (useSelector((state) => state.invoice.invoice))
+  console.log(invoiceData);
+  // const [rows, setRows] = React.useState();
+    const rows = [
+      createData(1, 'AMC', invoiceData.amcData || 0, invoiceData.amcPrice),
+      createData(2, 'Deep Cleaning', invoiceData.deepClean || 'No', invoiceData.deepCleanPrice),
+      createData(3, 'Live Streaming', invoiceData.liveStreaming || 'No', invoiceData.liveStreamingPrice),
+      createData(4, 'Installation Recording', invoiceData.installationRecording || 'No', invoiceData.installationRecordingPrice),
+      createData(5, 'Installation', invoiceData.enquiryType === "installationEnquiry" ? invoiceData.area : 0, invoiceData.installationPrice),
+      createData(6, 'Survey', invoiceData.enquiryType === "surveyEnquiry" ? invoiceData.product : 'No', invoiceData.surveyPrice),
+      createData(7, 'Complaint', invoiceData.enquiryType === "complaintEnquiry" ? invoiceData.product : 'No', invoiceData.complaintPrice),
+    ];
+  console.log(rows);
+  if(!invoiceData) return 'Loading...';
   return (
     <>
       <Paper
@@ -43,22 +54,19 @@ const Invoice = () => {
           justifyContent: 'center',
         }}
       >
-        <Grid container spacing={2} sx={{ margin: 'auto' }}>
-          <Grid item xs={6}>
+         <Grid container spacing={2} sx={{ margin: 'auto' }}>
+          <Grid item xs={12}>
             <Typography variant="h5" sx={{ marginLeft: '10px' }}>
-              Minimal
+              Furnishi
             </Typography>
           </Grid>
-          <Grid item xs={6}>
-            <Typography variant="p" sx={{ marginLeft: '460px' }}>
-              Paid
-            </Typography>
+          {/* <Grid item xs={6}>
             <Typography variant="h6" sx={{ marginLeft: '400px' }}>
               INV-17052
             </Typography>
-          </Grid>
+          </Grid> */}
         </Grid>
-        <Grid container spacing={2} sx={{ margin: 'auto' }}>
+        {/* <Grid container spacing={2} sx={{ margin: 'auto' }}>
           <Grid item xs={6}>
             <Typography variant="p" sx={{ color: 'gray', marginLeft: '10px' }}>
               <b>INVOICE FROM</b>
@@ -105,7 +113,7 @@ const Invoice = () => {
           </Grid>
         </Grid>
         <br />
-        <br />
+        <br /> */}
         <TableContainer component={Paper} sx={{ marginLeft: '20px', margin: 'auto', boxShadow: 'none' }}>
           <Table>
             <TableHead>
@@ -141,14 +149,14 @@ const Invoice = () => {
         <br />
         <br />
         <Box sx={{ marginLeft: '950px' }}>
-          <Typography>SubTotal</Typography>
+          <Typography>SubTotal : ₹{invoiceData.total}</Typography>
           <br />
-          <Typography>Discount</Typography>
+          <Typography>Discount: </Typography>
           <br />
           <Typography>Taxes</Typography>
           <br />
           <Typography>
-            <b>Total</b>
+            <b>Total: ₹{invoiceData.total}</b>
           </Typography>
         </Box>
         <br />
@@ -161,7 +169,7 @@ const Invoice = () => {
             </Typography>
             <br />
             <Typography variant="subtitle" sx={{ marginLeft: '20px' }}>
-              We appreciate your business. Should you need us to add VAT or extra notes let us know?
+              We appreciate your business.
             </Typography>
           </Grid>
           <Grid item xs={4}>
@@ -170,10 +178,18 @@ const Invoice = () => {
             </Typography>
             <br />
             <Typography variant="subtitle" sx={{ marginLeft: '150px' }}>
-              support@minimals.cc
+              support@furnishi.cc
             </Typography>
           </Grid>
         </Grid>
+        <Box sx={{ marginLeft: '20px' }}>
+          <Button variant="contained" sx={{ marginTop: '20px' }}>
+            Submit
+          </Button>
+          <Button variant="contained" sx={{ marginTop: '20px', marginLeft: '20px' }}>
+            Discuss
+          </Button>
+        </Box>
       </Paper>
     </>
   );

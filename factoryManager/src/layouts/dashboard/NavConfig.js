@@ -46,26 +46,26 @@ const navConfig = [
     path: '/dashboard/snaglist',
     icon: getIcon('eva:file-text-fill'),
   },
-  {
-    title: 'complaint',
-    path: '/dashboard/complaintTicket',
-    icon: getIcon('eva:file-text-fill'),
-  },
-  {
-    title: 'survey',
-    path: '/dashboard/surveyTicket',
-    icon: getIcon('eva:file-text-fill'),
-  },
-  {
-    title: 'payment',
-    path: '/dashboard/payment',
-    icon: getIcon('eva:file-text-fill'),
-  },
-  {
-    title: 'customer',
-    path: '/dashboard/customer',
-    icon: getIcon('eva:file-text-fill'),
-  },
+  // {
+  //   title: 'complaint',
+  //   path: '/dashboard/complaintTicket',
+  //   icon: getIcon('eva:file-text-fill'),
+  // },
+  // {
+  //   title: 'survey',
+  //   path: '/dashboard/surveyTicket',
+  //   icon: getIcon('eva:file-text-fill'),
+  // },
+  // {
+  //   title: 'payment',
+  //   path: '/dashboard/payment',
+  //   icon: getIcon('eva:file-text-fill'),
+  // },
+  // {
+  //   title: 'customer',
+  //   path: '/dashboard/customer',
+  //   icon: getIcon('eva:file-text-fill'),
+  // },
   {
     title: 'settings',
     path: '/dashboard/settings',

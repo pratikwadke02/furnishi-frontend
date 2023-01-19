@@ -2,8 +2,9 @@ import axios from 'axios'
 
 const API = axios.create({
     // baseURL: 'https://furnishi.herokuapp.com/api/furnishi'
-    baseURL: 'http://localhost:5000/api/furnishi'
+    // baseURL: 'http://localhost:5000/api/furnishi'
     // baseURL: 'https://furnishi.onrender.com/api/furnishi'
+    baseURL: 'https://furnishi-zh4d.onrender.com/api/furnishi'
 });
 
 API.interceptors.request.use((req) => {

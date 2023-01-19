@@ -26,6 +26,7 @@ import factoryEngineer from './master/factoryEngineer';
 import panel from './master/panel';
 
 import enquiry from './enquiry/enquiry'
+import invoice from './invoice/invoice';
 import order from './order/order'
 import snaglist from './snaglist/snaglist'
 import orderlist from './orderlist/orderlist'
@@ -65,5 +66,6 @@ export const reducers = combineReducers({
     panel,
     assistantUser,
     history,
-    costing
+    costing,
+    invoice
 });

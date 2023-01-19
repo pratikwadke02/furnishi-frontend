@@ -71,7 +71,7 @@ export default function Router() {
         { path: 'viewOrderlist/:id', element: <ViewOrderList />},
         { path: 'viewEnquiry/:id', element: <ViewEnquiry />},
         { path: 'viewAccess/:id', element: <ViewAccess />},
-        { path: 'invoice/:id', element: <Invoice />},
+        { path: 'invoice', element: <Invoice />},
       ],
     },
     {

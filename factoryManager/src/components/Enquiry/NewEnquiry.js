@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 import {
   Box,
@@ -31,6 +31,7 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import EnquiryFMTable from './EnquiryFMTable'
 import { addEnquiry } from '../../actions/enquiry/enquiry';
+import { addInvoice } from '../../actions/invoice/invoice';
 
 const NewEnquiry = (props) => {
   const { cordinators, products, statusActions, statuses, carcasses, shutters, enquiryCosting } = props;
@@ -70,6 +71,25 @@ const NewEnquiry = (props) => {
   };
 
   const [costingDataState, setCostingDataState] = useState();
+
+  const [invoice, setInvoice] = useState({
+    installationPrice: 0,
+    surveyPrice: 0,
+    complaintPrice: 0,
+    deepCleanPrice: 0,
+    amcPrice: 0,
+    liveStreamingPrice: 0,
+    installationRecordingPrice: 0,
+    total: 0,
+    area: 0,
+    survey: '',
+    complaint: '',
+    deepClean: '',
+    amc: '',
+    amcData: 0,
+    liveStreaming: '',
+    installationRecording: '',
+  });
 
   const changeTrue = true;
   const changeFalse = false;
@@ -194,6 +214,7 @@ const NewEnquiry = (props) => {
   };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const calculateCosting = () => {
     if (enquiry.enquiryType === 'installationEnquiry') {
@@ -232,6 +253,36 @@ const NewEnquiry = (props) => {
     costingData.total = totalCost;
   };
 
+  const returnTotal = () => {
+    let totalCost = 0;
+    Object.keys(costingData).forEach((key) => {
+      totalCost += costingData[key];
+    });
+    return totalCost;
+  };
+
+  const invoiceData = async () => {
+    setInvoice({
+      ...invoice,
+      installationPrice: costing.installation,
+      surveyPrice: costing.survey,
+      complaintPrice: costing.complaint,
+      deepCleanPrice: costing.deepClean,
+      amcPrice: costing.amc,
+      liveStreamingPrice: costing.liveStreaming,
+      installationRecordingPrice: costing.installationRecording,
+      area: enquiry.area,
+      
+      installation: enquiry.installation,
+      deepClean: enquiry.deepClean,
+      liveStreaming: enquiry.liveStreaming,
+      installationRecording: enquiry.installationRecording,
+      amc: enquiry.amc,
+      amcData: enquiry.amcData,
+      total: costingDataState.total,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -242,6 +293,25 @@ const NewEnquiry = (props) => {
       console.log(costingData);
       dispatch(addEnquiry(enquiry));
       setCostingDataState(costingData);
+      const invoiceData = {
+        installationPrice: costing.installation,
+        surveyPrice: costing.survey,
+        complaintPrice: costing.complaint,
+        deepCleanPrice: costing.deepClean,
+        amcPrice: costing.amc,
+        liveStreamingPrice: costing.liveStreaming,
+        installationRecordingPrice: costing.installationRecording,
+        area: enquiry.area,
+        enquiryType: enquiry.enquiryType,
+        deepClean: enquiry.deepClean,
+        liveStreaming: enquiry.liveStreaming,
+        installationRecording: enquiry.installationRecording,
+        amc: enquiry.amc,
+        amcData: enquiry.amcData,
+        product: enquiry.product,
+        total: returnTotal(),
+      }
+      dispatch(addInvoice(invoiceData, navigate));
       setEnquiry({
         targetDate: null,
         sitePincode: '',
