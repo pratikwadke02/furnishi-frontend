@@ -33,6 +33,7 @@ import ViewOrderList from './pages/ViewOrderList';
 import ViewEnquiry from './pages/ViewEnquiry';
 import ViewAccess from './pages/ViewAccess';
 import Invoice from './pages/Invoice';
+import LandingPage from './pages/LandingPage/LandingPage'
 
 // ----------------------------------------------------------------------
 
@@ -74,6 +75,7 @@ export default function Router() {
         { path: 'invoice', element: <Invoice />},
       ],
     },
+    { path: 'furnishi', element: <LandingPage />},
     {
       path: 'login',
       element: <Login />,
@@ -86,7 +88,7 @@ export default function Router() {
       path: '/',
       element: <LogoOnlyLayout />,
       children: [
-        { path: '/', element: user ? <Navigate to="/dashboard/app" /> : <Navigate to="/login" /> },
+        { path: '/', element: user ? <Navigate to="/dashboard/app" /> : <Navigate to="/furnishi" /> },
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

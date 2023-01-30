@@ -1,0 +1,52 @@
+.home12{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-image: url("https://uploads-ssl.webflow.com/5e53d34464688e6f5960a338/610a371fbd4ad017bc4d3b08_Group%203795.png");
+
+
+
+
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+}
+.home12-text1{
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.home12-text2{
+    font-size: 38px;
+    font-weight: 800;
+    color: #017EE4;
+    margin-bottom: 20px;
+}
+.home12-img{
+    border: 0;
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.home12-button{
+    font-size: 16px;
+    padding: 16px 32px;
+    font-weight: 800;
+    border: none;
+    background-color: #017EE4;
+    color: white;
+    border-radius: 100px;
+}
+@media (max-width:480px) {
+    .home12-button{
+        width: 100%;
+      
+    }
+    .home12{
+        padding: 100px 50px;
+    }
+}
